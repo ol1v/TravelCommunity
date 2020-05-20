@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1 class="index-test">Index</h1>
+    <home-search></home-search>
   </div>
 </template>
 
