@@ -6,6 +6,8 @@ Vue.use(VueRouter)
 //Importing views
 import Login from '../views/Login'
 import Home from '../views/Home'
+import Register from '../views/Register'
+
 
 
 let router = new VueRouter({
@@ -16,6 +18,9 @@ let router = new VueRouter({
   }, {
     component: Login,
     path: '/login'
+  }, {
+    component: Register,
+    path: '/register'
   }]
 })
 
