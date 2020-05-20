@@ -5,11 +5,11 @@
       <ul>
           <li><router-link to="/" class="navbar-links">Sök resa</router-link></li> | 
           <li><router-link to="/" class="navbar-links">Resor</router-link></li>
-          <!--<li><router-link to="/login" class="navbar-links-login">Logga in</router-link></li>-->
           <li class="navbar-links-login" @click="loginArea">Logga in / Registrera</li>
       </ul> 
     </nav>
 
+    <!-- Login page -->
     <div id="login-fullscreen" :style="displayLogin">
       <div id="login-area">
         <div id="login-top-bar">
