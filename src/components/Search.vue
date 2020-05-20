@@ -1,21 +1,9 @@
 <template>
-  <div class = "search-box">
-        <input 
-         type="text"
-         class="from-field" 
-         placeholder = "From ... "
-         />
-
-         <input 
-         type="text"
-         class="to-field" 
-         placeholder = "To ... "
-         />
-         
-         <button class="search-btn" >Sök...</button> 
-       
-        
-        </div>
+  <div class="search-box">
+    <input type="text" class="from-field" placeholder = "Från... "/>
+    <input type="text" class="to-field" placeholder = "Till... "/>
+    <button class="search-btn" >Sök</button> 
+  </div>
 </template>
 
 <script>
@@ -27,9 +15,8 @@ export default {
 
 <style>
 .search-box{
-  width: 75%;
-  margin-bottom: 30px;
-  
+  width: 40%;
+  margin: auto;
 }
 
 .search-box .from-field{
@@ -85,18 +72,16 @@ export default {
 } 
 
 #app{
-  
   background-size: cover;
   background-position: bottom;
-  
 }
-
 
 .search-box .search-btn{
   display: block;
   width: 100%;
   padding: 15px;
   margin: 30px;
+  cursor: pointer;
 
   color: #313131;
   font-size: 20px;
@@ -112,19 +97,10 @@ export default {
   transition: 0.4s;
 } 
 
-
 main{
   min-height: 100vh;
   padding: 25px;
   background-image: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.75));
-
-  
 }
-
-
-
-
-
-
 
 </style>

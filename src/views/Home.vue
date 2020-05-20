@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <h1 class="index-test">Index</h1>
+  <div id="header">
     <home-search></home-search>
   </div>
 </template>
@@ -12,8 +11,15 @@ export default {
 </script>
 
 <style>
-/* Remove this one later */
-.index-test{
-  text-align: center;
+#header{
+  width: 100%;
+  height: calc(100vh - 50px);
+  background-image: url('../assets/header.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0px;
+  overflow:hidden;
+  padding: 0px;
 }
+
 </style>
