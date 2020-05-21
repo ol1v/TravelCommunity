@@ -3,10 +3,12 @@
     <nav>
       <div id="navbar-logo"></div>
       <ul>
-          <li><router-link to="/" class="navbar-links">Sök resa</router-link></li> | 
-          <li><router-link to="/" class="navbar-links">Resor</router-link></li>
-          <li v-if="!this.$store.state.loggedIn" class="navbar-links-login" @click="loginArea">Logga in / Registrera</li>
-          <li v-if="this.$store.state.loggedIn" class="navbar-links-login" @click="logout">Logga ut</li>
+        <li><router-link to="/" class="navbar-links">Sök resa</router-link></li> | 
+        <li><router-link to="/" class="navbar-links">Resor</router-link></li> | 
+        <li v-if="!this.$store.state.loggedIn" class="navbar-links-login" @click="loginArea">Logga in / Registrera</li>
+        <!-- If user is logged in -->
+        <li><router-link to="/user" class="navbar-links" v-if="this.$store.state.loggedIn">{{username}}</router-link></li>
+        <li v-if="this.$store.state.loggedIn" class="navbar-links-login" @click="logout">Logga ut</li>
       </ul> 
     </nav>
 
@@ -57,6 +59,7 @@ export default {
 
       //TODO: Move this store commit later when SQL is connected.
       this.$store.commit("SET_LOGGED_IN", true)
+      this.$store.commit("SET_USERNAME", this.username)
 
       //TODO: Send a request to server to verify username and password
 
@@ -105,7 +108,7 @@ ul, li {
 #navbar-logo{
   width: 200px;
   height: 50px;
-  background-color: black;
+  background-image:  url("../assets/tempLogo.png");
   float: left;
 }
 .navbar-links{
@@ -133,8 +136,7 @@ ul, li {
   cursor: pointer;
 }
 .navbar-links:hover, .navbar-links-login:hover{
-  background-color: grey;
-  color: white;
+  color: #00CBFF;
   height: 50px;
 }
 /* Login panel */
@@ -175,9 +177,10 @@ ul, li {
   margin: auto;
 }
 #login-logo{
-  width: 75px;
-  height: 75px;
-  background-color: black;
+  width: 200px;
+  height: 50px;
+  /*background-color: black; */
+  background-image:  url("../assets/tempLogo.png");
   margin: 50px auto;
 }
 .user-input{

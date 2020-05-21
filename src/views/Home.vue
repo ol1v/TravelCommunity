@@ -18,7 +18,7 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
   margin: 0px;
-  overflow:hidden;
+  overflow: hidden;
   padding: 0px;
 }
 

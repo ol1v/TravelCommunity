@@ -17,6 +17,9 @@ export default {
   methods: {
     searchBtnPressed() {
       // Trigger searchfunction with parameters
+
+      //Then navigate
+      this.$router.push({name: "Searchresult"})
     }
   },
   computed: {}
@@ -102,7 +105,7 @@ export default {
   background: none;
 
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
-  background-color: rgba(240, 8, 8, 0.5);
+  background-color: #00CBFF;
   border-radius: 16px 16px 16px 16px;
   transition: 0.4s;
 }

@@ -4,12 +4,16 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 let state = {
-  loggedIn: false
+  loggedIn: false,
+  username: ""
 }
 
 let mutations = {
   SET_LOGGED_IN(state, payload){
     state.loggedIn = payload
+  },
+  SET_USERNAME(state, payload){
+    state.username = payload
   }
 }
 
