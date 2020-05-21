@@ -5,7 +5,8 @@
       <ul>
           <li><router-link to="/" class="navbar-links">Sök resa</router-link></li> | 
           <li><router-link to="/" class="navbar-links">Resor</router-link></li>
-          <li class="navbar-links-login" @click="loginArea">Logga in / Registrera</li>
+          <li v-if="!this.$store.state.loggedIn" class="navbar-links-login" @click="loginArea">Logga in / Registrera</li>
+          <li v-if="this.$store.state.loggedIn" class="navbar-links-login" @click="logout">Logga ut</li>
       </ul> 
     </nav>
 
@@ -19,19 +20,21 @@
           <div id="login-logo"></div>
 
           <label for="username">Användarnamn</label>
-          <input class="user-input" type="text" id="username">
+          <input v-model="username" class="user-input" type="text" id="username">
           <label for="password">Lösenord</label>
-          <input class="user-input" type="password" id="password">
+          <input v-model="password" class="user-input" type="password" id="password">
 
           <div id="buttons">
             <input class="forgot-pass-button" type="button" value="Glömt lösenord?">
-            <input class="login-button" type="button" value="Logga in">
+            <input class="login-button" type="button" @click="login" value="Logga in">
           </div>
 
+          <!-- Register button -->
           <div id="register-components">
             <p class="center"> Eller </p>
             <input class="register-button" type="button" value="Registrera dig" @click="register">
           </div>
+
         </div>
       </div>
     </div>
@@ -43,16 +46,33 @@
 export default {
   data(){
     return{
-      displayLoginStatus: false
+      displayLoginStatus: false,
+      username: "",
+      password: "",
     }
   },
   methods:{
+    login(){
+      console.log(this.username + " " + this.password)
+
+      //TODO: Move this store commit later when SQL is connected.
+      this.$store.commit("SET_LOGGED_IN", true)
+
+      //TODO: Send a request to server to verify username and password
+
+      this.displayLoginStatus = false
+      this.$router.push({name: 'User'})
+    },
     loginArea(){
       this.displayLoginStatus = !this.displayLoginStatus
     },
     register(){
       this.displayLoginStatus = false
       this.$router.push({name: 'Register'})
+    },
+    logout(){
+      this.$store.commit("SET_LOGGED_IN", false)
+      this.$router.push({name: 'Home'})
     }
   },
   computed:{
@@ -117,7 +137,6 @@ ul, li {
   color: white;
   height: 50px;
 }
-
 /* Login panel */
 #login-fullscreen{
   width: 100%;
@@ -140,7 +159,6 @@ ul, li {
   width: 100%;
   height: 40px;
 }
-
 .close-window-button{
   background-color: lightgrey;
   color: black;
@@ -151,33 +169,28 @@ ul, li {
   width: 40px;
   height: 40px;
 }
-
 #login-components{
   width: 75%;
   height: 550px;
   margin: auto;
 }
-
 #login-logo{
   width: 75px;
   height: 75px;
   background-color: black;
   margin: 50px auto;
 }
-
 .user-input{
   width: 100%;
   height: 40px;
   box-sizing: border-box;
   margin-bottom: 10px;
 }
-
 #buttons{
   width: 100%;
   height: 40px;
   
 }
-
 .forgot-pass-button{
   width: 70%;
   height: 40px;
@@ -188,7 +201,6 @@ ul, li {
   border: 0px;
   cursor: pointer;
 }
-
 .login-button{
   width: 30%;
   height: 40px;
@@ -198,14 +210,11 @@ ul, li {
   color: black;
   cursor: pointer;
 }
-
-
 #register-components{
   width: 100%;
   height: 150px;
   margin-top: 30px;
 }
-
 .register-button{
   width: 100%;
   height: 40px;

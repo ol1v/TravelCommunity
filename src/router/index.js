@@ -8,10 +8,12 @@ import Login from '../views/Login'
 import Home from '../views/Home'
 import Register from '../views/Register'
 import Searchresult from '../views/Searchresult'
+import User from '../views/User'
 
 let router = new VueRouter({
   mode: 'history',
   routes: [{
+    name: "Home",
     component: Home,
     path: '/'
   }, {
@@ -26,6 +28,10 @@ let router = new VueRouter({
     name: "Searchresult",
     component: Searchresult,
     path: '/results'
+  },{
+    name: "User",
+    component: User,
+    path: '/user'
   }]
 })
 
