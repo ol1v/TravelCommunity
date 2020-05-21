@@ -7,6 +7,7 @@ Vue.use(VueRouter)
 import Login from '../views/Login'
 import Home from '../views/Home'
 import Register from '../views/Register'
+import Searchresult from '../views/Searchresult'
 
 let router = new VueRouter({
   mode: 'history',
@@ -20,6 +21,11 @@ let router = new VueRouter({
     name: "Register",
     component: Register,
     path: '/register'
+  },
+  {
+    name: "Searchresult",
+    component: Searchresult,
+    path: '/results'
   }]
 })
 

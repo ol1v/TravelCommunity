@@ -1,25 +1,35 @@
 <template>
   <div class="search-box">
-    <input type="text" class="from-field" placeholder = "Från... "/>
-    <input type="text" class="to-field" placeholder = "Till... "/>
-    <button class="search-btn" >Sök</button> 
+    <input type="text" class="from-field" placeholder="Från... " v-model="searchFrom" />
+    <input type="text" class="to-field" placeholder="Till... " v-model="searchTo" />
+    <button class="search-btn" @click="searchBtnPressed">Sök</button>
   </div>
 </template>
 
 <script>
-
 export default {
-
-}
+  data() {
+    return {
+      searchFrom: null,
+      searchTo: null
+    };
+  },
+  methods: {
+    searchBtnPressed() {
+      // Trigger searchfunction with parameters
+    }
+  },
+  computed: {}
+};
 </script>
 
 <style>
-.search-box{
+.search-box {
   width: 40%;
   margin: auto;
 }
 
-.search-box .from-field{
+.search-box .from-field {
   display: block;
   width: 100%;
   padding: 15px;
@@ -29,23 +39,23 @@ export default {
   font-size: 20px;
 
   appearance: none;
-  border:none;
+  border: none;
   outline: none;
   background: none;
 
-  box-shadow: 0px 0px 8px rgba(0,0,0,0.25);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 16px 0px 0px 16px;
   transition: 0.4s;
-} 
+}
 
-.search-box .from-field:focus{
-  box-shadow: 0px 0px 16px rgba(0,0,0,0.25);
-  background-color: rgba(255,255,255,0.75);
+.search-box .from-field:focus {
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.75);
   border-radius: 0px 16px 16px 0px;
-} 
+}
 
-.search-box .to-field{
+.search-box .to-field {
   display: block;
   width: 100%;
   padding: 15px;
@@ -55,28 +65,28 @@ export default {
   font-size: 20px;
 
   appearance: none;
-  border:none;
+  border: none;
   outline: none;
   background: none;
 
-  box-shadow: 0px 0px 8px rgba(0,0,0,0.25);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
   background-color: rgba(255, 255, 255, 0.5);
   border-radius: 0px 16px 16px 0px;
   transition: 0.4s;
-} 
+}
 
-.search-box .to-field:focus{
-  box-shadow: 0px 0px 16px rgba(0,0,0,0.25);
-  background-color: rgba(255,255,255,0.75);
+.search-box .to-field:focus {
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.75);
   border-radius: 16px 0px 0px 16px;
-} 
+}
 
-#app{
+#app {
   background-size: cover;
   background-position: bottom;
 }
 
-.search-box .search-btn{
+.search-box .search-btn {
   display: block;
   width: 100%;
   padding: 15px;
@@ -87,20 +97,23 @@ export default {
   font-size: 20px;
 
   appearance: none;
-  border:none;
+  border: none;
   outline: none;
   background: none;
 
-  box-shadow: 0px 0px 8px rgba(0,0,0,0.25);
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
   background-color: rgba(240, 8, 8, 0.5);
   border-radius: 16px 16px 16px 16px;
   transition: 0.4s;
-} 
-
-main{
-  min-height: 100vh;
-  padding: 25px;
-  background-image: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.75));
 }
 
+main {
+  min-height: 100vh;
+  padding: 25px;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.75)
+  );
+}
 </style>
