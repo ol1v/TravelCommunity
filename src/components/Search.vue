@@ -1,7 +1,7 @@
 <template>
   <div class="search-box">
-    <input type="text" class="from-field" placeholder="Från... " v-model="searchFrom" />
-    <input type="text" class="to-field" placeholder="Till... " v-model="searchTo" />
+    <input type="text" class="from-field" placeholder="Från... " v-model="from" />
+    <input type="text" class="to-field" placeholder="Till... " v-model="to" />
     <button class="search-btn" @click="searchBtnPressed">Sök</button>
   </div>
 </template>
@@ -10,16 +10,20 @@
 export default {
   data() {
     return {
-      searchFrom: null,
-      searchTo: null
+      from: null,
+      to: null
     };
   },
   methods: {
     searchBtnPressed() {
-      // Trigger searchfunction with parameters
+      // Trigger searchfunction with parameters (fetch from database)
+
+      //set from and to variables in store
+      this.$store.commit("SET_FROM", this.from);
+      this.$store.commit("SET_TO", this.to);
 
       //Then navigate
-      this.$router.push({name: "Searchresult"})
+      this.$router.push({ name: "Searchresult" });
     }
   },
   computed: {}
@@ -105,7 +109,7 @@ export default {
   background: none;
 
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
-  background-color: #00CBFF;
+  background-color: #00cbff;
   border-radius: 16px 16px 16px 16px;
   transition: 0.4s;
 }
