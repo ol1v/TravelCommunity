@@ -1,5 +1,8 @@
 <template>
-  <div>Search result should appear here</div>
+  <div>
+    Search result should appear here
+    <Result></Result>
+  </div>
 </template>
 
 <script>
