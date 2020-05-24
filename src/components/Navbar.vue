@@ -4,9 +4,9 @@
       <div id="navbar-logo"></div>
       <ul>
         <li><router-link to="/" class="navbar-links">Sök resa</router-link></li> | 
-        <li><router-link to="/" class="navbar-links">Resor</router-link></li> | 
+        <li><router-link to="/" class="navbar-links">Resor</router-link></li>
+        <span v-if="this.$store.state.loggedIn">|</span> 
         <li v-if="!this.$store.state.loggedIn" class="navbar-links-login" @click="loginArea">Logga in / Registrera</li>
-        <!-- If user is logged in -->
         <li><router-link to="/user" class="navbar-links" v-if="this.$store.state.loggedIn">{{username}}</router-link></li>
         <li v-if="this.$store.state.loggedIn" class="navbar-links-login" @click="logout">Logga ut</li>
       </ul> 
@@ -95,7 +95,6 @@ export default {
 
 <style scoped>
 nav{
-  /* background-color: rgba(236,236,236,1); */
   width: 100%;
   height: 50px;
   box-shadow: rgb(211, 207, 207) 0px 0px 0px 1px;
