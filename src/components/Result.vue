@@ -4,7 +4,7 @@
     <div id="results-searchbar">
       <input class="results-inputs" type="text" />
       <input class="results-inputs" type="text" />
-      <input type="button" value="Search" />
+      <input class="results-button" type="button" value="Search" />
     </div>
 
     <!--- filter options --->
@@ -27,7 +27,7 @@
     <section id="results-container">
       <!--- result object --->
       <div class="results-object">
-        <span>Betyg 3/5</span>
+        <span id="results-rating">Betyg 3/5</span>
         <span class="destinations">from Gothenburg</span>
         <span class="destinations">to Rome</span>
 
@@ -70,10 +70,18 @@ export default {
 
 <style>
 #results-container {
-  background-color: cornflowerblue;
+  background-color: white;
+  opacity: 0.9;
   width: 90%;
   margin: auto;
   border-radius: 15pt;
+  box-shadow: 5pt 5pt 10pt lightgrey;
+}
+#results-rating {
+  margin: 1em;
+}
+.destinations {
+  margin: 1em;
 }
 
 .filter-btn {
@@ -89,6 +97,12 @@ export default {
   transition: 0.5s;
   border-radius: 5pt;
   margin-left: 0.7em;
+}
+
+.results-button {
+  background-color: lightskyblue;
+  color: white;
+  border-color: lightskyblue;
 }
 
 .results-inputs {
