@@ -1,14 +1,7 @@
 <template>
   <div>
     <!--- If user wants to make another search  --->
-    <div id="results-searchbar">
-      <input class="results-inputs" type="text" />
-      <input class="results-inputs" type="text" />
-      <button class="results-btn">
-        <span>Search</span>
-      </button>
-    </div>
-
+    <home-search></home-search>
     <!--- filter options --->
     <div id="filter">
       <button class="filter-btn" @click="openFilterMenu">Filter</button>
@@ -98,10 +91,6 @@ h3 {
   margin: auto;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
   font-family: "Montserrat", sans-serif;
-}
-
-#results-searchbar {
-  text-align: center;
 }
 
 .results-inputs {
