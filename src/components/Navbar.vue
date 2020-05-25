@@ -95,11 +95,11 @@ export default {
     displayLogin(){
       if(this.displayLoginStatus){
         return{
-          "display":"block"
+          "display":"block",
         }
       }
       else{
-        return { }
+        return {}
       }
     }
   }
@@ -155,9 +155,8 @@ ul, li {
 #login-fullscreen{
   width: 100%;
   height: 100vh;
-  background-color: grey;
+  background: rgba(128, 128, 128, 0.9);
   position: fixed;
-  opacity: .9;
   display: none;
 }
 #login-area{
