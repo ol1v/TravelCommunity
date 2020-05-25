@@ -8,6 +8,14 @@ import store from './store'
 import axios from 'axios'
 import vueAxios from 'vue-axios'
 Vue.use(vueAxios, axios)
+// Fontawesome
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faPlane } from '@fortawesome/free-solid-svg-icons'
+import { faShip } from '@fortawesome/free-solid-svg-icons'
+import { faCar } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+library.add(faPlane, faShip, faCar)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 

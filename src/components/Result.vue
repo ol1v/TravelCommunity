@@ -44,9 +44,16 @@
           <li>Stops: 3</li>
           <li>Traveltime</li>
         </ul>
-
-        <span id="travel-icons">icons: car airplane boat</span>
+        <!--- loop to get all icons --->
         <!--- Icons (Create enum with icons) --->
+        <span id="travel-icons">
+          <p>
+            <font-awesome-icon icon="plane" size="2x" />
+            <font-awesome-icon icon="ship" size="2x" />
+            <font-awesome-icon icon="car" size="2x" />
+          </p>
+        </span>
+
         <input type="button" value="View Details" />
         <!--- View all details --->
       </div>
