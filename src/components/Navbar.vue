@@ -31,6 +31,8 @@
             <input class="login-button" type="button" @click="login" value="Logga in">
           </div>
 
+          <div id="error-message">{{errorMessage}}</div>
+
           <!-- Register button -->
           <div id="register-components">
             <p class="center"> Eller </p>
@@ -51,6 +53,7 @@ export default {
       displayLoginStatus: false,
       username: "",
       password: "",
+      errorMessage: ""
     }
   },
   methods:{
@@ -70,11 +73,13 @@ export default {
         this.$router.push({name: 'User'})
       })
       .catch(err => {
+        this.errorMessage = err.response.data.message
         console.log(err)
       })
 
     },
     loginArea(){
+      this.errorMessage = ""
       this.displayLoginStatus = !this.displayLoginStatus
     },
     register(){
@@ -186,10 +191,18 @@ ul, li {
 #login-logo{
   width: 200px;
   height: 50px;
-  /*background-color: black; */
   background-image:  url("../assets/tempLogo.png");
   margin: 50px auto;
 }
+
+#error-message{
+  width: 100%;
+  height: auto;
+  margin-top: 10px;
+  text-align: center;
+  color: red;
+}
+
 .user-input{
   width: 100%;
   height: 40px;
