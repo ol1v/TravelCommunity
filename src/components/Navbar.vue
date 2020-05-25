@@ -55,16 +55,24 @@ export default {
   },
   methods:{
     login(){
-      console.log(this.username + " " + this.password)
+      //Connect
+      const credentials = {username: this.username, password: this.password}
+      let url = "http://localhost:3005/"
 
-      //TODO: Move this store commit later when SQL is connected.
-      this.$store.commit("SET_LOGGED_IN", true)
-      this.$store.commit("SET_USERNAME", this.username)
+      this.axios
+      .post(url + 'login/', credentials)
+      .then(response => {
+        console.log(response.data)
+        this.$store.commit("SET_LOGGED_IN", true)
+        this.$store.commit("SET_USERNAME", this.username)
 
-      //TODO: Send a request to server to verify username and password
+        this.displayLoginStatus = false
+        this.$router.push({name: 'User'})
+      })
+      .catch(err => {
+        console.log(err)
+      })
 
-      this.displayLoginStatus = false
-      this.$router.push({name: 'User'})
     },
     loginArea(){
       this.displayLoginStatus = !this.displayLoginStatus

@@ -5,7 +5,6 @@ import Store from '../store'
 Vue.use(VueRouter)
 
 //Importing views
-import Login from '../views/Login'
 import Home from '../views/Home'
 import Register from '../views/Register'
 import Searchresult from '../views/Searchresult'
@@ -17,9 +16,6 @@ let router = new VueRouter({
     name: "Home",
     component: Home,
     path: '/'
-  }, {
-    component: Login,
-    path: '/login'
   }, {
     name: "Register",
     component: Register,
