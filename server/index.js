@@ -25,12 +25,13 @@ con.connect(function(err) {
 })
 
 app.listen(port)
+
+//Login fetch
 app.post('/login', (request,  response) => {
   let username = request.body.username
-  // let password = request.body.password
 
   //Hash a new password -> should be in register
-  // bcrypt.hash('travelcommunity', 10, function(err, hash) {
+  // bcrypt.hash('asdasdadsada', 10, function(err, hash) {
   //   console.log(hash)
   // })
 
@@ -38,19 +39,24 @@ app.post('/login', (request,  response) => {
     if (err) throw err
     console.log(result)
 
+    //Check if username exists
     if (!result.length){
-      return response.status(401).send()
+      return response.status(401).send({
+        message: 'Fel användarnamn eller lösenord'
+      })
     }
 
+    //Retrieve hash from the result
     const hash = result[0]["password"]
+
+    //Compare the password with hased one.
     bcrypt.compare(request.body.password, hash, function(err, cryptResult) {
       if(err) throw err
 
+      //Check if user password matches the database.
       if(cryptResult){
         return response.status(200).send()
       }
-
     })
-
   })
 })

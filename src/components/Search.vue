@@ -1,8 +1,10 @@
 <template>
-  <div class="search-box">
-    <input type="text" class="from-field" placeholder="Från... " v-model="from" />
-    <input type="text" class="to-field" placeholder="Till... " v-model="to" />
-    <button class="search-btn" @click="searchBtnPressed">Sök</button>
+  <div id="results-searchbar">
+    <input class="results-inputs" type="text" v-model="from" />
+    <input class="results-inputs" type="text" v-model="to" />
+    <button class="results-btn" @click="searchBtnPressed">
+      <span>Search</span>
+    </button>
   </div>
 </template>
 
@@ -31,96 +33,59 @@ export default {
 </script>
 
 <style>
-.search-box {
-  width: 40%;
-  margin: auto;
+#results-searchbar {
+  text-align: center;
 }
 
-.search-box .from-field {
-  display: block;
-  width: 100%;
-  padding: 15px;
-  margin: 30px;
-
-  color: #313131;
-  font-size: 20px;
-
-  appearance: none;
+.results-inputs {
   border: none;
-  outline: none;
-  background: none;
-
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 16px 0px 0px 16px;
-  transition: 0.4s;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: black;
+  font-size: 15px;
+  padding: 10px 40px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.search-box .from-field:focus {
-  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
-  background-color: rgba(255, 255, 255, 0.75);
-  border-radius: 0px 16px 16px 0px;
-}
-
-.search-box .to-field {
-  display: block;
-  width: 100%;
-  padding: 15px;
-  margin: 30px;
-
-  color: #313131;
-  font-size: 20px;
-
-  appearance: none;
+.results-btn {
   border: none;
-  outline: none;
-  background: none;
-
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
-  background-color: rgba(255, 255, 255, 0.5);
-  border-radius: 0px 16px 16px 0px;
-  transition: 0.4s;
-}
-
-.search-box .to-field:focus {
-  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
-  background-color: rgba(255, 255, 255, 0.75);
-  border-radius: 16px 0px 0px 16px;
-}
-
-#app {
-  background-size: cover;
-  background-position: bottom;
-}
-
-.search-box .search-btn {
   display: block;
-  width: 100%;
-  padding: 15px;
-  margin: 30px;
+  text-align: center;
   cursor: pointer;
-
-  color: #313131;
-  font-size: 20px;
-
-  appearance: none;
-  border: none;
+  text-transform: uppercase;
   outline: none;
-  background: none;
-
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
-  background-color: #00cbff;
-  border-radius: 16px 16px 16px 16px;
-  transition: 0.4s;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  background-color: #222;
+  padding: 17px 60px;
+  margin: 0 auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-main {
-  min-height: 100vh;
-  padding: 25px;
-  background-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.25),
-    rgba(0, 0, 0, 0.75)
-  );
+.results-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.results-btn:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 490%;
+  width: 140%;
+  background: #8ec5fc;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.results-btn:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
 }
 </style>

@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import PersistedState from 'vuex-persistedstate'
+import SecureLs from 'secure-ls'
 
 Vue.use(Vuex)
 
@@ -27,11 +29,20 @@ let mutations = {
   }
 }
 
-//Use secureLS for making logged-in boolean non editable.
+const ls = new SecureLs({isCompression: false})
 
 let store = new Vuex.Store({
   state,
-  mutations
+  mutations,
+  plugins: [
+    PersistedState({
+      storage: {
+        getItem: (key) => ls.get(key),
+        setItem: (key, value) => ls.set(key, value),
+        removeItem: (key) => ls.remove(key)
+      }
+    })
+  ]
 })
 
 export default store

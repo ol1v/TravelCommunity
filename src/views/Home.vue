@@ -12,7 +12,7 @@ export default {};
 <style>
 #header {
   width: 100%;
-  height: calc(100vh - 50px);
+  height: 600px;
   background-image: url("../assets/header.jpg");
   background-repeat: no-repeat;
   background-size: cover;
