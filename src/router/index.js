@@ -25,11 +25,11 @@ let router = new VueRouter({
     name: "Searchresult",
     component: Searchresult,
     path: '/results'
-  },{
+  }, {
     name: "User",
     component: User,
     path: '/user',
-    meta:{
+    meta: {
       requiresAuth: true
     }
   }, {
@@ -41,17 +41,17 @@ let router = new VueRouter({
 
 //Avoid navigating to Users if not logged in
 router.beforeEach((to, from, next) => {
-  if(to.meta.requiresAuth){
+  if (to.meta.requiresAuth) {
     //Check if user is logged in
-    if(Store.state.loggedIn){
+    if (Store.state.loggedIn) {
       next()
     }
     //Else, push them back to Homescreen.
-    else{
-      router.push({name:"Home"})
+    else {
+      router.push({ name: "Home" })
     }
   }
-  else{
+  else {
     next()
   }
 })

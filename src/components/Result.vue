@@ -4,7 +4,9 @@
     <div id="results-searchbar">
       <input class="results-inputs" type="text" />
       <input class="results-inputs" type="text" />
-      <input type="button" value="Search" />
+      <button class="results-btn">
+        <span>Search</span>
+      </button>
     </div>
 
     <!--- filter options --->
@@ -23,11 +25,17 @@
         </select>
       </div>
     </div>
-
+    <h3>Found 1 travel</h3>
     <section id="results-container">
       <!--- result object --->
       <div class="results-object">
-        <span>Betyg 3/5</span>
+        <div class="rating">
+          <span>☆</span>
+          <span>☆</span>
+          <span>☆</span>
+          <span>☆</span>
+          <span>☆</span>
+        </div>
         <span class="destinations">from Gothenburg</span>
         <span class="destinations">to Rome</span>
 
@@ -69,15 +77,120 @@ export default {
 </script>
 
 <style>
+h3 {
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
 #results-container {
-  background-color: cornflowerblue;
+  background-color: white;
+  opacity: 0.9;
   width: 90%;
   margin: auto;
-  border-radius: 15pt;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  font-family: "Montserrat", sans-serif;
+}
+
+#results-searchbar {
+  text-align: center;
+}
+
+.results-inputs {
+  border: none;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: black;
+  font-size: 15px;
+  padding: 10px 40px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.results-btn {
+  border: none;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  background-color: #222;
+  padding: 17px 60px;
+  margin: 0 auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.results-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.results-btn:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 490%;
+  width: 140%;
+  background: #8ec5fc;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.results-btn:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  text-align: left;
+  color: grey;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+  content: "\2605";
+  position: absolute;
+  left: 0;
+  color: gold;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover,
+.rating > span:hover ~ span {
+  color: transparent;
+}
+
+.destinations {
+  margin: 1em;
 }
 
 .filter-btn {
   margin-left: 1em;
+  border: none;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  position: relative;
+  color: #fff;
+  font-weight: 500;
+  font-size: 15px;
+  background-color: transparent;
+  padding: 12px 68px;
+  margin: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 .filter-content {
@@ -89,6 +202,13 @@ export default {
   transition: 0.5s;
   border-radius: 5pt;
   margin-left: 0.7em;
+  margin: auto;
+}
+
+.results-button {
+  background-color: lightskyblue;
+  color: white;
+  border-color: lightskyblue;
 }
 
 .results-inputs {
