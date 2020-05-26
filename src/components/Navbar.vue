@@ -1,29 +1,29 @@
 <template>
   <div>
+    <!-- Navigation bar -->
     <nav>
-      <div id="navbar-logo"></div>
-      <ul>
-        <li>
-          <router-link to="/" class="navbar-links">Sök resa</router-link>
-        </li>|
-        <li>
-          <router-link to="/" class="navbar-links">Resor</router-link>
-        </li>
-        <span v-if="this.$store.state.loggedIn">|</span>
-        <li
-          v-if="!this.$store.state.loggedIn"
-          class="navbar-links-login"
-          @click="loginArea"
-        >Logga in / Registrera</li>
-        <li>
-          <router-link
-            to="/user"
-            class="navbar-links"
-            v-if="this.$store.state.loggedIn"
-          >{{username}}</router-link>
-        </li>
-        <li v-if="this.$store.state.loggedIn" class="navbar-links-login" @click="logout">Logga ut</li>
-      </ul>
+      <!-- Left column -->
+      <div id="left-column">
+        <div id="navbar-logo"></div>
+      </div>
+
+      <!-- Right column -->
+      <div id="right-column">
+        <ul>
+          <li>
+            <router-link to="/" class="navbar-links">Sök resa</router-link>
+          </li>|
+          <li>
+            <router-link to="/" class="navbar-links">Populära</router-link>
+          </li>
+          <span v-if="this.$store.state.loggedIn">|</span>
+          <li v-if="!this.$store.state.loggedIn" class="navbar-links-login" @click="loginArea">Logga in / Registrera</li>
+          <li>
+            <router-link to="/user" class="navbar-links" v-if="this.$store.state.loggedIn">{{username}}</router-link>
+          </li>
+          <li v-if="this.$store.state.loggedIn" class="navbar-links-login" @click="logout">Logga ut</li>
+        </ul>
+      </div>
     </nav>
 
     <!-- Login page -->
@@ -120,8 +120,7 @@ export default {
 <style scoped>
 nav {
   width: 100%;
-  height: 50px;
-  box-shadow: rgb(211, 207, 207) 0px 0px 0px 1px;
+  height: 75px;
 }
 ul,
 li {
@@ -129,11 +128,28 @@ li {
   padding: 0px;
   margin: 0px;
 }
+#left-column{
+  width: 50%;
+  height: 100%;
+  float: left;
+  /* background-color: transparent;  --> Use later*/
+  background-color: transparent;
+}
+
+#right-column{
+  width: 50%;
+  height: 100%;
+  float: right;
+  background-color: white;
+}
+
 #navbar-logo {
   width: 200px;
-  height: 50px;
+  height: 75px;
   background-image: url("../assets/tempLogo.png");
+  background-repeat: no-repeat;
   float: left;
+  margin-left: 30px;
 }
 .navbar-links {
   display: inline-block;
@@ -142,7 +158,7 @@ li {
   color: black;
   text-align: center;
   text-decoration: none;
-  line-height: 50px;
+  line-height: 75px;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -153,7 +169,7 @@ li {
   color: black;
   text-align: center;
   text-decoration: none;
-  line-height: 50px;
+  line-height: 75px;
   float: right;
   padding-right: 30px;
   padding-left: 30px;
