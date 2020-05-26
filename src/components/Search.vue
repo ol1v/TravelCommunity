@@ -1,7 +1,7 @@
 <template>
   <div id="results-searchbar">
-    <input class="results-inputs" type="text" v-model="from" />
-    <input class="results-inputs" type="text" v-model="to" />
+    <input class="results-inputs" type="text" placeholder="FROM" v-model="from" />
+    <input class="results-inputs" type="text" placeholder="TO" v-model="to" />
     <button class="results-btn" @click="searchBtnPressed">
       <span>Search</span>
     </button>

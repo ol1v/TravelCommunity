@@ -18,15 +18,14 @@
 
 <script>
 export default {
-  components:{
-  }
+  components: {}
 };
 </script>
 
 <style>
 .texts {
   text-align: left;
-  margin-left: 3em;
+  margin-left: 1em;
 }
 
 h1 {
@@ -73,6 +72,7 @@ p {
 }
 .flex-container .searchbar {
   text-align: center;
+  margin-left: 4em;
 }
 
 .banner {
@@ -81,6 +81,5 @@ p {
   background-color: #026f7e;
   position: relative;
   z-index: -20;
-  top: -20px;
 }
 </style>

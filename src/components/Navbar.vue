@@ -5,7 +5,11 @@
       <!-- Left column -->
       <div id="left-column" :style="setWhiteNavbar">
         <div id="navbar-logo">
-          <span v-if="this.$route.name == 'Home'" class="travelTextHome" :style="setNavbarText">TRAVEL</span>
+          <span
+            v-if="this.$route.name == 'Home'"
+            class="travelTextHome"
+            :style="setNavbarText"
+          >TRAVEL</span>
           <span v-else class="travelText" :style="setNavbarText">TRAVEL</span>
           <span class="communityText">COMMUNITY</span>
         </div>
@@ -20,9 +24,17 @@
           <li>
             <router-link to="/popular" class="navbar-links">POPULÄRA</router-link>
           </li>
-          <li v-if="!this.$store.state.loggedIn" class="navbar-links-login" @click="loginArea">LOGGA IN / REGISTRERA</li>
+          <li
+            v-if="!this.$store.state.loggedIn"
+            class="navbar-links-login"
+            @click="loginArea"
+          >LOGGA IN / REGISTRERA</li>
           <li>
-            <router-link to="/user" class="navbar-links" v-if="this.$store.state.loggedIn">{{username.toUpperCase()}}</router-link>
+            <router-link
+              to="/user"
+              class="navbar-links"
+              v-if="this.$store.state.loggedIn"
+            >{{username.toUpperCase()}}</router-link>
           </li>
           <li v-if="this.$store.state.loggedIn" class="navbar-links-login" @click="logout">LOGGA UT</li>
         </ul>
@@ -108,35 +120,32 @@ export default {
       this.$router.push({ name: "Home" });
     }
   },
-  computed:{
-    displayLogin(){
-      if(this.displayLoginStatus){
-        return{
-          "display":"block",
-        }
-      }
-      else{
-        return {}
+  computed: {
+    displayLogin() {
+      if (this.displayLoginStatus) {
+        return {
+          display: "block"
+        };
+      } else {
+        return {};
       }
     },
-    setWhiteNavbar(){
-      if(this.displayLoginStatus){
-        return{
+    setWhiteNavbar() {
+      if (this.displayLoginStatus) {
+        return {
           "background-color": "white"
-        }
-      }
-      else{
-        return {}
+        };
+      } else {
+        return {};
       }
     },
-    setNavbarText(){
-      if(this.displayLoginStatus){
-        return{
-          "color": "black"
-        }
-      }
-      else{
-        return {}
+    setNavbarText() {
+      if (this.displayLoginStatus) {
+        return {
+          color: "black"
+        };
+      } else {
+        return {};
       }
     }
   }
@@ -155,28 +164,30 @@ li {
   padding: 0px;
   margin: 0px;
 }
-#left-column{
+#left-column {
   width: 40%;
   height: 100%;
   float: left;
   background-color: transparent;
 }
 
-.travelText{
+.travelText {
   color: black;
 }
-.travelTextHome{
+.travelTextHome {
   color: white;
 }
-.communityText{
+.communityText {
   color: #8ec5fc;
 }
 
-#right-column{
+#right-column {
   width: 60%;
   height: 100%;
   float: right;
   background-color: white;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
 }
 
 #navbar-logo {
