@@ -121,6 +121,7 @@ export default {
 nav {
   width: 100%;
   height: 75px;
+  z-index: 9999;
 }
 ul,
 li {
@@ -129,15 +130,14 @@ li {
   margin: 0px;
 }
 #left-column{
-  width: 50%;
+  width: 40%;
   height: 100%;
   float: left;
-  /* background-color: transparent;  --> Use later*/
   background-color: transparent;
 }
 
 #right-column{
-  width: 50%;
+  width: 60%;
   height: 100%;
   float: right;
   background-color: white;

@@ -20,7 +20,7 @@ export default {};
   display: flex;
 }
 .flex-container .background {
-  width: 600px;
+  width: 40%;
   height: 600px;
   box-sizing: content-box;
   padding-top: 15px;
@@ -31,7 +31,8 @@ export default {};
   letter-spacing: 0.2em;
   text-align: center;
   text-transform: uppercase;
-  z-index: 3;
+  margin-top: -75px;
+  z-index: -2;
 }
 /* sätt z-index för background:after mellan background och footer*/
 .flex-container .background:after {
