@@ -3,8 +3,10 @@
     <!-- Navigation bar -->
     <nav>
       <!-- Left column -->
-      <div id="left-column">
-        <div id="navbar-logo"></div>
+      <div id="left-column" :style="setWhiteNavbar">
+        <div id="navbar-logo">
+          <span class="travelText" :style="setNavbarText">TRAVEL</span><span class="communityText">COMMUNITY</span>
+        </div>
       </div>
 
       <!-- Right column -->
@@ -112,6 +114,26 @@ export default {
       else{
         return {}
       }
+    },
+    setWhiteNavbar(){
+      if(this.displayLoginStatus){
+        return{
+          "background-color": "white"
+        }
+      }
+      else{
+        return {}
+      }
+    },
+    setNavbarText(){
+      if(this.displayLoginStatus){
+        return{
+          "color": "black"
+        }
+      }
+      else{
+        return {}
+      }
     }
   }
 };
@@ -136,6 +158,9 @@ li {
   background-color: transparent;
 }
 
+.communityText{
+  color: #8ec5fc;
+}
 #right-column{
   width: 60%;
   height: 100%;
@@ -144,12 +169,15 @@ li {
 }
 
 #navbar-logo {
-  width: 200px;
+  width: auto;
   height: 75px;
-  background-image: url("../assets/tempLogo.png");
-  background-repeat: no-repeat;
+  /* background-image: url("../assets/tempLogo.png");
+  background-repeat: no-repeat; */
   float: left;
   margin-left: 30px;
+  line-height: 75px;
+  color: white;
+  font-size: 25px;
 }
 .navbar-links {
   display: inline-block;
