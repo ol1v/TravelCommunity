@@ -1,32 +1,34 @@
-import Vue from 'vue'
-import App from './App.vue'
-import search from './components/Search.vue'
-import Result from './components/Result.vue'
-import Loader from './components/Loader.vue'
-import store from './store'
+import Vue from "vue";
+import App from "./App.vue";
+import search from "./components/Search.vue";
+import Result from "./components/Result.vue";
+import Loader from "./components/Loader.vue";
+import MyFooter from "./components/MyFooter.vue";
+import store from "./store";
 
-import axios from 'axios'
-import vueAxios from 'vue-axios'
-Vue.use(vueAxios, axios)
+import axios from "axios";
+import vueAxios from "vue-axios";
+Vue.use(vueAxios, axios);
 // Fontawesome
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPlane } from '@fortawesome/free-solid-svg-icons'
-import { faShip } from '@fortawesome/free-solid-svg-icons'
-import { faCar } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add(faPlane, faShip, faCar)
-Vue.component('font-awesome-icon', FontAwesomeIcon)
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faPlane } from "@fortawesome/free-solid-svg-icons";
+import { faShip } from "@fortawesome/free-solid-svg-icons";
+import { faCar } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+library.add(faPlane, faShip, faCar);
+Vue.component("font-awesome-icon", FontAwesomeIcon);
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
-Vue.component('home-search', search);
-Vue.component('Result', Result)
-Vue.component('Loader', Loader)
+Vue.component("home-search", search);
+Vue.component("Result", Result);
+Vue.component("Loader", Loader);
+Vue.component("MyFooter", MyFooter);
 
-import router from './router'
+import router from "./router";
 
 new Vue({
   router,
   store,
-  render: h => h(App),
-}).$mount('#app')
+  render: (h) => h(App),
+}).$mount("#app");
