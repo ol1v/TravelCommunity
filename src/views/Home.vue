@@ -1,9 +1,14 @@
 <template>
   <div id="header">
     <div class="flex-container">
-      <div class="background">image</div>
+      <div class="background"></div>
       <div class="searchbar">
-        <h1>Cool headline</h1>
+        <div class="texts">
+          <h1>Search Travels.</h1>
+          <p>Do you dream about going somewhere?</p>
+          <h2>See Discovered Routes.</h2>
+        </div>
+
         <home-search></home-search>
       </div>
     </div>
@@ -16,6 +21,21 @@ export default {};
 </script>
 
 <style>
+.texts {
+  text-align: left;
+  margin-left: 3em;
+}
+
+h1 {
+  opacity: 0.2;
+  font-weight: 600;
+}
+p {
+  font-size: 1.4em;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
 .flex-container {
   display: flex;
 }
@@ -25,8 +45,8 @@ export default {};
   box-sizing: content-box;
   padding-top: 15px;
   position: relative;
-  background-image: url("../assets/header.jpg");
-  color: white;
+  background-image: url("../assets/tcbackgroundimg2.png");
+  color: transparent;
   font-size: 11px;
   letter-spacing: 0.2em;
   text-align: center;
@@ -44,7 +64,7 @@ export default {};
   height: 0;
   border-bottom: 200px solid white;
   border-left: 600px solid transparent;
-  z-index: 1;
+  z-index: 0;
 }
 .flex-container .searchbar {
   text-align: center;
@@ -53,9 +73,9 @@ export default {};
 .banner {
   width: 100%;
   height: 200px;
-  background-color: blue;
+  background-color: #026f7e;
   position: relative;
-  z-index: 3;
-  top: 0;
+  z-index: 0;
+  top: -20px;
 }
 </style>
