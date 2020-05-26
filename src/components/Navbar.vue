@@ -18,7 +18,7 @@
             <router-link to="/" class="navbar-links">SÖK RESA</router-link>
           </li>
           <li>
-            <router-link to="/" class="navbar-links">POPULÄRA</router-link>
+            <router-link to="/popular" class="navbar-links">POPULÄRA</router-link>
           </li>
           <li v-if="!this.$store.state.loggedIn" class="navbar-links-login" @click="loginArea">LOGGA IN / REGISTRERA</li>
           <li>

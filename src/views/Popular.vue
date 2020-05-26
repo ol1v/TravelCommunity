@@ -1,10 +1,10 @@
 <template>
-  <div>Inloggad</div>
-
+  <div>Popular destinations</div>
 </template>
 
 <script>
 export default {
+
 }
 </script>
 
