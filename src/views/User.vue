@@ -1,10 +1,18 @@
 <template>
-  <div>Inloggad</div>
+  <div>Inloggad
+  <CreateTrip></CreateTrip>
+  </div>
 </template>
 
 <script>
-export default {
+//Imports
+import CreateTrip from '../components/CreateTrip.vue'
 
+export default {
+name: 'App',
+  components:{
+    CreateTrip
+  }
 }
 </script>
 
