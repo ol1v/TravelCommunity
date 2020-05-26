@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div>Inloggad
   <CreateTrip></CreateTrip>
   </div>
@@ -13,6 +14,14 @@ name: 'App',
   components:{
     CreateTrip
   }
+=======
+  <div>Inloggad</div>
+
+</template>
+
+<script>
+export default {
+>>>>>>> fe6e5440ae759628d427351f7df2091a7bfef03a
 }
 </script>
 

@@ -9,6 +9,7 @@ import Home from '../views/Home'
 import Register from '../views/Register'
 import Searchresult from '../views/Searchresult'
 import User from '../views/User'
+import Popular from '../views/Popular'
 
 let router = new VueRouter({
   mode: 'history',
@@ -36,6 +37,10 @@ let router = new VueRouter({
     name: "Searchresult",
     component: Searchresult,
     path: '/search'
+  }, {
+    name: "Popular",
+    component: Popular,
+    path: '/popular'
   }]
 })
 

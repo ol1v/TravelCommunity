@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    All reight reserved (c) to Travel Community 2020
+    All rights reserved &copy; to Travel Community 2020
     <div>Sweden - Stockhom - post nr: 55566</div>
     <div>Tel : 0046 - 81444555 - Email :info@travelcommunity.se</div>
   </div>

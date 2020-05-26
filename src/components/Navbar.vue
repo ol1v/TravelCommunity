@@ -5,7 +5,9 @@
       <!-- Left column -->
       <div id="left-column" :style="setWhiteNavbar">
         <div id="navbar-logo">
-          <span class="travelText" :style="setNavbarText">TRAVEL</span><span class="communityText">COMMUNITY</span>
+          <span v-if="this.$route.name == 'Home'" class="travelTextHome" :style="setNavbarText">TRAVEL</span>
+          <span v-else class="travelText" :style="setNavbarText">TRAVEL</span>
+          <span class="communityText">COMMUNITY</span>
         </div>
       </div>
 
@@ -13,17 +15,16 @@
       <div id="right-column">
         <ul>
           <li>
-            <router-link to="/" class="navbar-links">Sök resa</router-link>
-          </li>|
-          <li>
-            <router-link to="/" class="navbar-links">Populära</router-link>
+            <router-link to="/" class="navbar-links">SÖK RESA</router-link>
           </li>
-          <span v-if="this.$store.state.loggedIn">|</span>
-          <li v-if="!this.$store.state.loggedIn" class="navbar-links-login" @click="loginArea">Logga in / Registrera</li>
           <li>
-            <router-link to="/user" class="navbar-links" v-if="this.$store.state.loggedIn">{{username}}</router-link>
+            <router-link to="/popular" class="navbar-links">POPULÄRA</router-link>
           </li>
-          <li v-if="this.$store.state.loggedIn" class="navbar-links-login" @click="logout">Logga ut</li>
+          <li v-if="!this.$store.state.loggedIn" class="navbar-links-login" @click="loginArea">LOGGA IN / REGISTRERA</li>
+          <li>
+            <router-link to="/user" class="navbar-links" v-if="this.$store.state.loggedIn">{{username.toUpperCase()}}</router-link>
+          </li>
+          <li v-if="this.$store.state.loggedIn" class="navbar-links-login" @click="logout">LOGGA UT</li>
         </ul>
       </div>
     </nav>
@@ -35,7 +36,10 @@
           <input class="close-window-button" type="button" value="X" @click="loginArea" />
         </div>
         <div id="login-components">
-          <div id="login-logo"></div>
+          <div id="login-logo">
+            <span class="travelText">TRAVEL</span>
+            <span class="communityText">COMMUNITY</span>
+          </div>
 
           <label for="username">Användarnamn</label>
           <input v-model="username" class="user-input" type="text" id="username" />
@@ -158,9 +162,16 @@ li {
   background-color: transparent;
 }
 
+.travelText{
+  color: black;
+}
+.travelTextHome{
+  color: white;
+}
 .communityText{
   color: #8ec5fc;
 }
+
 #right-column{
   width: 60%;
   height: 100%;
@@ -187,6 +198,7 @@ li {
   text-align: center;
   text-decoration: none;
   line-height: 75px;
+  font-size: 18px;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -199,6 +211,7 @@ li {
   text-decoration: none;
   line-height: 75px;
   float: right;
+  font-size: 18px;
   padding-right: 30px;
   padding-left: 30px;
   cursor: pointer;
@@ -246,10 +259,15 @@ li {
   margin: auto;
 }
 #login-logo {
-  width: 200px;
+  width: 100%;
   height: 50px;
   background-image: url("../assets/tempLogo.png");
-  margin: 50px auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: white;
+  font-size: 25px;
 }
 
 #error-message {
@@ -276,7 +294,7 @@ li {
   float: left;
   text-align: left;
   background-color: transparent;
-  color: blue;
+  color: #00cbff;
   border: 0px;
   cursor: pointer;
 }

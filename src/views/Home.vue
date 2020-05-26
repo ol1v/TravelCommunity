@@ -17,7 +17,10 @@
 </template>
 
 <script>
-export default {};
+export default {
+  components:{
+  }
+};
 </script>
 
 <style>
@@ -45,7 +48,9 @@ p {
   box-sizing: content-box;
   padding-top: 15px;
   position: relative;
-  background-image: url("../assets/tcbackgroundimg2.png");
+  background-image: url("../assets/test.png");
+  background-size: contain;
+  background-repeat: no-repeat;
   color: transparent;
   font-size: 11px;
   letter-spacing: 0.2em;
@@ -62,8 +67,8 @@ p {
   bottom: 0;
   width: 0;
   height: 0;
-  border-bottom: 200px solid white;
-  border-left: 600px solid transparent;
+  /* border-bottom: 200px solid white;
+  border-left: 600px solid transparent; */
   z-index: 0;
 }
 .flex-container .searchbar {
@@ -75,7 +80,7 @@ p {
   height: 200px;
   background-color: #026f7e;
   position: relative;
-  z-index: 0;
+  z-index: -20;
   top: -20px;
 }
 </style>
