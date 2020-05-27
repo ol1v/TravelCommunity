@@ -1,15 +1,15 @@
 <template>
   <div id="header">
     <div class="flex-container">
-      <div class="background"></div>
+      <div class="background animate__animated animate__fadeIn"></div>
       <div class="searchbar">
         <div class="texts">
-          <h1>Search Travels.</h1>
-          <p>Do you dream about going somewhere?</p>
-          <h2>See Discovered Routes.</h2>
+          <h1 class="animh1">Search Travels.</h1>
+          <p class="animp">Do you dream about going somewhere?</p>
+          <h2 class="animh2">See Discovered Routes.</h2>
         </div>
 
-        <home-search></home-search>
+        <home-search id="animsearch"></home-search>
       </div>
     </div>
     <div class="banner"></div>
@@ -23,6 +23,8 @@ export default {
 </script>
 
 <style>
+@import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css";
+
 .texts {
   text-align: left;
   margin-left: 1em;
@@ -31,14 +33,58 @@ export default {
   line-height: 50%;
 }
 
-h1 {
+.animh1 {
   opacity: 0.2;
   font-weight: 600;
+  animation: fadeInLeft;
+  animation-duration: 1s;
 }
-p {
+
+@keyframes animh1 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.2;
+  }
+}
+
+.animp {
   font-size: 1.4em;
   font-weight: 600;
   opacity: 0.7;
+  animation: fadeInRight;
+  animation-duration: 1s;
+  animation-delay: 0.2s;
+}
+
+@keyframes animp {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.7;
+  }
+}
+
+#animsearch {
+  animation: fadeIn;
+  animation-duration: 5s;
+}
+
+.animh2 {
+  animation: backInUp;
+  animation-delay: 0.4s;
+  animation-duration: 1s;
+}
+
+@keyframes animh2 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.2;
+  }
 }
 
 .flex-container {
