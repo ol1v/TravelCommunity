@@ -3,9 +3,9 @@
     <nav>
       <div id="left-user-column">
         <ul>
-          <li><router-link to="/user" class="user-links">Ny resa</router-link></li>
-          <li><router-link to="/user/trips" class="user-links">Mina resor</router-link></li>
-          <li><router-link to="/user/admin" class="user-links" v-if="this.$store.state.admin">Kontrollpanel</router-link></li>
+          <li><router-link to="/user" class="user-links">NY RESA</router-link></li>
+          <li><router-link to="/user/trips" class="user-links">MINA RESOR</router-link></li>
+          <li><router-link to="/user/admin" class="user-links" v-if="this.$store.state.admin">KONTROLLPANEL</router-link></li>
         </ul>
       </div>
     </nav>
@@ -40,7 +40,7 @@ ul, li{
   width: auto;
   height: 50px;
   font-family: "Montserrat", sans-serif;
-  font-size: 20px;
+  font-size: 15px;
   text-decoration: none;
   color: black;
   padding-left: 10px;
