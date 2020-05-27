@@ -8,6 +8,7 @@ Vue.use(Vuex)
 let state = {
   loggedIn: false,
   username: "",
+  admin: 0,
   // search variables
   from: null,
   to: null
@@ -19,6 +20,9 @@ let mutations = {
   },
   SET_USERNAME(state, payload) {
     state.username = payload
+  },
+  SET_ADMIN_STATE(state, payload){
+    state.admin = payload
   },
   // Searchfunction
   SET_FROM(state, payload) {

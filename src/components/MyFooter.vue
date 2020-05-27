@@ -13,12 +13,11 @@ export default {};
 <style scoped>
 .footer {
   width: 100%;
-  height: 60px;
-  opacity: 0.5;
+  height: 150px;
   bottom: 0;
   position: absolute;
-  background: #313131;
-  color: red;
+  background: #8ec5fc;
+  color: black;
   text-align: center;
 }
 </style>

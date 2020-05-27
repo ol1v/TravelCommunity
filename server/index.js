@@ -31,11 +31,11 @@ app.post('/login', (request,  response) => {
   let username = request.body.username
 
   //Hash a new password -> should be in register
-  // bcrypt.hash('asdasdadsada', 10, function(err, hash) {
+  // bcrypt.hash('travelcommunity', 10, function(err, hash) {
   //   console.log(hash)
   // })
 
-  con.query(`SELECT username, password FROM userdetails WHERE username = ${con.escape(username)}`, function(err, result) {
+  con.query(`SELECT username, password, admin FROM userdetails WHERE username = ${con.escape(username)}`, function(err, result) {
     if (err) throw err
     console.log(result)
 
@@ -55,7 +55,11 @@ app.post('/login', (request,  response) => {
 
       //Check if user password matches the database.
       if(cryptResult){
-        return response.status(200).send()
+        const adminUser = result[0]["admin"]
+        console.log(adminUser)
+        return response.status(200).send({
+          admin: adminUser
+        })
       }
     })
   })

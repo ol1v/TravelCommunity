@@ -5,11 +5,7 @@
       <!-- Left column -->
       <div id="left-column" :style="setWhiteNavbar">
         <div id="navbar-logo">
-          <span
-            v-if="this.$route.name == 'Home'"
-            class="travelTextHome"
-            :style="setNavbarText"
-          >TRAVEL</span>
+          <span v-if="this.$route.name == 'Home'" class="travelTextHome" :style="setNavbarText">TRAVEL</span>
           <span v-else class="travelText" :style="setNavbarText">TRAVEL</span>
           <span class="communityText">COMMUNITY</span>
         </div>
@@ -18,24 +14,10 @@
       <!-- Right column -->
       <div id="right-column">
         <ul>
-          <li>
-            <router-link to="/" class="navbar-links">SÖK RESA</router-link>
-          </li>
-          <li>
-            <router-link to="/popular" class="navbar-links">POPULÄRA</router-link>
-          </li>
-          <li
-            v-if="!this.$store.state.loggedIn"
-            class="navbar-links-login"
-            @click="loginArea"
-          >LOGGA IN / REGISTRERA</li>
-          <li>
-            <router-link
-              to="/user"
-              class="navbar-links"
-              v-if="this.$store.state.loggedIn"
-            >{{username.toUpperCase()}}</router-link>
-          </li>
+          <li><router-link to="/" class="navbar-links">SÖK RESA</router-link></li>
+          <li><router-link to="/popular" class="navbar-links">POPULÄRA</router-link></li>
+          <li v-if="!this.$store.state.loggedIn" class="navbar-links-login" @click="loginArea">LOGGA IN / REGISTRERA</li>
+          <li><router-link to="/user" class="navbar-links" v-if="this.$store.state.loggedIn">{{username.toUpperCase()}}</router-link></li>
           <li v-if="this.$store.state.loggedIn" class="navbar-links-login" @click="logout">LOGGA UT</li>
         </ul>
       </div>
@@ -95,9 +77,9 @@ export default {
       this.axios
         .post(url + "login/", credentials)
         .then(response => {
-          console.log(response.data);
           this.$store.commit("SET_LOGGED_IN", true);
           this.$store.commit("SET_USERNAME", this.username);
+          this.$store.commit("SET_ADMIN_STATE", response.data.admin)
 
           this.displayLoginStatus = false;
           this.$router.push({ name: "User" });
@@ -117,6 +99,8 @@ export default {
     },
     logout() {
       this.$store.commit("SET_LOGGED_IN", false);
+      this.$store.commit("SET_USERNAME", ""),
+      this.$store.commit("SET_ADMIN_STATE", 0)
       this.$router.push({ name: "Home" });
     }
   },
@@ -230,6 +214,7 @@ li {
   color: #00cbff;
   height: 50px;
 }
+
 /* Login panel */
 #login-fullscreen {
   width: 100%;

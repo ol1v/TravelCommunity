@@ -10,6 +10,8 @@ import Register from '../views/Register'
 import Searchresult from '../views/Searchresult'
 import User from '../views/User'
 import Popular from '../views/Popular'
+import MyTrips from '../views/MyTrips'
+import Controlpanel from '../views/Controlpanel'
 
 let router = new VueRouter({
   mode: 'history',
@@ -41,6 +43,20 @@ let router = new VueRouter({
     name: "Popular",
     component: Popular,
     path: '/popular'
+  },  {
+    name: "MyTrips",
+    component: MyTrips,
+    path: '/user/trips',
+    meta: {
+      requiresAuth: true
+    }
+  }, {
+    name: "Controlpanel",
+    component: Controlpanel,
+    path: '/user/admin',
+    meta: {
+      requiresAdmin: true
+    }
   }]
 })
 
@@ -54,6 +70,14 @@ router.beforeEach((to, from, next) => {
     //Else, push them back to Homescreen.
     else {
       router.push({ name: "Home" })
+    }
+  }
+  else if(to.meta.requiresAdmin){
+    if(Store.state.loggedIn && Store.state.admin){
+      next()
+    }
+    else{
+      router.push({ name: "Home"})
     }
   }
   else {
