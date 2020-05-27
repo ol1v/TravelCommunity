@@ -26,6 +26,9 @@ export default {
 .texts {
   text-align: left;
   margin-left: 1em;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  line-height: 50%;
 }
 
 h1 {
@@ -45,9 +48,8 @@ p {
   width: 40%;
   height: 600px;
   box-sizing: content-box;
-  padding-top: 15px;
   position: relative;
-  background-image: url("../assets/test.png");
+  background-image: url("../assets/tchighreswide.png");
   background-size: contain;
   background-repeat: no-repeat;
   color: transparent;
