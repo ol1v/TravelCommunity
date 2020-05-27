@@ -82,6 +82,7 @@ p {
   height: 200px;
   background-color: #026f7e;
   position: relative;
+  top: -20pt;
   z-index: -20;
 }
 </style>

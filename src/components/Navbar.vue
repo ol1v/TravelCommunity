@@ -193,8 +193,6 @@ li {
 #navbar-logo {
   width: auto;
   height: 75px;
-  /* background-image: url("../assets/tempLogo.png");
-  background-repeat: no-repeat; */
   float: left;
   margin-left: 30px;
   line-height: 75px;
@@ -272,7 +270,6 @@ li {
 #login-logo {
   width: 100%;
   height: 50px;
-  background-image: url("../assets/tempLogo.png");
   margin-top: 50px;
   margin-bottom: 50px;
   line-height: 50px;
