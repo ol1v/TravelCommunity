@@ -11,6 +11,7 @@ const port = 3005
 
 app.use(bodyParser.json())
 app.use(cors())
+app.use(express.json())
 
 var con  = mysql.createConnection({
   host: "den1.mysql1.gear.host",
@@ -62,5 +63,36 @@ app.post('/login', (request,  response) => {
         })
       }
     })
+  })
+})
+
+//Get travels
+app.post('/travels', (request, response) => {
+  con.query(`SELECT * FROM travel`, function(err, result) {
+    if(err) throw err
+
+    const tstArr = []
+
+    const milestones = result[0].milestones
+    const jsonData = JSON.parse(milestones)
+
+    let obj = {
+      "username":result[0].username,
+      "from":result[0].from,
+      "milestones":jsonData,
+      "to":result[0].to,
+      "traveltime":result[0].traveltime
+    }
+
+    console.log(obj.milestones[0].city)
+    tstArr.push(obj)
+
+    console.log(tstArr[0].username)
+
+
+    response.status(200).send({
+      travelData: tstArr
+    })
+
   })
 })
