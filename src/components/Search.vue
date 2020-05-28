@@ -20,12 +20,26 @@ export default {
     searchBtnPressed() {
       // Trigger searchfunction with parameters (fetch from database)
 
+      //Search / fetch with searchwords
+      const credentials = { from: this.from, to: this.to };
+      let url = "http://localhost:3005/";
+
+      this.axios
+        .post(url + "search/", credentials)
+        .then(response => {
+          this.$store.commit("SET_RESULT", response.data.searchresult);
+          console.log("response: " + response.data);
+        })
+        .catch(err => {
+          console.log("err:" + err);
+        });
+
       //set from and to variables in store
       this.$store.commit("SET_FROM", this.from);
       this.$store.commit("SET_TO", this.to);
 
       //Then navigate
-      this.$router.push({ name: "Searchresult" });
+      //this.$router.push({ name: "Searchresult" });
     }
   },
   computed: {}

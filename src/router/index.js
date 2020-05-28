@@ -36,14 +36,10 @@ let router = new VueRouter({
       requiresAuth: true
     }
   }, {
-    name: "Searchresult",
-    component: Searchresult,
-    path: '/search'
-  }, {
     name: "Popular",
     component: Popular,
     path: '/popular'
-  },  {
+  }, {
     name: "MyTrips",
     component: MyTrips,
     path: '/user/trips',
@@ -72,12 +68,12 @@ router.beforeEach((to, from, next) => {
       router.push({ name: "Home" })
     }
   }
-  else if(to.meta.requiresAdmin){
-    if(Store.state.loggedIn && Store.state.admin){
+  else if (to.meta.requiresAdmin) {
+    if (Store.state.loggedIn && Store.state.admin) {
       next()
     }
-    else{
-      router.push({ name: "Home"})
+    else {
+      router.push({ name: "Home" })
     }
   }
   else {
