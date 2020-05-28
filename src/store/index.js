@@ -11,7 +11,9 @@ let state = {
   admin: 0,
   // search variables
   from: null,
-  to: null
+  to: null,
+  // searchresult
+  results: null
 }
 
 let mutations = {
@@ -21,7 +23,7 @@ let mutations = {
   SET_USERNAME(state, payload) {
     state.username = payload
   },
-  SET_ADMIN_STATE(state, payload){
+  SET_ADMIN_STATE(state, payload) {
     state.admin = payload
   },
   // Searchfunction
@@ -30,10 +32,14 @@ let mutations = {
   },
   SET_TO(state, payload) {
     state.to = payload
+  },
+  // Save result from db
+  SET_RESULT(state, payload) {
+    state.results = payload
   }
 }
 
-const ls = new SecureLs({isCompression: false})
+const ls = new SecureLs({ isCompression: false })
 
 let store = new Vuex.Store({
   state,
