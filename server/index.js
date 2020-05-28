@@ -36,7 +36,7 @@ app.post('/login', (request, response) => {
   //   console.log(hash)
   // })
 
-  con.query(`SELECT username, password, admin FROM userdetails WHERE username = ${con.escape(username)}`, function (err, result) {
+  con.query(`SELECT username, password, admin, banned FROM userdetails WHERE username = ${con.escape(username)}`, function (err, result) {
     if (err) throw err
     console.log(result)
 
@@ -44,6 +44,13 @@ app.post('/login', (request, response) => {
     if (!result.length) {
       return response.status(401).send({
         message: 'Fel användarnamn eller lösenord'
+      })
+    }
+
+    //Check if user is banned
+    if(result[0].banned){
+      return response.status(403).send({
+        message: 'Ditt konto är avstängt'
       })
     }
 
@@ -146,10 +153,40 @@ app.post('/my-travels', (request, response) => {
       }
       dataArr.push(obj)
     }
-        
+
     //Response code 200 if succeded
     response.status(200).send({
       travelData: dataArr
     })
+  })
+})
+
+
+//Admin panel 
+//Ban user
+app.post('/ban', (request, response) => {
+  let user = request.body.username
+
+  con.query(`SELECT banned from userdetails WHERE username = ${con.escape(user)}`, function(err, result){
+    if(err) throw err
+
+    let error404 = "Användare hittades inte!"
+
+    if(!result.length){
+      response.status(404).send({
+        message: error404
+      })
+    }
+    else{
+      let banUser = 1
+      con.query(`UPDATE userdetails SET banned=${con.escape(banUser)} WHERE username=${con.escape(user)}`, function(err, result) {
+        if(err) throw err
+        console.log("Successfully banned user '" + user + "'")
+
+        response.status(200).send({
+          message: `Avstäningsstatus för användare '${user}' har ändrats.`
+        })
+      })
+    }
   })
 })

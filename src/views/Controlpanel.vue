@@ -1,15 +1,19 @@
 <template>
   <div>
     <Userpanel></Userpanel>
-    Controlpanel
+    <Ban></Ban>
+    
   </div>
 </template>
 
 <script>
 import Userpanel from '../components/Userpanel'
+import Ban from '../components/admin/ban'
+
 export default {
   components:{
-    Userpanel
+    Userpanel,
+    Ban
   }
 
 }
