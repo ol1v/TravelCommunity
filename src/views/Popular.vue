@@ -35,7 +35,6 @@ export default {
     this.axios
     .post(url + "travels/")
     .then(response => {
-      console.log("count me")
       for(let i=0; i<response.data.travelData.length; i++){
         this.travelArray.push(response.data.travelData[i])
       }

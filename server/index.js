@@ -90,7 +90,7 @@ app.post('/travels', (request, response) => {
       }
       dataArr.push(obj)
     }
-    
+
     //Response code 200 if succeded
     response.status(200).send({
       travelData: dataArr
@@ -118,5 +118,38 @@ app.post('/search/', (request, response) => {
         searchresults: result
       })
     }
+  })
+})
+
+//Get travels where user
+app.post('/my-travels', (request, response) => {
+  let username = request.body.username
+
+  con.query(`SELECT * FROM travel WHERE username = ${con.escape(username)}`, function(err, result) {
+    if(err) throw err
+
+    //Array to store object data
+    const dataArr = []
+    
+    //Creating an object of the result
+    for(let i=0; i<result.length; i++){
+      const milestones = result[i].milestones
+      const jsonData = JSON.parse(milestones)
+
+      //Insert data into object
+      let obj = {
+        "username":result[i].username,
+        "from":result[i].from,
+        "milestones":jsonData,
+        "to":result[i].to,
+        "traveltime":result[i].traveltime
+      }
+      dataArr.push(obj)
+    }
+        
+    //Response code 200 if succeded
+    response.status(200).send({
+      travelData: dataArr
+    })
   })
 })
