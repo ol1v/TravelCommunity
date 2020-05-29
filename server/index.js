@@ -121,6 +121,24 @@ app.post("/search", (request, response) => {
     if (err) throw err;
     console.log(request.body.from + " " + request.body.to);
     console.log(result);
+
+    let resultArray = []
+
+    for (let i = 0; i < result.length; i++) {
+      // Parse milestones so that it formats as supposed to
+      const milestones = result[i].milestones;
+      const jsonData = JSON.parse(milestones);
+
+      let resultObject = {
+        username: result[i].username,
+        from: result[i].from,
+        milestones: jsonData,
+        to: result[i].to,
+        traveltime: result[i].traveltime
+
+      }
+      resultArray.push(resultObject)
+    }
     // If no match in database
     if (!result.length) {
       return response.status(404).send({
@@ -129,7 +147,7 @@ app.post("/search", (request, response) => {
       // Return match
     } else {
       return response.status(200).send({
-        searchresults: result,
+        searchresults: resultArray,
       });
     }
   });
