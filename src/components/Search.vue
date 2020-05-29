@@ -27,6 +27,7 @@ export default {
       this.axios
         .post(url + "search/", credentials)
         .then(response => {
+          console.log("asd")
           this.$store.commit("SET_RESULT", response.data.searchresult);
           console.log("response: " + response.data);
         })

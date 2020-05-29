@@ -17,7 +17,7 @@
           <li><router-link to="/" class="navbar-links">SÖK RESA</router-link></li>
           <li><router-link to="/popular" class="navbar-links">POPULÄRA</router-link></li>
           <li v-if="!this.$store.state.loggedIn" class="navbar-links-login" @click="loginArea">LOGGA IN / REGISTRERA</li>
-          <li><router-link to="/user" class="navbar-links" v-if="this.$store.state.loggedIn">{{username.toUpperCase()}}</router-link></li>
+          <li><router-link to="/user" class="navbar-links" v-if="this.$store.state.loggedIn">{{this.$store.state.username.toUpperCase()}}</router-link></li>
           <li v-if="this.$store.state.loggedIn" class="navbar-links-login" @click="logout">LOGGA UT</li>
         </ul>
       </div>
@@ -29,6 +29,7 @@
         <div id="login-top-bar">
           <input class="close-window-button" type="button" value="X" @click="loginArea" />
         </div>
+
         <div id="login-components">
           <div id="login-logo">
             <span class="travelText">TRAVEL</span>
@@ -59,6 +60,8 @@
 </template>
 
 <script>
+
+
 export default {
   data() {
     return {

@@ -1,10 +1,10 @@
 <template>
   <div>
     <div id="ban-user-wrapper">
-      <h2 class="center">Stäng av användare</h2>
+      <h2 class="center">Lås upp användare</h2>
       <label for="user">Användarnamn</label>
       <input type="text" id="user" class="ban-user-input" v-model="username">
-      <input type="button" value="Stäng konto" class="ban-user-button" @click="banUser">
+      <input type="button" value="Lås upp konto" class="ban-user-button" @click="unbanUser">
     </div>
   </div>
 </template>
@@ -17,12 +17,12 @@ export default {
     }
   },
   methods:{
-    banUser(){
+    unbanUser(){
       let credentials = {username: this.username}
       let url = "http://localhost:3005/"
 
       this.axios
-      .post(url + "ban/", credentials)
+      .post(url + "unban/", credentials)
       .then(response => {
         alert(response.data.message)
       })

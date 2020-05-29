@@ -18,6 +18,9 @@ export default {};
 </script>
 
 <style>
+.loader{
+  text-align: center;
+}
 .lds-roller {
   display: inline-block;
   position: relative;
