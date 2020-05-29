@@ -3,7 +3,7 @@
     <Userpanel></Userpanel>
 
     <div id="ban-panel">
-      <!-- <Ban></Ban> -->
+      <Ban></Ban>
       <Unban></Unban>
     </div>
     
@@ -12,13 +12,13 @@
 
 <script>
 import Userpanel from '../components/Userpanel'
-// import Ban from '../components/admin/Ban'
+import Ban from '../components/admin/Ban'
 import Unban from '../components/admin/Unban'
 
 export default {
   components:{
     Userpanel,
-    // Ban,
+    Ban,
     Unban
   }
 
