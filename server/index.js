@@ -20,7 +20,7 @@ var con = mysql.createConnection({
   database: "travelcommunity",
 });
 
-con.connect(function(err) {
+con.connect(function (err) {
   if (err) throw err;
   console.log("Connected to database");
 });
@@ -40,7 +40,7 @@ app.post("/login", (request, response) => {
     `SELECT username, password, admin, banned FROM userdetails WHERE username = ${con.escape(
       username
     )}`,
-    function(err, result) {
+    function (err, result) {
       if (err) throw err;
       console.log(result);
 
@@ -62,7 +62,7 @@ app.post("/login", (request, response) => {
       const hash = result[0]["password"];
 
       //Compare the password with hased one.
-      bcrypt.compare(request.body.password, hash, function(err, cryptResult) {
+      bcrypt.compare(request.body.password, hash, function (err, cryptResult) {
         if (err) throw err;
 
         //Check if user password matches the database.
@@ -80,7 +80,7 @@ app.post("/login", (request, response) => {
 
 //Get travels
 app.post("/travels", (request, response) => {
-  con.query(`SELECT * FROM travel`, function(err, result) {
+  con.query(`SELECT * FROM travel`, function (err, result) {
     if (err) throw err;
 
     //Array to store object data
@@ -111,10 +111,13 @@ app.post("/travels", (request, response) => {
 
 // Search fetch
 // Might want to change the query depending on db structure.
-app.post("/search/", (request, response) => {
+app.post("/search", (request, response) => {
+  let from = request.body.from
+  let to = request.body.to
+  console.log(from + " " + to)
   // Get travels which responds to from and to searchwords
   // SELECT * FROM travel WHERE from = ${request.body.from} AND to = ${request.body.to}
-  con.query(`SELECT * FROM userdetails`, function(err, result) {
+  con.query(`SELECT * FROM travel WHERE fromLoc = ${con.escape(from)} AND toLoc = ${con.escape(to)}`, function (err, result) {
     if (err) throw err;
     console.log(request.body.from + " " + request.body.to);
     console.log(result);
@@ -132,13 +135,14 @@ app.post("/search/", (request, response) => {
   });
 });
 
+
 //Get travels where user
 app.post("/my-travels", (request, response) => {
   let username = request.body.username;
 
   con.query(
     `SELECT * FROM travel WHERE username = ${con.escape(username)}`,
-    function(err, result) {
+    function (err, result) {
       if (err) throw err;
 
       //Array to store object data
@@ -175,7 +179,7 @@ app.post("/ban", (request, response) => {
 
   con.query(
     `SELECT banned from userdetails WHERE username = ${con.escape(user)}`,
-    function(err, result) {
+    function (err, result) {
       if (err) throw err;
 
       let error404 = "Användare hittades inte!";
@@ -190,7 +194,7 @@ app.post("/ban", (request, response) => {
           `UPDATE userdetails SET banned=${con.escape(
             banUser
           )} WHERE username=${con.escape(user)}`,
-          function(err, result) {
+          function (err, result) {
             if (err) throw err;
             console.log("Successfully banned user '" + user + "'");
 
@@ -210,7 +214,7 @@ app.post("/create-trip", (request, response) => {
 
   con.query(
     `INSERT INTO Travel (username, from, milestones, to, traveltime) VALUES(${newTrip[0]}, ${newTrip[1]}, ${newTrip[2]}, ${newTrip[3]}, ${newTrip[4]}, ${newTrip[5]}`,
-    function(err, result) {
+    function (err, result) {
       if (err) throw err;
 
       console.log(result);
