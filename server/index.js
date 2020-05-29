@@ -95,9 +95,9 @@ app.post("/travels", (request, response) => {
       //Insert data into object
       let obj = {
         username: result[i].username,
-        from: result[i].from,
+        from: result[i].fromLoc,
         milestones: jsonData,
-        to: result[i].to,
+        to: result[i].toLoc,
         traveltime: result[i].traveltime,
       };
       dataArr.push(obj);
@@ -175,9 +175,9 @@ app.post("/my-travels", (request, response) => {
         //Insert data into object
         let obj = {
           username: result[i].username,
-          from: result[i].from,
+          from: result[i].fromLoc,
           milestones: jsonData,
-          to: result[i].to,
+          to: result[i].toLoc,
           traveltime: result[i].traveltime,
         };
         dataArr.push(obj);
@@ -190,6 +190,18 @@ app.post("/my-travels", (request, response) => {
     }
   );
 });
+
+// Insert travels in Database as Array ()
+app.post("/create-trip", (request, response) => {
+  let newTrip = request.body.newTrip;
+
+  con.query(
+    `INSERT INTO Travel (username, from, milestones, to, traveltime) VALUES(${newTrip[0]}, ${newTrip[1]}, ${newTrip[2]}, ${newTrip[3]}, ${newTrip[4]}, ${newTrip[5]}`, function (err, result) {
+      if (err) throw err;
+      console.log(result);
+      response.status(200).send();
+  })
+})
 
 //Admin panel
 //Ban user
@@ -226,18 +238,6 @@ app.post("/ban", (request, response) => {
     }
   );
 });
-
-// Insert travels in Database as Array ()
-app.post("/create-trip", (request, response) => {
-  let newTrip = request.body.newTrip;
-
-  con.query(
-    `INSERT INTO Travel (username, from, milestones, to, traveltime) VALUES(${newTrip[0]}, ${newTrip[1]}, ${newTrip[2]}, ${newTrip[3]}, ${newTrip[4]}, ${newTrip[5]}`, function (err, result) {
-      if (err) throw err;
-      console.log(result);
-      response.status(200).send();
-  })
-})
 
 //Unban user
 app.post('/unban', (request, response) => {

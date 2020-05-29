@@ -53,6 +53,7 @@
             <p class="center">Eller</p>
             <input class="register-button" type="button" value="Registrera dig" @click="register" />
           </div>
+          
         </div>
       </div>
     </div>
