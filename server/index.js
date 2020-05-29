@@ -54,9 +54,8 @@ app.post("/login", (request, response) => {
 
           //Check if user is banned
           if(result[0].banned){
-            console.log("banned")
             return response.status(403).send({
-              message: 'Ditt konto är avstängt'
+              message: 'Detta konto är avstängt'
             })
           }
           return response.status(200).send({
@@ -265,5 +264,38 @@ app.post('/unban', (request, response) => {
         })
       })
     }
+  })
+})
+
+//Settings
+//Change password
+app.post('/change-pass', (request, response) => {
+  let username = request.body.username
+  let currentPass = request.body.currentPass
+  let newPass = request.body.newPass
+
+  con.query(`SELECT password FROM userdetails WHERE username = ${con.escape(username)}`, function(err, result){
+    if(err) throw err
+
+    //Retrieve the current hashed password
+    let hash = result[0].password
+
+    bcrypt.compare(currentPass, hash, function (err, cryptResult) {
+      if(cryptResult){
+        bcrypt.hash(newPass, 10, function(err, newHash) {
+          con.query(`UPDATE userdetails SET password=${con.escape(newHash)} WHERE username = ${con.escape(username)}`, function(err, updatedResult){
+            if(err) throw err
+            response.status(200).send({
+              message: "Lösenordet har ändrats!"
+            })
+          })
+        })
+      }
+      else{
+        response.status(404).send({
+          message: "Fel lösenord"
+        })
+      }
+    })
   })
 })
