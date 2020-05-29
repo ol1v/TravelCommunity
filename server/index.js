@@ -36,47 +36,48 @@ app.post("/login", (request, response) => {
   //   console.log(hash)
   // })
 
-  con.query(
-    `SELECT username, password, admin, banned FROM userdetails WHERE username = ${con.escape(
-      username
-    )}`,
-    function (err, result) {
-      if (err) throw err;
-      console.log(result);
+  con.query(`SELECT username, password, admin, banned FROM userdetails WHERE username = ${con.escape(username)}`, function (err, result) {
+    if (err) throw err
+    console.log(result.length + " < ---")
 
-      //Check if username exists
-      if (!result.length) {
-        return response.status(401).send({
-          message: "Fel användarnamn eller lösenord",
-        });
-      }
-
-      //Check if user is banned
-      if (result[0].banned) {
-        return response.status(403).send({
-          message: "Ditt konto är avstängt",
-        });
-      }
-
+    if(result.length){
       //Retrieve hash from the result
-      const hash = result[0]["password"];
+      const hash = result[0].password
 
       //Compare the password with hased one.
       bcrypt.compare(request.body.password, hash, function (err, cryptResult) {
-        if (err) throw err;
+        if (err) throw err
 
         //Check if user password matches the database.
         if (cryptResult) {
-          const adminUser = result[0]["admin"];
-          console.log(adminUser);
+          const adminUser = result[0].admin
+
+          //Check if user is banned
+          if(result[0].banned){
+            console.log("banned")
+            return response.status(403).send({
+              message: 'Ditt konto är avstängt'
+            })
+          }
           return response.status(200).send({
-            admin: adminUser,
-          });
+            admin: adminUser
+          })
         }
-      });
+        else{
+          return response.status(401).send({
+            message: 'Fel användarnamn eller lösenord'
+          })
+        }
+      })
     }
-  );
-});
+    else{
+      return response.status(401).send({
+        message: 'Fel användarnamn eller lösenord'
+      })
+    }
+
+  })
+})
 
 //Get travels
 app.post("/travels", (request, response) => {
@@ -225,19 +226,43 @@ app.post("/ban", (request, response) => {
     }
   );
 });
-// Insert travels in Database as Array ()
 
+// Insert travels in Database as Array ()
 app.post("/create-trip", (request, response) => {
   let newTrip = request.body.newTrip;
 
   con.query(
-    `INSERT INTO Travel (username, from, milestones, to, traveltime) VALUES(${newTrip[0]}, ${newTrip[1]}, ${newTrip[2]}, ${newTrip[3]}, ${newTrip[4]}, ${newTrip[5]}`,
-    function (err, result) {
+    `INSERT INTO Travel (username, from, milestones, to, traveltime) VALUES(${newTrip[0]}, ${newTrip[1]}, ${newTrip[2]}, ${newTrip[3]}, ${newTrip[4]}, ${newTrip[5]}`, function (err, result) {
       if (err) throw err;
-
       console.log(result);
-
       response.status(200).send();
+  })
+})
+
+//Unban user
+app.post('/unban', (request, response) => {
+  let user = request.body.username
+
+  con.query(`SELECT banned from userdetails WHERE username = ${con.escape(user)}`, function(err, result){
+    if(err) throw err
+
+    let error404 = "Användare hittades inte!"
+
+    if(!result.length){
+      response.status(404).send({
+        message: error404
+      })
     }
-  );
-});
+    else{
+      let banUser = 0
+      con.query(`UPDATE userdetails SET banned=${con.escape(banUser)} WHERE username=${con.escape(user)}`, function(err, result) {
+        if(err) throw err
+        console.log("Successfully unbanned user '" + user + "'")
+
+        response.status(200).send({
+          message: `Avstäningsstatus för användare '${user}' har ändrats.`
+        })
+      })
+    }
+  })
+})
