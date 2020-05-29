@@ -174,6 +174,7 @@ app.post("/my-travels", (request, response) => {
 
         //Insert data into object
         let obj = {
+          id: result[i].id,
           username: result[i].username,
           from: result[i].fromLoc,
           milestones: jsonData,
