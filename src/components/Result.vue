@@ -29,7 +29,7 @@
           <span>☆</span>
           <span>☆</span>
         </div>
-        <span class="destinations">from Gothenburg</span>
+        <span class="destinations">From Götlaborg</span>
         <span class="destinations">to Rome</span>
 
         <ul id="travel-info">

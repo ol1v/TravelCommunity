@@ -16,7 +16,9 @@
     "secure-ls": "^1.2.6",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
+    "vue-responsive": "^1.1.0",
     "vue-router": "^3.2.0",
+    "vuelidate": "^0.7.5",
     "vuex": "^3.4.0",
     "vuex-persistedstate": "^3.0.1"
   },

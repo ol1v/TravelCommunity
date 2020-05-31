@@ -119,7 +119,7 @@ app.post("/search", (request, response) => {
   // SELECT * FROM travel WHERE from = ${request.body.from} AND to = ${request.body.to}
   con.query(`SELECT * FROM travel WHERE fromLoc = ${con.escape(from)} AND toLoc = ${con.escape(to)}`, function (err, result) {
     if (err) throw err;
-    console.log(request.body.from + " " + request.body.to);
+    console.log(request.body.from + " " + request.body.to + " <-");
     console.log(result);
 
     let resultArray = []
@@ -135,7 +135,6 @@ app.post("/search", (request, response) => {
         milestones: jsonData,
         to: result[i].to,
         traveltime: result[i].traveltime
-
       }
       resultArray.push(resultObject)
     }

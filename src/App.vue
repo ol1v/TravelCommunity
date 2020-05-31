@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Navbar></Navbar>
+    <Navbar v-responsive.lg.xl></Navbar>
+    <MobileNavbar v-responsive.sm.xs></MobileNavbar>
+    
     <router-view></router-view>
     <!-- <MyFooter></MyFooter> -->
   </div>
@@ -9,12 +11,14 @@
 <script>
 //Imports
 import Navbar from './components/Navbar'
+import MobileNavbar from './components/MobileNavbar'
 // import MyFooter from './components/MyFooter'
 
 export default {
   name: 'App',
   components:{
     Navbar,
+    MobileNavbar
     // MyFooter
   }
 

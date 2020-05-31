@@ -9,6 +9,11 @@ import store from "./store";
 import axios from "axios";
 import vueAxios from "vue-axios";
 Vue.use(vueAxios, axios);
+
+//Responsive
+import responsive from 'vue-responsive'
+Vue.use(responsive)
+
 // Fontawesome
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPlane } from "@fortawesome/free-solid-svg-icons";

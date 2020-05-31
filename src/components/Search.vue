@@ -30,6 +30,8 @@ export default {
           console.log("asd")
           this.$store.commit("SET_RESULT", response.data.searchresult);
           console.log("response: " + response.data);
+
+          this.$router.push({ name: "Searchresult" });
         })
         .catch(err => {
           console.log("err:" + err);

@@ -3,19 +3,10 @@
     <nav>
       <div id="left-user-column">
         <ul>
-          <li>
-            <router-link to="/user" class="user-links">NY RESA</router-link>
-          </li>
-          <li>
-            <router-link to="/user/trips" class="user-links">MINA RESOR</router-link>
-          </li>
-          <li>
-            <router-link
-              to="/user/admin"
-              class="user-links"
-              v-if="this.$store.state.admin"
-            >KONTROLLPANEL</router-link>
-          </li>
+          <li><router-link to="/user" class="user-links">NY RESA</router-link></li>
+          <li><router-link to="/user/trips" class="user-links">MINA RESOR</router-link></li>
+          <li><router-link to="/user/settings" class="user-links">INSTÄLLNINGAR</router-link></li>
+          <li><router-link to="/user/admin" class="user-links" v-if="this.$store.state.admin">KONTROLLPANEL</router-link></li>
         </ul>
       </div>
     </nav>

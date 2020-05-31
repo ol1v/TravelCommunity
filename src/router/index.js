@@ -12,6 +12,7 @@ import User from '../views/User'
 import Popular from '../views/Popular'
 import MyTrips from '../views/MyTrips'
 import Controlpanel from '../views/Controlpanel'
+import Settings from '../views/Settings'
 
 let router = new VueRouter({
   mode: 'history',
@@ -43,6 +44,13 @@ let router = new VueRouter({
     name: "MyTrips",
     component: MyTrips,
     path: '/user/trips',
+    meta: {
+      requiresAuth: true
+    }
+  }, {
+    name: "Settings",
+    component: Settings,
+    path: '/user/settings',
     meta: {
       requiresAuth: true
     }
