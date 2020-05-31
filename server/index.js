@@ -40,7 +40,7 @@ app.post("/login", (request, response) => {
     if (err) throw err
     console.log(result.length + " < ---")
 
-    if(result.length){
+    if (result.length) {
       //Retrieve hash from the result
       const hash = result[0].password
 
@@ -53,7 +53,7 @@ app.post("/login", (request, response) => {
           const adminUser = result[0].admin
 
           //Check if user is banned
-          if(result[0].banned){
+          if (result[0].banned) {
             return response.status(403).send({
               message: 'Detta konto är avstängt'
             })
@@ -62,14 +62,14 @@ app.post("/login", (request, response) => {
             admin: adminUser
           })
         }
-        else{
+        else {
           return response.status(401).send({
             message: 'Fel användarnamn eller lösenord'
           })
         }
       })
     }
-    else{
+    else {
       return response.status(401).send({
         message: 'Fel användarnamn eller lösenord'
       })
@@ -131,9 +131,9 @@ app.post("/search", (request, response) => {
 
       let resultObject = {
         username: result[i].username,
-        from: result[i].from,
+        from: result[i].fromLoc,
         milestones: jsonData,
-        to: result[i].to,
+        to: result[i].toLoc,
         traveltime: result[i].traveltime
       }
       resultArray.push(resultObject)
@@ -199,7 +199,7 @@ app.post("/create-trip", (request, response) => {
       if (err) throw err;
       console.log(result);
       response.status(200).send();
-  })
+    })
 })
 
 //Admin panel
@@ -242,20 +242,20 @@ app.post("/ban", (request, response) => {
 app.post('/unban', (request, response) => {
   let user = request.body.username
 
-  con.query(`SELECT banned from userdetails WHERE username = ${con.escape(user)}`, function(err, result){
-    if(err) throw err
+  con.query(`SELECT banned from userdetails WHERE username = ${con.escape(user)}`, function (err, result) {
+    if (err) throw err
 
     let error404 = "Användare hittades inte!"
 
-    if(!result.length){
+    if (!result.length) {
       response.status(404).send({
         message: error404
       })
     }
-    else{
+    else {
       let banUser = 0
-      con.query(`UPDATE userdetails SET banned=${con.escape(banUser)} WHERE username=${con.escape(user)}`, function(err, result) {
-        if(err) throw err
+      con.query(`UPDATE userdetails SET banned=${con.escape(banUser)} WHERE username=${con.escape(user)}`, function (err, result) {
+        if (err) throw err
         console.log("Successfully unbanned user '" + user + "'")
 
         response.status(200).send({
@@ -273,24 +273,24 @@ app.post('/change-pass', (request, response) => {
   let currentPass = request.body.currentPass
   let newPass = request.body.newPass
 
-  con.query(`SELECT password FROM userdetails WHERE username = ${con.escape(username)}`, function(err, result){
-    if(err) throw err
+  con.query(`SELECT password FROM userdetails WHERE username = ${con.escape(username)}`, function (err, result) {
+    if (err) throw err
 
     //Retrieve the current hashed password
     let hash = result[0].password
 
     bcrypt.compare(currentPass, hash, function (err, cryptResult) {
-      if(cryptResult){
-        bcrypt.hash(newPass, 10, function(err, newHash) {
-          con.query(`UPDATE userdetails SET password=${con.escape(newHash)} WHERE username = ${con.escape(username)}`, function(err, updatedResult){
-            if(err) throw err
+      if (cryptResult) {
+        bcrypt.hash(newPass, 10, function (err, newHash) {
+          con.query(`UPDATE userdetails SET password=${con.escape(newHash)} WHERE username = ${con.escape(username)}`, function (err, updatedResult) {
+            if (err) throw err
             response.status(200).send({
               message: "Lösenordet har ändrats!"
             })
           })
         })
       }
-      else{
+      else {
         response.status(404).send({
           message: "Fel lösenord"
         })

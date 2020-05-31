@@ -29,13 +29,13 @@
           <span>☆</span>
           <span>☆</span>
         </div>
-        <span class="destinations">From Götlaborg</span>
-        <span class="destinations">to Rome</span>
+        <span class="destinations">{{searchResult[0].from}}</span>
+        <span class="destinations">{{searchResult[0].to}}</span>
 
         <ul id="travel-info">
           <li>9487 SEK</li>
           <li>Stops: 3</li>
-          <li>Traveltime</li>
+          <li>{{searchResult[0].traveltime}}</li>
         </ul>
         <!--- loop to get all icons --->
         <!--- Icons (Create enum with icons) --->
@@ -71,6 +71,13 @@ export default {
   methods: {
     openFilterMenu() {
       this.filterMenu = !this.filterMenu;
+    }
+  },
+  computed: {
+    searchResult: {
+      get() {
+        return this.$store.state.results;
+      }
     }
   }
 };

@@ -27,10 +27,8 @@ export default {
       this.axios
         .post(url + "search/", credentials)
         .then(response => {
-          console.log("asd")
-          this.$store.commit("SET_RESULT", response.data.searchresult);
-          console.log("response: " + response.data);
-
+          this.$store.commit("SET_RESULT", response.data.searchresults);
+          console.log("response: " + response.data.searchresults[0].traveltime);
           this.$router.push({ name: "Searchresult" });
         })
         .catch(err => {
@@ -42,7 +40,6 @@ export default {
       this.$store.commit("SET_TO", this.to);
 
       //Then navigate
-      //this.$router.push({ name: "Searchresult" });
     }
   },
   computed: {}
