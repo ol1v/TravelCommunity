@@ -18,20 +18,22 @@ export default {
   },
   methods:{
     resetPassword(){
-      //check if email is empty
-      
-      const credentials = { email: this.email }
-      console.log("A new password should be sent here")
-      let url = "http://localhost:3005/"
+      if(this.email){
+        const credentials = { email: this.email }
+        let url = "http://localhost:3005/"
 
-      this.axios
-      .post(url + "reset-password/", credentials)
-      .then(response => {
-        console.log(response.data.message)
-      })
-      .catch(err => {
-        console.log(err.response.data.message)
-      })
+        this.axios
+        .post(url + "reset-password/", credentials)
+        .then(response => {
+          console.log(response.data.message)
+        })
+        .catch(err => {
+          console.log(err.response.data.message)
+        })
+      }
+      else{
+        alert("Du måste ange en giltlig email")
+      }
     }
   }
 }

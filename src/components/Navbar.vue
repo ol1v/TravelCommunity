@@ -117,10 +117,10 @@ export default {
     displayLogin() {
       if (this.displayLoginStatus) {
         return {
-          display: "block"
-        };
+          "display": "block",
+        }
       } else {
-        return {};
+        return {}
       }
     },
     setWhiteNavbar() {
@@ -228,14 +228,17 @@ li {
 #login-fullscreen {
   width: 100%;
   height: 100vh;
-  background: rgba(128, 128, 128, 0.9);
   position: fixed;
+  background: rgba(128, 128, 128, 0.9);
   display: none;
+  margin-top: -75px;
   z-index: 2;
 }
+
 #login-area {
   width: 25%;
-  height: 55%;
+  min-width: 300px;
+  height: auto;
   background-color: white;
   margin: auto;
   position: relative;
