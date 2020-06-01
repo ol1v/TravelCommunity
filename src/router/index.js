@@ -13,6 +13,7 @@ import Popular from '../views/Popular'
 import MyTrips from '../views/MyTrips'
 import Controlpanel from '../views/Controlpanel'
 import Settings from '../views/Settings'
+import ResetPassword from '../views/ResetPassword'
 
 let router = new VueRouter({
   mode: 'history',
@@ -61,6 +62,10 @@ let router = new VueRouter({
     meta: {
       requiresAdmin: true
     }
+  },{
+    name: "ResetPassword",
+    component: ResetPassword,
+    path: '/reset-password'
   }]
 })
 

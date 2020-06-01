@@ -298,3 +298,54 @@ app.post('/change-pass', (request, response) => {
     })
   })
 })
+
+//Reset password
+const nodemailer = require('nodemailer')
+const randomstring = require('randomstring')
+
+app.post('/reset-password', (request, response) => {
+  let toEmail = request.body.email
+
+  con.query(`SELECT password FROM userdetails WHERE email = ${con.escape(toEmail)}`, function(err, result){
+    if(err) throw err
+
+    const newTempPass = randomstring.generate(7);
+
+    bcrypt.hash(newTempPass, 10, function(err, newHash){
+      con.query(`UPDATE userdetails SET password=${con.escape(newHash)} WHERE email = ${con.escape(toEmail)}`, function(err, updatedResult){
+        if(err) throw err
+
+        //Send an email with the new password
+        let transporter = nodemailer.createTransport({
+          service: "hotmail",
+          auth: {
+            user: "reset-travelcommunity@hotmail.com",
+            pass: "travelcommunity1"
+          }
+        })
+      
+        let mailOptions = {
+          from: "reset-travelcommunity@hotmail.com",
+          to: toEmail,
+          subject: "Återställ lösenord",
+          text: `Ditt lösenord har återställts! Logga in på webbsidan och byt till ett nytt lösenord. Lösenord: ${newTempPass}`
+        }
+      
+        transporter.sendMail(mailOptions, function(err, info){
+          if(err){
+            console.log(err)
+            response.status(404).send({
+              message: "Email was NOT sent successfully"
+            })
+          }
+          else{
+            console.log("Email was sent")
+            response.status(200).send({
+              message: "Email was sent successfully"
+            })
+          }
+        })
+      })
+    })
+  })
+})

@@ -42,7 +42,7 @@
           <input v-model="password" class="user-input" type="password" id="password" />
 
           <div id="buttons">
-            <input class="forgot-pass-button" type="button" value="Glömt lösenord?" />
+            <input class="forgot-pass-button" type="button" value="Glömt lösenord?" @click="resetPassword" />
             <input class="login-button" type="button" @click="login" value="Logga in" />
           </div>
 
@@ -55,6 +55,7 @@
           </div>
           
         </div>
+
       </div>
     </div>
   </div>
@@ -106,6 +107,10 @@ export default {
       this.$store.commit("SET_USERNAME", ""),
       this.$store.commit("SET_ADMIN_STATE", 0)
       this.$router.push({ name: "Home" });
+    },
+    resetPassword(){
+      this.displayLoginStatus = !this.displayLoginStatus
+      this.$router.push({name: "ResetPassword"})
     }
   },
   computed: {

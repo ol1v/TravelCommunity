@@ -101,7 +101,7 @@ nav{
   width: 80%;
   height: calc(100vh - 75px);
   float: right;
-  background-color: black;
+  background-color: #026f7e;
   position: fixed;
   right: 0px;
   top: 75px;
