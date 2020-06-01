@@ -18,10 +18,10 @@
         </select>
       </div>
     </div>
-    <h3>Found 1 travel</h3>
+    <h3>Hittade {{searchResult.length}} resultat</h3>
     <section id="results-container">
       <!--- result object --->
-      <div class="results-object">
+      <div class="results-object" v-for="(result, index) in searchResult" :key="index">
         <div class="rating">
           <span>☆</span>
           <span>☆</span>
@@ -29,13 +29,13 @@
           <span>☆</span>
           <span>☆</span>
         </div>
-        <span class="destinations">{{searchResult[0].from}}</span>
-        <span class="destinations">{{searchResult[0].to}}</span>
+        <span class="destinations">{{result.from}}</span>
+        <span class="destinations">{{result.to}}</span>
 
         <ul id="travel-info">
           <li>9487 SEK</li>
-          <li>Stops: 3</li>
-          <li>{{searchResult[0].traveltime}}</li>
+          <li>Stopp {{result.milestones.length}}</li>
+          <li>Restid {{result.traveltime}}</li>
         </ul>
         <!--- loop to get all icons --->
         <!--- Icons (Create enum with icons) --->
