@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="popular">
     <!--  TODO 
     * Create JSON for "FROM" & "TO" containing "City" & "Country" (Database). 
     * Add vehicle types depending on traveltype.
@@ -29,14 +29,15 @@
             </p>
           </div>
         </div>
+        <!--- from vehicleicon --->
+        <div class="transportation-img-from" v-if="toggleFullTravel">
+          <p>
+            <font-awesome-icon icon="car" size="2x" />
+          </p>
+        </div>
 
         <!-- Milestones -->
         <div v-for="(milestones, ind) in travelArray[index].milestones" :key="ind">
-          <div class="transportation-img" v-if="toggleFullTravel">
-            <p>
-              <font-awesome-icon icon="plane" size="2x" />
-            </p>
-          </div>
           <div class="content-wrapper-milestones" v-if="toggleFullTravel">
             <p class="content-text">
               <span class="city">{{travelArray[index].milestones[ind].city}}</span>
@@ -46,17 +47,25 @@
               <font-awesome-icon icon="hotel" size="1x" />
               {{travelArray[index].milestones[ind].resident}}
             </p>
+            <div class="transportation-img" v-if="toggleFullTravel">
+              <p>
+                <font-awesome-icon icon="plane" size="2x" />
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- To location -->
         <div class="content-wrapper">
           <p class="content-text">
-            <span class="finish">
-              {{travelArray[index].to}}
-              <font-awesome-icon icon="map-pin" size="xs" />
-            </span>
+            <span class="finish">{{travelArray[index].to}}</span>
             <span class="country">Spanien</span>
+          </p>
+        </div>
+        <!--- to travelicon --->
+        <div class="transportation-img-to" v-if="toggleFullTravel">
+          <p>
+            <font-awesome-icon icon="map-pin" size="2x" />
           </p>
         </div>
 
@@ -76,7 +85,7 @@
           <button
             class="full-travel-button"
             @click="fullTravelBtnClicked"
-          >Se {{travelArray[index].milestones.length}} resemål</button>
+          >{{travelButtonText}} {{travelArray[index].milestones.length}} resemål</button>
           <div class="bottom-report-button"></div>
         </div>
       </div>
@@ -92,6 +101,10 @@ export default {
     return {
       travelArray: [],
       toggleFullTravel: false,
+<<<<<<< HEAD
+=======
+      travelButtonText: "Se"
+>>>>>>> b838348df9a489a011a1e9bf824ed53c3827a3f3
     };
   },
   created() {
@@ -111,12 +124,22 @@ export default {
   methods: {
     fullTravelBtnClicked() {
       this.toggleFullTravel = !this.toggleFullTravel;
+      if (this.toggleFullTravel) {
+        this.travelButtonText = "Göm";
+      } else {
+        this.travelButtonText = "Se";
+      }
     }
   }
 };
 </script>
 
 <style scoped>
+.popular {
+  background-color: #08aeea;
+  background-image: linear-gradient(0deg, #08aeea 0%, #026f7e 100%);
+}
+
 .travel-data-wrapper {
   width: 50%;
   height: auto;
@@ -132,8 +155,7 @@ export default {
   top: 0;
   bottom: 0;
   overflow: hidden;
-  background-color: #08aeea;
-  background-image: linear-gradient(0deg, #08aeea 0%, #026f7e 100%);
+  background-color: transparent;
   color: white;
   float: left;
   border-right: 1pt solid white;
@@ -161,7 +183,7 @@ export default {
   width: 70%;
   height: 100%;
   float: left;
-  background-color: #026f7e;
+  background-color: transparent;
   position: relative;
 }
 
@@ -170,55 +192,61 @@ export default {
   font-weight: 300;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: #026f7e;
+  background-color: #cccccc00;
   color: white;
 }
 
 .transportation-img {
   margin-left: 1.6em;
-  margin-top: -2em;
-  text-align: left;
+  text-align: center;
+  margin-top: 2.2em;
   color: white;
 }
 
 .transportation-img-from {
-  text-align: left;
+  text-align: center;
+  margin-top: 1em;
+  color: white;
+}
 
+.transportation-img-to {
+  text-align: right;
+  margin-right: 5em;
+  margin-top: -4em;
   color: white;
 }
 
 .content-wrapper {
   width: 90%;
   height: 100pt;
-  margin: 10 px auto;
+  margin-top: 5em;
   border-radius: 5px;
   background-color: white;
   line-height: 50px;
-  background-color: #026f7e;
-  border-bottom: 1pt solid white;
+  background-color: transparent;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
 .content-wrapper-milestones {
   width: 90%;
   height: 100pt;
-  margin: 10px auto;
+  margin: 30pt auto;
   border-radius: 5px;
-  background-color: #026f7e;
+  background-color: #02707e65;
   line-height: 50px;
-  border-bottom: 1pt solid white;
 }
 
 .top-content-bar {
   width: 100%;
   height: 20px;
-  background-color: #026f7e;
+  background-color: transparent;
   z-index: 7;
 }
 
 .bottom-content-bar {
   width: 100%;
   height: 30px;
-  background-color: #026f7e;
+  background-color: transparent;
   bottom: 0px;
   right: 5px;
   position: absolute;
@@ -241,6 +269,7 @@ export default {
   background-color: #026f7e;
   border-color: #026f7e;
   margin-left: 2.3em;
+  cursor: pointer;
 }
 
 .start {
