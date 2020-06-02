@@ -18,7 +18,13 @@
       <div class="right-column">
         <!-- Top bar for the rating system -->
         <div class="top-content-bar">
-          <span class="rating">☆☆☆☆☆</span>
+          <span class="rating">
+            ☆☆☆☆☆
+            <button
+              class="full-travel-button"
+              @click="fullTravelBtnClicked"
+            >{{travelButtonText}} {{travelArray[index].milestones.length}} delmål</button>
+          </span>
         </div>
         <!-- From location -->
         <div>
@@ -70,7 +76,7 @@
         </div>
 
         <!-- Price & Traveltime -->
-        <div class="content-wrapper bottom-div">
+        <div class="bottom-div">
           <p class="content-text">
             <span class="city">
               <font-awesome-icon icon="hourglass-end" size="1x" />
@@ -82,10 +88,6 @@
 
         <!-- Bottom bar with report travel -->
         <div class="bottom-content-bar">
-          <button
-            class="full-travel-button"
-            @click="fullTravelBtnClicked"
-          >{{travelButtonText}} {{travelArray[index].milestones.length}} resemål</button>
           <div class="bottom-report-button"></div>
         </div>
       </div>
@@ -257,16 +259,20 @@ export default {
 }
 
 .bottom-div {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  margin-top: 30pt;
+  margin-bottom: 30pt;
 }
 
 .full-travel-button {
   color: white;
-  background-color: #026f7e;
-  border-color: #026f7e;
-  margin-left: 2.3em;
+  background-color: transparent;
+  border-top: 0.5pt solid white;
+  padding: 1em;
+  border-radius: 0.3em;
+  margin-right: 12em;
   cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 100;
 }
 
 .start {

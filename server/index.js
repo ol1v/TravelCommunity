@@ -77,23 +77,23 @@ app.post("/register", (request, response) => {
   let email = request.body.email
   let password = request.body.password
 
-  con.query(`SELECT username FROM userdetails WHERE username = ${con.escape(username)}`, function(err, userNameResult){
-    if(userNameResult.length > 0){
+  con.query(`SELECT username FROM userdetails WHERE username = ${con.escape(username)}`, function (err, userNameResult) {
+    if (userNameResult.length > 0) {
       return response.status(406).send({
         message: "Användarnamnet finns redan!"
       })
     }
-    else{
-      con.query(`SELECT email FROM userdetails WHERE email = ${con.escape(email)}`, function(err, emailResult){
-        if(emailResult.length > 0){
+    else {
+      con.query(`SELECT email FROM userdetails WHERE email = ${con.escape(email)}`, function (err, emailResult) {
+        if (emailResult.length > 0) {
           return response.status(406).send({
             message: "Email adressen finns redan!"
           })
         }
-        else{
+        else {
           //Hash the password
-          bcrypt.hash(password, 10, function(err, hash) {
-            con.query(`INSERT INTO userdetails (password, admin, username, email, banned) VALUES(${con.escape(hash)}, ${con.escape(0)}, ${con.escape(username)}, ${con.escape(email)}, ${con.escape(0)})`, function(err, result){
+          bcrypt.hash(password, 10, function (err, hash) {
+            con.query(`INSERT INTO userdetails (password, admin, username, email, banned) VALUES(${con.escape(hash)}, ${con.escape(0)}, ${con.escape(username)}, ${con.escape(email)}, ${con.escape(0)})`, function (err, result) {
               return response.status(201).send({
                 message: "Registering lyckades"
               })
@@ -333,25 +333,25 @@ app.post('/remove-account', (request, response) => {
   let removeAllData = request.body.removeAllData
 
   //Select all from userdetails
-  con.query(`SELECT * FROM userdetails WHERE username = ${con.escape(username)}`, function(err, result){
-    if(err) throw err
+  con.query(`SELECT * FROM userdetails WHERE username = ${con.escape(username)}`, function (err, result) {
+    if (err) throw err
 
     let hash = result[0].password
     //Compare input password with database password
-    bcrypt.compare(password, hash, function(err, cryptResult){
-      if(err) throw err
+    bcrypt.compare(password, hash, function (err, cryptResult) {
+      if (err) throw err
 
       //Check if password matches
-      if(cryptResult){
+      if (cryptResult) {
         //Remove user from userdetails
-        con.query(`DELETE FROM userdetails WHERE username = ${con.escape(username)}`, function(err, removeAccountResult){
-          if(err) throw err
+        con.query(`DELETE FROM userdetails WHERE username = ${con.escape(username)}`, function (err, removeAccountResult) {
+          if (err) throw err
 
           //If user want to remove ALL travels
-          if(removeAllData){
+          if (removeAllData) {
             //Delete all data from travel
-            con.query(`DELETE FROM travel WHERE username = ${con.escape(username)}`, function(err, _) {
-              if(err) throw err
+            con.query(`DELETE FROM travel WHERE username = ${con.escape(username)}`, function (err, _) {
+              if (err) throw err
 
               //Successfully removed account and all it's content
               response.status(200).send({
@@ -359,14 +359,14 @@ app.post('/remove-account', (request, response) => {
               })
             })
           }
-          else{
+          else {
             //Successfully removed account without content
             response.status(200).send({
               message: "Ditt konto är raderat. Men innehållet förblir på webbsidan."
             })
           }
         })
-      }else{
+      } else {
         response.status(404).send({
           message: "Lösenordet är inkorrekt."
         })
@@ -423,5 +423,26 @@ app.post('/reset-password', (request, response) => {
         })
       })
     })
+  })
+})
+// update users travel
+app.post('/updatetravel', (request, response) => {
+  let travel = request.body.travel
+  console.log(travel)
+
+  con.query(`SELECT * from travel WHERE id = ${con.escape(travel.id)}`, function (err, result) {
+    if (err) throw err
+
+    console.log(result)
+    // Update travel
+    con.query(`UPDATE travel SET fromLoc=${con.escape(travel.from)} WHERE id=${con.escape(travel.id)}`, function (err, result) {
+      if (err) throw err
+
+      // Lägg till resten av querys
+      response.status(200).send({
+        message: `Uppdaterade resan!`
+      })
+    })
+
   })
 })
