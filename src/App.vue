@@ -11,7 +11,7 @@
 <script>
 //Imports
 import Navbar from './components/Navbar'
-import MobileNavbar from './components/MobileNavbar'
+import MobileNavbar from './mobile-components/MobileNavbar'
 // import MyFooter from './components/MyFooter'
 
 export default {
