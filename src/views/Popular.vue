@@ -91,7 +91,7 @@ export default {
   data() {
     return {
       travelArray: [],
-      toggleFullTravel: false
+      toggleFullTravel: false,
     };
   },
   created() {
@@ -228,9 +228,6 @@ export default {
   width: 20px;
   height: 30px;
   float: right;
-  background-image: url("../assets/report.png");
-  background-position: center;
-  background-repeat: no-repeat;
   cursor: pointer;
 }
 

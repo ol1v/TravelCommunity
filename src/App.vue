@@ -33,4 +33,8 @@ html, body{
 .center{
   text-align: center;
 }
+.font{
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+}
 </style>

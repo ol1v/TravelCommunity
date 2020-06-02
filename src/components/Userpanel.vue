@@ -6,7 +6,7 @@
           <li><router-link to="/user" class="user-links">NY RESA</router-link></li>
           <li><router-link to="/user/trips" class="user-links">MINA RESOR</router-link></li>
           <li><router-link to="/user/settings" class="user-links">INSTÄLLNINGAR</router-link></li>
-          <li><router-link to="/user/admin" class="user-links" v-if="this.$store.state.admin">KONTROLLPANEL</router-link></li>
+          <li><router-link to="/user/admin" class="user-links" v-if="this.$store.state.admin">ADMINPANEL</router-link></li>
         </ul>
       </div>
     </nav>
@@ -28,7 +28,6 @@ nav {
 #left-user-column {
   width: 50%;
   height: 50px;
-
   background: rgb(142, 197, 252);
   background: linear-gradient(
     90deg,

@@ -299,6 +299,55 @@ app.post('/change-pass', (request, response) => {
   })
 })
 
+//Remove account for user
+app.post('/remove-account', (request, response) => {
+  let username = request.body.username
+  let password = request.body.password
+  let removeAllData = request.body.removeAllData
+
+  //Select all from userdetails
+  con.query(`SELECT * FROM userdetails WHERE username = ${con.escape(username)}`, function(err, result){
+    if(err) throw err
+
+    let hash = result[0].password
+    //Compare input password with database password
+    bcrypt.compare(password, hash, function(err, cryptResult){
+      if(err) throw err
+
+      //Check if password matches
+      if(cryptResult){
+        //Remove user from userdetails
+        con.query(`DELETE FROM userdetails WHERE username = ${con.escape(username)}`, function(err, removeAccountResult){
+          if(err) throw err
+
+          //If user want to remove ALL travels
+          if(removeAllData){
+            //Delete all data from travel
+            con.query(`DELETE FROM travel WHERE username = ${con.escape(username)}`, function(err, _) {
+              if(err) throw err
+
+              //Successfully removed account and all it's content
+              response.status(200).send({
+                message: "Ditt konto & alla dina resor är raderade."
+              })
+            })
+          }
+          else{
+            //Successfully removed account without content
+            response.status(200).send({
+              message: "Ditt konto är raderat. Men innehållet förblir på webbsidan."
+            })
+          }
+        })
+      }else{
+        response.status(404).send({
+          message: "Lösenordet är inkorrekt."
+        })
+      }
+    })
+  })
+})
+
 //Reset password
 const nodemailer = require('nodemailer')
 const randomstring = require('randomstring')

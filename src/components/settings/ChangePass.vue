@@ -1,33 +1,29 @@
 <template>
   <div>
-    <Userpanel></Userpanel>
     <div id="wrapper">
       <div id="change_pass_wrapper">
-        <h2 class="center">Ändra lösenord</h2>
+        <h2 class="center font">Ändra lösenord</h2>
 
-        <label for="currentPass">Nuvarande lösenord</label>
-        <input type="password" id="currentPass" class="ban-user-input" v-model="currentPass">
+        <label for="currentPass" class="font">Nuvarande lösenord</label>
+        <input type="password" id="currentPass" class="ban-user-input font" v-model="currentPass">
 
-        <label for="newPass">Nytt lösenord</label>
-        <input :type="showPass" id="newPass" class="ban-user-input" v-model="newPass">
-        <label for="repeatPass">Repetera lösenord</label>
-        <input :type="showPass" id="repeatPass" class="ban-user-input" v-model="repeatPass">
+        <label for="newPass" class="font">Nytt lösenord</label>
+        <input :type="showPass" id="newPass" class="ban-user-input font" v-model="newPass">
+        <label for="repeatPass" class="font">Repetera lösenord</label>
+        <input :type="showPass" id="repeatPass" class="ban-user-input font" v-model="repeatPass">
         
         <input type="checkbox" id="showPass" @click="showPassword">
-        <label for="showPass">Visa lösenord</label>
+        <label for="showPass" class="font">Visa lösenord</label>
 
-        <input type="button" value="Byt lösenord" class="ban-user-button" @click="changePassword">
+        <input type="button" value="Byt lösenord" class="ban-user-button font" @click="changePassword">
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Userpanel from '../Userpanel'
+
 export default {
-  components:{
-    Userpanel
-  },
   data(){
     return{
       currentPass: "",

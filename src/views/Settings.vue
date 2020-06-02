@@ -1,14 +1,17 @@
 <template>
   <div>
-    <ChangePass></ChangePass>
+    <Userpanel></Userpanel>
+    <Settingspanel></Settingspanel>
   </div>
 </template>
 
 <script>
-import ChangePass from '../components/settings/ChangePass'
+import Userpanel from '../components/Userpanel'
+import Settingspanel from '../components/settings/Settingspanel'
 export default {
   components:{
-    ChangePass
+    Userpanel,
+    Settingspanel
   }
 
 }

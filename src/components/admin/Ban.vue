@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div id="ban-user-wrapper">
-      <h2 class="center">Stäng av användare</h2>
-      <label for="user">Användarnamn</label>
-      <input type="text" id="user" class="ban-user-input" v-model="username">
-      <input type="button" value="Stäng av konto" class="ban-user-button" @click="banUser">
+    <div class="ban-user-wrapper">
+      <h2 class="center font">Stäng av användare</h2>
+      <label for="user" class="font">Användarnamn</label>
+      <input type="text" id="user" class="ban-user-input font" v-model="username">
+      <input type="button" value="Stäng av konto" class="ban-user-button font" @click="banUser">
     </div>
   </div>
 </template>
@@ -40,13 +40,12 @@ export default {
 </script>
 
 <style>
-#ban-user-wrapper{
-  width: 15%;
+.ban-user-wrapper{
+  width: 20%;
   height: auto;
-  border: 1px solid black;
   padding: 10px;
-  margin-top: 15px;
-  margin-left: 15px;
+  margin: 15px auto;
+
 }
 .ban-user-input{
   width: 100%;
@@ -58,6 +57,8 @@ export default {
   height: 40px;
   margin-top: 10px;
   cursor: pointer;
+  background-color: #026f7e;
+  color: white;
+  border: 0;
 }
-
 </style>

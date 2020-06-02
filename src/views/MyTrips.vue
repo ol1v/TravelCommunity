@@ -84,7 +84,6 @@ export default {
 .remove-travel{
   width: 20px;
   height: 20px;
-  background-image: url('../assets/delete.png');
   float: right;
   cursor: pointer;
   margin-right: 10px;

@@ -1,25 +1,19 @@
 <template>
   <div>
     <Userpanel></Userpanel>
-
-    <div id="ban-panel">
-      <Ban></Ban>
-      <Unban></Unban>
-    </div>
+    <Adminpanel></Adminpanel>
     
   </div>
 </template>
 
 <script>
 import Userpanel from '../components/Userpanel'
-import Ban from '../components/admin/Ban'
-import Unban from '../components/admin/Unban'
+import Adminpanel from '../components/admin/Adminpanel'
 
 export default {
   components:{
     Userpanel,
-    Ban,
-    Unban
+    Adminpanel
   }
 
 }
