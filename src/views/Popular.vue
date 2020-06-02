@@ -101,10 +101,7 @@ export default {
     return {
       travelArray: [],
       toggleFullTravel: false,
-<<<<<<< HEAD
-=======
       travelButtonText: "Se"
->>>>>>> b838348df9a489a011a1e9bf824ed53c3827a3f3
     };
   },
   created() {

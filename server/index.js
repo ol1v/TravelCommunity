@@ -31,11 +31,6 @@ app.listen(port);
 app.post("/login", (request, response) => {
   let username = request.body.username;
 
-  //Hash a new password -> should be in register
-  // bcrypt.hash('travelcommunity', 10, function(err, hash) {
-  //   console.log(hash)
-  // })
-
   con.query(`SELECT username, password, admin, banned FROM userdetails WHERE username = ${con.escape(username)}`, function (err, result) {
     if (err) throw err
     console.log(result.length + " < ---")
@@ -74,7 +69,39 @@ app.post("/login", (request, response) => {
         message: 'Fel användarnamn eller lösenord'
       })
     }
+  })
+})
 
+app.post("/register", (request, response) => {
+  let username = request.body.username
+  let email = request.body.email
+  let password = request.body.password
+
+  con.query(`SELECT username FROM userdetails WHERE username = ${con.escape(username)}`, function(err, userNameResult){
+    if(userNameResult.length > 0){
+      return response.status(406).send({
+        message: "Användarnamnet finns redan!"
+      })
+    }
+    else{
+      con.query(`SELECT email FROM userdetails WHERE email = ${con.escape(email)}`, function(err, emailResult){
+        if(emailResult.length > 0){
+          return response.status(406).send({
+            message: "Email adressen finns redan!"
+          })
+        }
+        else{
+          //Hash the password
+          bcrypt.hash(password, 10, function(err, hash) {
+            con.query(`INSERT INTO userdetails (password, admin, username, email, banned) VALUES(${con.escape(hash)}, ${con.escape(0)}, ${con.escape(username)}, ${con.escape(email)}, ${con.escape(0)})`, function(err, result){
+              return response.status(201).send({
+                message: "Registering lyckades"
+              })
+            })
+          })
+        }
+      })
+    }
   })
 })
 

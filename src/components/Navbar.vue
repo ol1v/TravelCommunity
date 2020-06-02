@@ -63,7 +63,6 @@
 
 <script>
 
-
 export default {
   data() {
     return {
@@ -100,7 +99,7 @@ export default {
     },
     register() {
       this.displayLoginStatus = false;
-      this.$router.push({ name: "Register" });
+      this.$router.push({ name: "RegisterUser" });
     },
     logout() {
       this.$store.commit("SET_LOGGED_IN", false);
@@ -232,7 +231,7 @@ li {
   background: rgba(128, 128, 128, 0.9);
   display: none;
   margin-top: -75px;
-  z-index: 2;
+  z-index: 25;
 }
 
 #login-area {

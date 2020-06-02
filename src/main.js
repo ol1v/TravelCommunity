@@ -25,6 +25,7 @@ import { faHourglassEnd } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faShieldAlt } from "@fortawesome/free-solid-svg-icons" 
 import { faUserCog } from "@fortawesome/free-solid-svg-icons"
+
 library.add(faPlane, faShip, faCar, faHotel, faMapPin, faHourglassEnd, faShieldAlt, faUserCog);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
