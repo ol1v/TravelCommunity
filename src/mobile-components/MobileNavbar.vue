@@ -19,6 +19,7 @@
       </ul>
     </div>
 
+    <!-- Login fullscreen -->
     <div id="displayLogin" :style="displayLogin">
       <div id="login-full-screen">
         <div id="login-area">
@@ -37,20 +38,22 @@
             <input type="text" id="username" class="login-input pad" v-model="username">
             <label for="password" class="font pad">Lösenord</label>
             <input type="password" id="password" class="login-input pad" v-model="password">
-
+            
+            <!-- Buttons for login and forgot password -->
             <div id="login-buttons">
               <input type="button" value="Glömt lösenord?" class="forgot-pass font" @click="resetPassword">
               <input type="button" value="Logga in" class="login-button font" @click="login">
             </div>
           </div>
 
+          <!-- Error message -->
           <div id="error-message">{{errorMessage}}</div>
 
+          <!-- Registration components -->
           <div id="register-components">
             <p class="center font">Eller</p>
             <input class="register-button font" type="button" value="Registrera dig" @click="register"/>
           </div>
-
         </div>
       </div>
     </div>

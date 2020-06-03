@@ -13,6 +13,7 @@
       <div class="left-column">
         <div class="profile-image"></div>
         <h4 class="username-text">{{travelArray[index].username}}</h4>
+        <h4 class="username-text">Uppladdat: {{travelArray[index].timestamp}}</h4>
       </div>
       <!-- Data -->
       <div class="right-column">
@@ -25,7 +26,8 @@
           <div class="content-wrapper">
             <p class="content-text">
               <span class="start">{{travelArray[index].from}}</span>
-              <span class="country">Sverige</span>
+              <span class="country">{{travelArray[index].fromCountry}}</span>
+              <!-- From startpoint to milestone -> travelArray[index].fromTrans -->
             </p>
           </div>
         </div>
@@ -58,8 +60,9 @@
         <!-- To location -->
         <div class="content-wrapper">
           <p class="content-text">
+            <!-- NOTE!! From last milestone to endpoint -> travelArray[index].toTrans -->
             <span class="finish">{{travelArray[index].to}}</span>
-            <span class="country">Spanien</span>
+            <span class="country">{{travelArray[index].toCountry}}</span>
           </p>
         </div>
         <!--- to travelicon --->
@@ -76,7 +79,7 @@
               <font-awesome-icon icon="hourglass-end" size="1x" />
               {{travelArray[index].traveltime}}
             </span>
-            <span class="country">13599 SEK</span>
+            <span class="country">{{travelArray[index].price}}</span>
           </p>
         </div>
 

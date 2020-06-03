@@ -116,15 +116,21 @@ app.post("/travels", (request, response) => {
     //Creating an object of the result
     for (let i = 0; i < result.length; i++) {
       const milestones = result[i].milestones;
-      const jsonData = JSON.parse(milestones);
+      const milestonesJson = JSON.parse(milestones);
 
       //Insert data into object
       let obj = {
         username: result[i].username,
         from: result[i].fromLoc,
-        milestones: jsonData,
+        fromCountry: result[i].fromCountry,
+        fromTrans: result[i].fromTransportation,
+        milestones: milestonesJson,
         to: result[i].toLoc,
+        toCountry: result[i].toCountry,
+        toTrans: result[i].toTransportation,
         traveltime: result[i].traveltime,
+        timestamp: result[i].timestamp,
+        price: result[i].price
       };
       dataArr.push(obj);
     }
@@ -141,9 +147,8 @@ app.post("/travels", (request, response) => {
 app.post("/search", (request, response) => {
   let from = request.body.from
   let to = request.body.to
-  console.log(from + " " + to)
+
   // Get travels which responds to from and to searchwords
-  // SELECT * FROM travel WHERE from = ${request.body.from} AND to = ${request.body.to}
   con.query(`SELECT * FROM travel WHERE fromLoc = ${con.escape(from)} AND toLoc = ${con.escape(to)}`, function (err, result) {
     if (err) throw err;
     console.log(request.body.from + " " + request.body.to + " <-");
@@ -192,19 +197,23 @@ app.post("/my-travels", (request, response) => {
       //Array to store object data
       const dataArr = [];
 
-      //Creating an object of the result
       for (let i = 0; i < result.length; i++) {
         const milestones = result[i].milestones;
-        const jsonData = JSON.parse(milestones);
-
+        const milestonesJson = JSON.parse(milestones);
+  
         //Insert data into object
         let obj = {
-          id: result[i].id,
           username: result[i].username,
           from: result[i].fromLoc,
-          milestones: jsonData,
+          fromCountry: result[i].fromCountry,
+          fromTrans: result[i].fromTransportation,
+          milestones: milestonesJson,
           to: result[i].toLoc,
+          toCountry: result[i].toCountry,
+          toTrans: result[i].toTransportation,
           traveltime: result[i].traveltime,
+          timestamp: result[i].timestamp,
+          price: result[i].price
         };
         dataArr.push(obj);
       }
