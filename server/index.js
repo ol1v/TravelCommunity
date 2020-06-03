@@ -168,10 +168,18 @@ app.post("/search", (request, response) => {
         id: result[i].id,
         username: result[i].username,
         from: result[i].fromLoc,
+        fromCountry: result[i].fromCountry,
+        fromTrans: result[i].fromTransportation,
         milestones: jsonData,
         to: result[i].toLoc,
-        traveltime: result[i].traveltime
+        toCountry: result[i].toCountry,
+        toTrans: result[i].toTransportation,
+        traveltime: result[i].traveltime,
+        timestamp: result[i].timestamp,
+        price: result[i].price,
+        ratingScore: result[i].ratingScore
       }
+
       resultArray.push(resultObject)
     }
     // If no match in database
