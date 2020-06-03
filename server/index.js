@@ -107,7 +107,7 @@ app.post("/register", (request, response) => {
 
 //Get travels
 app.post("/travels", (request, response) => {
-  con.query(`SELECT * FROM travel`, function (err, result) {
+  con.query(`SELECT * FROM travel ORDER BY ratingScore DESC, JSON_LENGTH(rating) DESC`, function (err, result) {
     if (err) throw err;
 
     //Array to store object data
@@ -115,11 +115,13 @@ app.post("/travels", (request, response) => {
 
     //Creating an object of the result
     for (let i = 0; i < result.length; i++) {
+
       const milestones = result[i].milestones;
       const milestonesJson = JSON.parse(milestones);
 
       //Insert data into object
       let obj = {
+        id: result[i].id,
         username: result[i].username,
         from: result[i].fromLoc,
         fromCountry: result[i].fromCountry,
@@ -130,7 +132,8 @@ app.post("/travels", (request, response) => {
         toTrans: result[i].toTransportation,
         traveltime: result[i].traveltime,
         timestamp: result[i].timestamp,
-        price: result[i].price
+        price: result[i].price,
+        ratingScore: result[i].ratingScore
       };
       dataArr.push(obj);
     }
@@ -162,6 +165,7 @@ app.post("/search", (request, response) => {
       const jsonData = JSON.parse(milestones);
 
       let resultObject = {
+        id: result[i].id,
         username: result[i].username,
         from: result[i].fromLoc,
         milestones: jsonData,
@@ -210,7 +214,6 @@ app.post("/my-travels", (request, response) => {
           milestones: milestonesJson,
           to: result[i].toLoc,
           toCountry: result[i].toCountry,
-          toTrans: result[i].toTransportation,
           traveltime: result[i].traveltime,
           timestamp: result[i].timestamp,
           price: result[i].price
@@ -299,6 +302,46 @@ app.post('/unban', (request, response) => {
         })
       })
     }
+  })
+})
+
+//Add rating 
+app.post('/rating', (request, response) => {
+  let travelIndex = request.body.index
+  let rating = request.body.rating
+
+  con.query(`SELECT rating, ratingScore FROM travel WHERE id= ${con.escape(travelIndex)}`, function(err, result){
+    if(err) throw err
+
+    var obj = { "v": rating }
+
+    console.log(result[0].ratingScore + " <-- scoren")
+
+    //Retrieve the current rating result
+    const ratingRes = result[0].rating
+
+    //Parse rating into JSON
+    const ratingJson = JSON.parse(ratingRes);
+
+    //Push JSON to ratingJson array
+    ratingJson.push(obj)
+
+    //Calculate score
+    let ratingScore = 0
+    for(let i=0; i < ratingJson.length; i++){
+      ratingScore += ratingJson[i].v
+    }
+    ratingResult = ratingScore / ratingJson.length
+
+    //Compile it into a string
+    let json = JSON.stringify(ratingJson)
+
+    //Update the current value
+    con.query(`UPDATE travel SET rating=${con.escape(json)}, ratingScore=${con.escape(ratingResult)} WHERE id=${con.escape(travelIndex)}`, function(err, updateResult){
+      if(err) throw err
+
+      console.log("updated")
+    })
   })
 })
 
@@ -455,3 +498,15 @@ app.post('/updatetravel', (request, response) => {
 
   })
 })
+
+
+//Putte's notering. DONT TOUCHHHHHHHHHH
+  // var obj = [{"city":"asd", "country":"asd"}]
+  // let json = JSON.stringify(obj)
+
+  // console.log(obj)
+
+  // con.query(`INSERT INTO travel (username, fromLoc, milestones) VALUES("putt", "älv", ?)`, json, function(err, result){
+  //   if(err) throw err
+  //   console.log("pushed new")
+  // })

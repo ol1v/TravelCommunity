@@ -23,11 +23,11 @@
       <!--- result object --->
       <div class="results-object" v-for="(result, index) in searchResult" :key="index">
         <div class="rating">
-          <span>☆</span>
-          <span>☆</span>
-          <span>☆</span>
-          <span>☆</span>
-          <span>☆</span>
+          <span @click="insertRating(5, result.id)">☆</span>
+          <span @click="insertRating(4, result.id)">☆</span>
+          <span @click="insertRating(3, result.id)">☆</span>
+          <span @click="insertRating(2, result.id)">☆</span>
+          <span @click="insertRating(1, result.id)">☆</span>
         </div>
         <span class="destinations">{{result.from}}</span>
         <span class="destinations">{{result.to}}</span>
@@ -65,12 +65,27 @@
 export default {
   data() {
     return {
-      filterMenu: false
+      filterMenu: false,
     };
   },
   methods: {
     openFilterMenu() {
       this.filterMenu = !this.filterMenu;
+    },
+    insertRating(value, index){
+      console.log(index)
+      const values = { rating: value, index: index }
+
+      let url = "http://localhost:3005/"
+
+      this.axios
+      .post(url + "rating/", values)
+      .then(response => {
+        console.log(response.data)
+      })
+      .catch(err => {
+        console.log(err.response.data)
+      })
     }
   },
   computed: {
@@ -83,7 +98,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 h3 {
   font-family: "Montserrat", sans-serif;
   color: white;

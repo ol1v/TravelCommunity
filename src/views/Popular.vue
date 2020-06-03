@@ -20,7 +20,12 @@
         <!-- Top bar for the rating system -->
         <div class="top-content-bar">
           <span class="rating">
-            ☆☆☆☆☆
+            <span class="starRating" v-if="travelArray[index].ratingScore >= 1">☆</span>
+            <span class="starRating" v-if="travelArray[index].ratingScore >= 2">☆</span>
+            <span class="starRating" v-if="travelArray[index].ratingScore >= 3">☆</span>
+            <span class="starRating" v-if="travelArray[index].ratingScore >= 4">☆</span>
+            <span class="starRating" v-if="travelArray[index].ratingScore >= 5">☆</span>
+            
             <button
               class="full-travel-button"
               @click="fullTravelBtnClicked"
@@ -33,7 +38,6 @@
             <p class="content-text">
               <span class="start">{{travelArray[index].from}}</span>
               <span class="country">{{travelArray[index].fromCountry}}</span>
-              <!-- From startpoint to milestone -> travelArray[index].fromTrans -->
             </p>
           </div>
         </div>
