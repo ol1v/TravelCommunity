@@ -6,29 +6,66 @@
     <!-- (Add button to edit data)??? -->
     <!--- Fix edit travelobject (get and insert new values in database)--->
 
-    <div>
+    <div class="bg">
       <div
         class="travel-data-wrapper rounded-corners"
         v-for="(travel, index) in travelArray"
         :key="index"
       >
-        <input class="inputs" type="text" v-model="travelArray[index].from" />
+        <div class="input-label-wrapper">
+          <label for="from">Från</label>
+          <input id="from" class="inputs" type="text" v-model="travelArray[index].from" />
+        </div>
 
         <div
           class="milestones"
           v-for="(milestones, ind) in travelArray[index].milestones"
           :key="ind"
         >
-          <h4 class="milestone-header">Milstolpe {{ind + 1}}</h4>
-
-          <input class="inputs" type="text" v-model="travelArray[index].milestones[ind].city" />
-          <input class="inputs" type="text" v-model="travelArray[index].milestones[ind].country" />
-          <input class="inputs" type="text" v-model="travelArray[index].milestones[ind].resident" />
+          <h4 class="milestone-header">Delmål {{ind + 1}}</h4>
+          <div class="input-label-wrapper">
+            <label for="city">Stad</label>
+            <input
+              id="city"
+              class="inputs"
+              type="text"
+              v-model="travelArray[index].milestones[ind].city"
+            />
+          </div>
+          <div class="input-label-wrapper">
+            <label for="country">Land</label>
+            <input
+              id="country"
+              class="inputs"
+              type="text"
+              v-model="travelArray[index].milestones[ind].country"
+            />
+          </div>
+          <div class="input-label-wrapper">
+            <label for="resident">Boende</label>
+            <input
+              id="resident"
+              class="inputs"
+              type="text"
+              v-model="travelArray[index].milestones[ind].resident"
+            />
+          </div>
           <!--- Fixa select med ikoner för transportation--->
-          <p>Transportmedel: {{travelArray[index].milestones[ind].transportation}}</p>
+          <div class="select-wrapper">
+            <select class="selects" v-model="travelArray[index].milestones[ind].Transportation">
+              <option selected>{{travelArray[index].milestones[ind].Transportation}}</option>
+              <option value="airplane">plane</option>
+              <option value="train">Train</option>
+              <option value="boat">Boat</option>
+              <option value="car">Car</option>
+            </select>
+          </div>
         </div>
 
-        <input class="inputs" type="text" v-model="travelArray[index].to" />
+        <div class="input-label-wrapper">
+          <label for="to">Till</label>
+          <input id="to" class="inputs" type="text" v-model="travelArray[index].to" />
+        </div>
         <p>Transporttid: {{travelArray[index].traveltime}}</p>
 
         <div class="travel-top-bar">
@@ -106,6 +143,15 @@ export default {
 </script>
 
 <style>
+.bg {
+  background: rgb(142, 197, 252);
+  background: linear-gradient(
+    90deg,
+    rgb(227, 233, 240) 0%,
+    rgba(191, 223, 255, 0.901) 24%,
+    rgba(252, 176, 69, 0) 100%
+  );
+}
 .travel-top-bar {
   width: 100%;
   height: 20px;
@@ -129,18 +175,72 @@ export default {
   border: 0px;
 }
 .travel-data-wrapper {
-  background-color: blue;
+  background-color: rgba(115, 178, 250, 0.219);
   width: 30%;
   font-family: "Montserrat", sans-serif;
-  font-weight: 100;
+  font-weight: 400;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   padding-top: 1em;
   margin-top: 1em;
+  margin-left: 0.5em;
   margin-bottom: 1em;
   border-radius: 0.5em;
 }
+.milestone-header {
+  margin-left: 0.5em;
+  font-weight: 500;
+  color: rgb(5, 41, 75);
+}
 .milestones {
-  background-color: aqua;
+  background-color: #ffffff4f;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   margin-left: 1em;
+  color: white;
+  border-top-left-radius: 0.3em;
+  border-bottom-left-radius: 0.3em;
+}
+.inputs {
+  border: none;
+  color: rgb(5, 41, 75);
+  padding-bottom: 0.4em;
+  padding-left: 0.4em;
+  font-size: 10pt;
+  font-weight: 500;
+}
+.selects {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  padding: 0.6em;
+  width: 9.4rem;
+  margin-bottom: -1em;
+}
+.select-wrapper {
+  text-align: center;
+}
+.update-button {
+  color: #fff;
+  font-weight: 500;
+  font-size: 10px;
+  padding: 1em;
+  background-color: #222;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  margin-left: 9em;
+}
+.input-label-wrapper {
+  background-color: white;
+  margin: 0.5em;
+  width: 40%;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 0.1em;
+}
+input,
+label {
+  display: block;
+}
+label {
+  color: rgba(5, 41, 75, 0.637);
+  font-size: 9pt;
+  padding-top: 0.2em;
+  padding-left: 0.4em;
 }
 </style>
