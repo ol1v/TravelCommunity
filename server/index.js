@@ -204,7 +204,7 @@ app.post("/my-travels", (request, response) => {
       for (let i = 0; i < result.length; i++) {
         const milestones = result[i].milestones;
         const milestonesJson = JSON.parse(milestones);
-  
+
         //Insert data into object
         let obj = {
           username: result[i].username,
