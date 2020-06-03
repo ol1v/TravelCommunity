@@ -142,7 +142,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .bg {
   background: rgb(142, 197, 252);
   background: linear-gradient(
