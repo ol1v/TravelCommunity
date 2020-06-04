@@ -43,7 +43,6 @@ export default {
 #ban-user-wrapper{
   width: 15%;
   height: auto;
-  border: 1px solid black;
   padding: 10px;
   margin: 50px auto;
 }
@@ -57,5 +56,15 @@ export default {
   height: 40px;
   margin-top: 10px;
   cursor: pointer;
+}
+
+@media (max-width: 500px) {
+  #ban-user-wrapper{
+    width: 80%;
+    height: auto;
+    padding: 10px;
+    margin: 50px auto;
+    border-radius: 0px;
+  }
 }
 </style>
