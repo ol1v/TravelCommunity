@@ -76,7 +76,7 @@ export default {
 
 <style scoped>
 #remove_account_wrapper{
-  width: 20%;
+  width: 100%;
   margin: auto;
 }
 
