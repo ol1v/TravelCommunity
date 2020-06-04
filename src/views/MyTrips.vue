@@ -144,12 +144,10 @@ export default {
 
 <style scoped>
 .bg {
-  background: rgb(142, 197, 252);
-  background: linear-gradient(
-    90deg,
-    rgb(227, 233, 240) 0%,
-    rgba(191, 223, 255, 0.901) 24%,
-    rgba(252, 176, 69, 0) 100%
+  background-image: radial-gradient(
+    circle 1224px at 10.6% 8.8%,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(153, 202, 251, 1) 100.2%
   );
 }
 .travel-top-bar {
@@ -175,7 +173,7 @@ export default {
   border: 0px;
 }
 .travel-data-wrapper {
-  background-color: rgba(115, 178, 250, 0.219);
+  background-color: white;
   width: 30%;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
@@ -229,7 +227,7 @@ export default {
 .input-label-wrapper {
   background-color: white;
   margin: 0.5em;
-  width: 40%;
+  width: 45%;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   border-radius: 0.1em;
 }

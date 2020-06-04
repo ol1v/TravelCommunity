@@ -318,8 +318,8 @@ app.post('/rating', (request, response) => {
   let travelIndex = request.body.index
   let rating = request.body.rating
 
-  con.query(`SELECT rating, ratingScore FROM travel WHERE id= ${con.escape(travelIndex)}`, function(err, result){
-    if(err) throw err
+  con.query(`SELECT rating, ratingScore FROM travel WHERE id= ${con.escape(travelIndex)}`, function (err, result) {
+    if (err) throw err
 
     var obj = { "v": rating }
 
@@ -336,7 +336,7 @@ app.post('/rating', (request, response) => {
 
     //Calculate score
     let ratingScore = 0
-    for(let i=0; i < ratingJson.length; i++){
+    for (let i = 0; i < ratingJson.length; i++) {
       ratingScore += ratingJson[i].v
     }
     ratingResult = ratingScore / ratingJson.length
@@ -345,8 +345,8 @@ app.post('/rating', (request, response) => {
     let json = JSON.stringify(ratingJson)
 
     //Update the current value
-    con.query(`UPDATE travel SET rating=${con.escape(json)}, ratingScore=${con.escape(ratingResult)} WHERE id=${con.escape(travelIndex)}`, function(err, updateResult){
-      if(err) throw err
+    con.query(`UPDATE travel SET rating=${con.escape(json)}, ratingScore=${con.escape(ratingResult)} WHERE id=${con.escape(travelIndex)}`, function (err, updateResult) {
+      if (err) throw err
 
       console.log("updated")
     })

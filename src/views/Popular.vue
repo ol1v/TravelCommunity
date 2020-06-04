@@ -142,8 +142,11 @@ export default {
 
 <style scoped>
 .popular {
-  background-color: #08aeea;
-  background-image: linear-gradient(0deg, #08aeea 0%, #026f7e 100%);
+  background-image: radial-gradient(
+    circle 1224px at 10.6% 8.8%,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(153, 202, 251, 1) 100.2%
+  );
 }
 
 .travel-data-wrapper {
@@ -189,7 +192,7 @@ export default {
   width: 70%;
   height: 100%;
   float: left;
-  background-color: transparent;
+  background-color: white;
   position: relative;
 }
 
@@ -198,28 +201,28 @@ export default {
   font-weight: 300;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: #cccccc00;
-  color: white;
+  background-color: rgba(5, 41, 75, 0.103);
+  color: rgb(5, 41, 75);
 }
 
 .transportation-img {
   margin-left: 1.6em;
   text-align: center;
   margin-top: 2.2em;
-  color: white;
+  color: rgb(5, 41, 75);
 }
 
 .transportation-img-from {
   text-align: center;
   margin-top: 1em;
-  color: white;
+  color: rgb(5, 41, 75);
 }
 
 .transportation-img-to {
   text-align: right;
   margin-right: 5em;
   margin-top: -4em;
-  color: white;
+  color: rgb(5, 41, 75);
 }
 
 .content-wrapper {
@@ -229,7 +232,6 @@ export default {
   border-radius: 5px;
   background-color: white;
   line-height: 50px;
-  background-color: transparent;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
@@ -238,7 +240,6 @@ export default {
   height: 100pt;
   margin: 30pt auto;
   border-radius: 5px;
-  background-color: #02707e65;
   line-height: 50px;
 }
 
@@ -272,7 +273,7 @@ export default {
 
 .full-travel-button {
   color: white;
-  background-color: transparent;
+  background-color: rgb(5, 41, 75);
   border-top: 0.5pt solid white;
   padding: 1em;
   border-radius: 0.3em;
