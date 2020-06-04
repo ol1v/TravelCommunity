@@ -154,8 +154,6 @@ app.post("/search", (request, response) => {
   // Get travels which responds to from and to searchwords
   con.query(`SELECT * FROM travel WHERE fromLoc = ${con.escape(from)} AND toLoc = ${con.escape(to)}`, function (err, result) {
     if (err) throw err;
-    console.log(request.body.from + " " + request.body.to + " <-");
-    console.log(result);
 
     let resultArray = []
 
@@ -490,7 +488,7 @@ app.post('/updatetravel', (request, response) => {
   let travel = request.body.travel
   console.log(travel)
 
-  con.query(`SELECT * from travel WHERE id = ${con.escape(travel.id)}`, function (err, result) {
+  con.query(`SELECT * FROM travel WHERE id = ${con.escape(travel.id)}`, function (err, result) {
     if (err) throw err
 
     console.log(result)
@@ -504,6 +502,16 @@ app.post('/updatetravel', (request, response) => {
       })
     })
 
+  })
+})
+
+//All users
+app.post('/all-users', (request, response) => {
+  let resultArray = []
+  con.query(`SELECT username, COUNT (*) as count FROM travel GROUP BY username`, function(err, travelResult){
+    return response.status(201).send({
+      message: travelResult
+    })
   })
 })
 

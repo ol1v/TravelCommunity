@@ -5,12 +5,14 @@
       <div id="admin-links-wrapper">
         <input type="button" value="Stäng av användare" class="admin-link" @click="displayBan">
         <input type="button" value="Lås upp användare" class="admin-link" @click="displayUnban">
+        <input type="button" value="Hantera inlägg" class="admin-link" @click="displayList">
       </div>
     </div>
     
     <div id="right-admin-panel">
       <Ban v-if="banBool"></Ban>
       <Unban v-if="unbanBool"></Unban>
+      <AllUsers v-if="displayListBool"></AllUsers>
     </div>
   </div>
 </template>
@@ -18,25 +20,35 @@
 <script>
   import Ban from '../../components/admin/Ban'
   import Unban from '../../components/admin/Unban'
+  import AllUsers from '../../components/admin/AllUsers'
 export default {
   components:{
     Ban,
-    Unban
+    Unban,
+    AllUsers
   },
   data(){
     return{
       banBool: true,
-      unbanBool: false
+      unbanBool: false,
+      displayListBool: false
     }
   },
   methods:{
     displayBan(){
       this.banBool = true
       this.unbanBool = false
+      this.displayListBool = false
     },
     displayUnban(){
       this.banBool = false
       this.unbanBool = true
+      this.displayListBool = false
+    },
+    displayList(){
+      this.banBool = false
+      this.unbanBool = false
+      this.displayListBool = true
     }
   }
 }
