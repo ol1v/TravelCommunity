@@ -42,7 +42,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 #left-admin-panel{
   width: 15%;
   height: calc(100vh - 126px);

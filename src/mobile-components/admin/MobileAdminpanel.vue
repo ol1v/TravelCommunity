@@ -1,10 +1,10 @@
 <template>
   <div>
-      <div id="left-settings-panel" :style="showSidepanel">
-        <div id="settings-logo"><font-awesome-icon icon="user-cog" size="4x"/></div>
-        <div id="settings-links-wrapper">
-          <input type="button" value="Ändra lösenord" class="settings-link" @click="changePassword">
-          <input type="button" value="Radera konto" class="settings-link"  @click="removeAccount">
+      <div id="left-admin-panel" :style="showSidepanel">
+        <div id="admin-logo"><font-awesome-icon icon="shield-alt" size="4x"/></div>
+        <div id="admin-links-wrapper">
+          <input type="button" value="Stäng av användare" class="admin-link" @click="displayBan">
+          <input type="button" value="Lås upp användare" class="admin-link" @click="displayUnban">
         </div>
         <div id="expand-button">
           <font-awesome-icon class="arrow" icon="angle-right" size="3x" @click="displaySidepanel" :style="rotateButton"/>
@@ -14,38 +14,39 @@
     <div id="panel" @click="closePanel">
       <div id="content">
         <!-- Links -->
-        <MobileChangePass v-if="changePasswordBool"></MobileChangePass>
-        <MobileRemoveAccount v-if="removeAccountBool"></MobileRemoveAccount> 
+        <MobileBan v-if="banBool"></MobileBan>
+        <MobileUnban v-if="unbanBool"></MobileUnban>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import MobileChangePass from '../settings/MobileChangePass'
-  import MobileRemoveAccount from '../settings/MobileRemoveAccount'
+import MobileBan from './MobileBan'
+import MobileUnban from './MobileUnban'
+
 export default {
   components:{
-    MobileChangePass,
-    MobileRemoveAccount
+    MobileBan,
+    MobileUnban
   },
   data(){
     return{
-      changePasswordBool: true,
-      removeAccountBool: false,
+      banBool: true,
+      unbanBool: false,
       displayPanel: false,
       rotateBtn: false
     }
   },
   methods:{
-    changePassword(){
-      this.changePasswordBool = true
-      this.removeAccountBool = false
+    displayUnban(){
+      this.banBool = false
+      this.unbanBool = true
       this.displayPanel = !this.displayPanel
     },
-    removeAccount(){
-      this.changePasswordBool = false
-      this.removeAccountBool = true
+    displayBan(){
+      this.banBool = true
+      this.unbanBool = false
       this.displayPanel = !this.displayPanel
     },
     displaySidepanel(){
@@ -80,8 +81,8 @@ export default {
 }
 </script>
 
-<style>
-#left-settings-panel{
+<style scoped>
+#left-admin-panel{
   width: 60%;
   height: calc(100vh - 126px);
   background: rgb(142, 197, 252);
@@ -96,7 +97,7 @@ export default {
   position: absolute;
 }
 
-#right-settings-panel{
+#right-admin-panel{
   width: 100%;
   height: 500px;
   background-color: transparent;
@@ -126,13 +127,7 @@ export default {
   /* transform: rotate(180deg); */
 }
 
-#right-settings-panel{
-  width: 100%;
-  height: calc(100vh - 126px);
-  float: right;
-}
-
-#settings-logo{
+#admin-logo{
   width: 100%;
   height: auto;
   color: black;
@@ -141,12 +136,12 @@ export default {
   margin-bottom: 20px;
 }
 
-#settings-links-wrapper{
+#admin-links-wrapper{
   width: 100%;
   height: auto;
 }
 
-.settings-link{
+.admin-link{
   display: block;
   width: 100%;
   height: 50px;
@@ -159,7 +154,7 @@ export default {
   cursor: pointer;
 }
 
-.settings-link:hover{
+.admin-link:hover{
   background-color: white;
 }
 

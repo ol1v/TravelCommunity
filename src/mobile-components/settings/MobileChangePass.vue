@@ -80,15 +80,5 @@ export default {
 .input-x{
   margin-top: 10px;
 }
-#wrapper{
-  width: 100%;
-  height: auto;
-  margin: auto;
-  background-color: yellow;
-}
-#change_pass_wrapper{
-  width: 0%;
-  height: auto;
-  margin: auto;
-}
+
 </style>
