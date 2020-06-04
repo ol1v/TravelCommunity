@@ -4,7 +4,8 @@
       <div
         class="travel-data-wrapper rounded-corners"
         v-for="(travel, index) in travelArray"
-        :key="index">
+        :key="index"
+      >
         <div class="input-label-wrapper">
           <label for="from">Från</label>
           <input id="from" class="inputs" type="text" v-model="travelArray[index].from" />
@@ -13,7 +14,8 @@
         <div
           class="milestones"
           v-for="(milestones, ind) in travelArray[index].milestones"
-          :key="ind">
+          :key="ind"
+        >
           <h4 class="milestone-header">Delmål {{ind + 1}}</h4>
           <div class="input-label-wrapper">
             <label for="city">Stad</label>
@@ -72,7 +74,7 @@
 
 <script>
 export default {
-   data() {
+  data() {
     return {
       travelArray: [],
       // variables for making alterations in travel
@@ -127,7 +129,7 @@ export default {
         });
     }
   }
-}
+};
 </script>
 
 <style scoped>

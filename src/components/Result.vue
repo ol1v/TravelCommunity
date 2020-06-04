@@ -43,15 +43,23 @@
           <font-awesome-icon class="icons" icon="car" size="2x" />
         </div>
 
-        <div class="milestone-wrapper">
+        <div
+          class="milestone-wrapper"
+          v-for="(res, ind) in searchResult[index].milestones"
+          :key="ind"
+        >
           <div class="milestones">
-            <span>{{result.milestones[0].city}}</span>
-            <span>{{result.milestones[0].country}}</span>
+            <span>{{result.milestones[ind].city}}</span>
+            <span>{{result.milestones[ind].country}}</span>
 
             <div class="hotel">
               <font-awesome-icon icon="hotel" size="1x" />
-              {{result.milestones[0].resident}}
+              {{result.milestones[ind].resident}}
             </div>
+          </div>
+          <!-- Add icon specific (From db) -->
+          <div class="line-wrapper">
+            <font-awesome-icon class="icons" icon="plane" size="2x" />
           </div>
         </div>
 
@@ -66,7 +74,6 @@
         </span>-->
 
         <div class="line-wrapper">
-          <font-awesome-icon icon="plane" size="2x" />
           <div class="line">|</div>
         </div>
         <!-- Replace line with icons -->
@@ -276,6 +283,7 @@ h3 {
 
 .milestone-wrapper {
   text-align: center;
+  margin: 1em;
 }
 
 .milestones {
