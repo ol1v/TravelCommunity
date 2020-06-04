@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Popular v-responsive.lg.xl></Popular>
+    <Popular v-responsive.md.lg.xl></Popular>
     <MobilePopular v-responsive.sm.xs></MobilePopular>
   </div>
 </template>

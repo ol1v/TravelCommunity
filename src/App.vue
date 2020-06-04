@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar v-responsive.lg.xl></Navbar>
+    <Navbar v-responsive.md.lg.xl></Navbar>
     <MobileNavbar v-responsive.sm.xs></MobileNavbar>
     
     <router-view></router-view>
