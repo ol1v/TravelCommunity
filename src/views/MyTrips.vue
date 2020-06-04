@@ -1,6 +1,7 @@
 <template>
   <div>
-    <Userpanel></Userpanel>
+    <Userpanel v-responsive.md.lg.xl></Userpanel>
+    <MobileUserpanel v-responsive.sm.xs></MobileUserpanel>
     <!-- Fix design for this -->
     <!-- Add button to delete data -->
     <!-- (Add button to edit data)??? -->
@@ -80,9 +81,12 @@
 
 <script>
 import Userpanel from "../components/Userpanel";
+import MobileUserpanel from "../mobile-components/MobileUserpanel"
+
 export default {
   components: {
-    Userpanel
+    Userpanel,
+    MobileUserpanel
   },
   data() {
     return {

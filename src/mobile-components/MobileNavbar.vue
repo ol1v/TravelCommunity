@@ -85,7 +85,7 @@ export default {
     },
     login(){
       const credentials = { username: this.username, password: this.password };
-      let url = "http://localhost:3005/";
+      let url = "http://192.168.1.159:3005/";
 
       this.axios
         .post(url + "login/", credentials)
