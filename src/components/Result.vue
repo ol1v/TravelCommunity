@@ -29,14 +29,23 @@
           <span>☆</span>
           <span>☆</span>
         </div>
-        <span class="destinations">{{result.from}}</span>
-        <span class="destinations">{{result.to}}</span>
 
-        <ul id="travel-info">
-          <li>9487 SEK</li>
-          <li>Stopp {{result.milestones.length}}</li>
-          <li>Restid {{result.traveltime}}</li>
-        </ul>
+        <div class="from-wrapper">
+          <span class="destinations">{{result.from}}</span>
+        </div>
+        <!-- Replace line with icons -->
+        <div class="line-wrapper">
+          <div class="line">|</div>
+        </div>
+
+        <div class="milestone-wrapper">
+          <div class="milestones">
+            <p>{{result.milestones[0].city}}</p>
+            <p>{{result.milestones[0].country}}</p>
+            <p>{{result.milestones[0].resident}}</p>
+          </div>
+        </div>
+
         <!--- loop to get all icons --->
         <!--- Icons (Create enum with icons) --->
         <span id="travel-icons">
@@ -46,6 +55,19 @@
             <font-awesome-icon icon="car" size="2x" />
           </p>
         </span>
+
+        <div class="line-wrapper">
+          <div class="line">|</div>
+        </div>
+        <!-- Replace line with icons -->
+        <div class="to-wrapper">
+          <span class="destinations">{{result.to}}</span>
+        </div>
+        <ul id="travel-info">
+          <li>9487 SEK</li>
+          <li>Stopp {{result.milestones.length}}</li>
+          <li>Restid {{result.traveltime}}</li>
+        </ul>
 
         <input type="button" value="View Details" />
         <!--- View all details --->
@@ -216,5 +238,25 @@ h3 {
 
 .results-inputs {
   margin: 1em;
+}
+
+.from-wrapper,
+.to-wrapper {
+  text-align: center;
+  font-size: 18pt;
+}
+
+.milestone-wrapper {
+  text-align: center;
+}
+
+.line-wrapper {
+  text-align: center;
+}
+
+.line {
+  font-size: 2em;
+  font-weight: 100;
+  margin: 0.4em;
 }
 </style>
