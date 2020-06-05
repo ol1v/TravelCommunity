@@ -77,11 +77,11 @@
           </div>
 
           <div class="equal-spacing">
-          <button class="update-button" @click="updateTravel(travelArray[index])">Ändra</button>
+            <button class="update-button" @click="updateTravel(travelArray[index])">Ändra</button>
           </div>
 
           <div class="equal-spacing">
-          <input type="button" class="remove-travel" value="X" @click="deleteTravel(travelArray[index].id)" />
+            <input type="button" class="remove-travel" value="X" @click="deleteTravel(travelArray[index].id)" />
           </div>
         </div>
       </div>
@@ -106,7 +106,7 @@ export default {
       traveltime: null,
       cost: null,
       activateChange: false,
-      //must be saved
+      //Must be saved
       user: this.userToCheck
     };
   },
@@ -116,8 +116,9 @@ export default {
   methods: {
     fetchTravels(){
       let url = "http://localhost:3005/";
-
       let credentials = {}
+
+      // Set credentials depending on status
       if(this.user){
         credentials = { username: this.user }
       }

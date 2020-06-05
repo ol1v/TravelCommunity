@@ -39,7 +39,7 @@
             </p>
           </div>
         </div>
-        <!--- from vehicleicon --->
+        <!--- from vehicle icon --->
         <div class="transportation-img-from" v-if="toggleFullTravel">
           <p>
             <font-awesome-icon icon="car" size="2x" />
@@ -68,7 +68,6 @@
         <!-- To location -->
         <div class="content-wrapper">
           <p class="content-text">
-            <!-- NOTE!! From last milestone to endpoint -> travelArray[index].toTrans -->
             <span class="finish">{{travelArray[index].to}}</span>
             <span class="country">{{travelArray[index].toCountry}}</span>
           </p>
