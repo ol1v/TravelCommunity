@@ -498,6 +498,7 @@ app.post('/reset-password', (request, response) => {
     })
   })
 })
+// Need to create ID for travels
 // update users travel
 app.post('/updatetravel', (request, response) => {
   let travel = request.body.travel
@@ -511,18 +512,33 @@ app.post('/updatetravel', (request, response) => {
     con.query(`UPDATE travel SET fromLoc=${con.escape(travel.from)} WHERE id=${con.escape(travel.id)}`, function (err, result) {
       if (err) throw err
 
-      // Lägg till resten av querys
-      response.status(200).send({
-        message: `Uppdaterade resan!`
-      })
     })
+    con.query(`UPDATE travel SET toLoc=${con.escape(travel.to)} WHERE id=${con.escape(travel.id)}`, function (err, result) {
+      if (err) throw err
+
+    })
+    con.query(`UPDATE travel SET traveltime=${con.escape(travel.traveltime)} WHERE id=${con.escape(travel.id)}`, function (err, result) {
+      if (err) throw err
+
+    })
+    con.query(`UPDATE travel SET milestones=${con.escape(travel.milestones)} WHERE id=${con.escape(travel.id)}`, function (err, result) {
+      if (err) throw err
+
+    })
+    con.query(`UPDATE travel SET price=${con.escape(travel.price)} WHERE id=${con.escape(travel.id)}`, function (err, result) {
+      if (err) throw err
+
+    })
+
+    return response.status(201)
+
   })
 })
 
 //All users
 app.post('/all-users', (request, response) => {
   let resultArray = []
-  con.query(`SELECT username, COUNT (*) as count FROM travel GROUP BY username`, function(err, travelResult){
+  con.query(`SELECT username, COUNT (*) as count FROM travel GROUP BY username`, function (err, travelResult) {
     return response.status(201).send({
       message: travelResult
     })

@@ -4,7 +4,8 @@
       <div
         class="travel-data-wrapper rounded-corners"
         v-for="(travel, index) in travelArray"
-        :key="index">
+        :key="index"
+      >
         <div class="input-label-wrapper">
           <label for="from">Från</label>
           <input id="from" class="inputs" type="text" v-model="travelArray[index].from" />
@@ -13,7 +14,8 @@
         <div
           class="milestones"
           v-for="(milestones, ind) in travelArray[index].milestones"
-          :key="ind">
+          :key="ind"
+        >
           <h4 class="milestone-header">Delmål {{ind + 1}}</h4>
           <div class="input-label-wrapper">
             <label for="city">Stad</label>
@@ -46,7 +48,7 @@
           <div class="select-wrapper">
             <select class="selects" v-model="travelArray[index].milestones[ind].Transportation">
               <option selected>{{travelArray[index].milestones[ind].Transportation}}</option>
-              <option value="airplane">plane</option>
+              <option value="fa fa-address-card">&#xf2bb;</option>
               <option value="train">Train</option>
               <option value="boat">Boat</option>
               <option value="car">Car</option>
@@ -58,7 +60,16 @@
           <label for="to">Till</label>
           <input id="to" class="inputs" type="text" v-model="travelArray[index].to" />
         </div>
-        <p>Transporttid: {{travelArray[index].traveltime}}</p>
+
+        <div class="input-label-wrapper">
+          <label for="traveltime">Resetid</label>
+          <input id="traveltime" class="inputs" type="text" v-model="travelArray[index].traveltime" />
+        </div>
+
+        <div class="input-label-wrapper">
+          <label for="price">Kostnad</label>
+          <input id="price" class="inputs" type="text" v-model="travelArray[index].price" />
+        </div>
 
         <div class="travel-top-bar">
           <p class="uploaded">Uppladdat av: {{travelArray[index].username}}</p>
@@ -72,9 +83,10 @@
 
 <script>
 export default {
-   data() {
+  data() {
     return {
       travelArray: [],
+
       // variables for making alterations in travel
       from: null,
       to: null,
@@ -86,6 +98,7 @@ export default {
       traveltime: null,
       cost: null,
       activateChange: false,
+      //must be saved
       user: this.userToCheck
     };
   },
@@ -158,7 +171,7 @@ export default {
   props:{
     userToCheck: String
   }
-}
+};
 </script>
 
 <style scoped>
@@ -209,8 +222,8 @@ export default {
   color: rgb(5, 41, 75);
 }
 .milestones {
-  background-color: #ffffff4f;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  background-color: #1066e615;
+  margin-top: 1em;
   margin-left: 1em;
   color: white;
   border-top-left-radius: 0.3em;

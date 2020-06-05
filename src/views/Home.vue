@@ -126,7 +126,14 @@ export default {
 .banner {
   width: 100%;
   height: 200px;
-  background-color: #026f7e;
+  background: rgb(2, 111, 126);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 111, 126, 1) 0%,
+    rgba(142, 197, 252, 1) 100%,
+    rgba(255, 255, 255, 1) 100%
+  );
+
   position: relative;
   top: -20pt;
   z-index: -20;
