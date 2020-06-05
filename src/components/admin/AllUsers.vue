@@ -9,7 +9,7 @@
       <div class="users" v-for="(users, index) in userData" :key="index">
         <span class="header font center">{{userData[index].username}}</span>
         <span class="header font center">{{userData[index].count}}</span>
-        <span class="header font center btn">Visa inlägg</span>
+        <span class="header center"><input type="button" class="btn font" @click="viewDetails(userData[index].username)" value="Visa inlägg"></span>
       </div>
 
     </div>
@@ -34,6 +34,12 @@ export default {
     .catch(err => {
       console.log(err.response.data)
     })
+  },
+  methods:{
+    viewDetails(username){
+      console.log("clicked " + username)
+      this.$router.push({ name: "MyTrips", params: { user: username } })
+    }
   }
 }
 </script>
@@ -52,19 +58,22 @@ export default {
   width: 33%;
   float: left;
 }
+
 .btn{
   background-color: rgb(142, 197, 252);
-  border-radius: 10px;
+  color: black;
+  border: 0px;
+  display: block;
+  width: 50%;
+  margin: 0 auto;
+  height: 30px;
   cursor: pointer;
 }
-
 .users{
   width: 50%;
   height: 30px;
   line-height: 30px;
   margin: 10px auto;
 }
-
-
 
 </style>

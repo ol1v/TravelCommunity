@@ -63,7 +63,7 @@
         <div class="travel-top-bar">
           <p class="uploaded">Uppladdat av: {{travelArray[index].username}}</p>
           <button class="update-button" @click="updateTravel(travelArray[index])">Ändra</button>
-          <input type="button" class="remove-travel" @click="deleteTravel(travelArray[index].id)" />
+          <input type="button" class="remove-travel" @click="deleteTravel(travelArray[index].id)" value="X" />
         </div>
       </div>
     </div>
@@ -85,30 +85,59 @@ export default {
       transportation: null,
       traveltime: null,
       cost: null,
-      activateChange: false
+      activateChange: false,
+      user: this.userToCheck
     };
   },
   created() {
-    let url = "http://192.168.1.159:3005/";
-
-    let credentials = { username: this.$store.state.username };
-    console.log(credentials);
-
-    this.axios
-      .post(url + "my-travels/", credentials)
-      .then(response => {
-        for (let i = 0; i < response.data.travelData.length; i++) {
-          this.travelArray.push(response.data.travelData[i]);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.fetchTravels()
   },
   methods: {
+    fetchTravels(){
+      let url = "http://192.168.1.159:3005/"
+
+      let credentials = {}
+      if(this.user){
+        credentials = { username: this.user }
+      }
+      else{
+        credentials = { username: this.$store.state.username };
+      }
+
+      this.axios
+        .post(url + "my-travels/", credentials)
+        .then(response => {
+          for (let i = 0; i < response.data.travelData.length; i++) {
+            this.travelArray.push(response.data.travelData[i]);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
     deleteTravel(id) {
-      //Fix delete button
-      console.log("Deleted: " + id);
+      //Verify that the user wants to delete the post.
+      let securityCheck = confirm("Är du säker att du vill radera inlägget?")
+      if(securityCheck){
+        let url = "http://192.168.1.159:3005/"
+        let credentials = { id: id }
+
+        this.axios
+        .post(url + "delete-post/", credentials)
+        .then(response => {
+          this.travelArray = []
+          this.fetchTravels()
+          
+          alert(response.data.message)
+        })
+        .catch(err => {
+          console.log(err.response.data)
+        })
+
+      }else{
+        console.log("Avbryt")
+      }
+
     },
     updateTravel(travel) {
       console.log(travel);
@@ -126,6 +155,9 @@ export default {
           console.log(err);
         });
     }
+  },
+  props:{
+    userToCheck: String
   }
 }
 </script>

@@ -26,12 +26,19 @@
     <section id="results-container">
       <!--- result object --->
       <div class="results-object" v-for="(result, index) in searchResult" :key="index">
-        <div class="rating">
-          <span @click="insertRating(5, result.id)">☆</span>
-          <span @click="insertRating(4, result.id)">☆</span>
-          <span @click="insertRating(3, result.id)">☆</span>
-          <span @click="insertRating(2, result.id)">☆</span>
-          <span @click="insertRating(1, result.id)">☆</span>
+        <div class="top-bar">
+          <div class="left-part">
+            <div class="rating">
+              <span @click="insertRating(5, result.id)">☆</span>
+              <span @click="insertRating(4, result.id)">☆</span>
+              <span @click="insertRating(3, result.id)">☆</span>
+              <span @click="insertRating(2, result.id)">☆</span>
+              <span @click="insertRating(1, result.id)">☆</span>
+            </div>
+          </div>
+          <div class="remove-button" v-if="checkAdmin">
+            <input class="remove-post-button font" type="button" value="Radera inlägg" @click="deleteTravel(result.id)">
+          </div>
         </div>
 
         <div class="from-wrapper">
@@ -107,7 +114,6 @@ export default {
       this.filterMenu = !this.filterMenu;
     },
     insertRating(value, index) {
-      console.log(index);
       const values = { rating: value, index: index };
 
       let url = "http://localhost:3005/";
@@ -120,6 +126,29 @@ export default {
         .catch(err => {
           console.log(err.response.data);
         });
+    },
+    deleteTravel(id){
+      //Verify that the user wants to delete the post.
+      let securityCheck = confirm("Är du säker att du vill radera inlägget?")
+      if(securityCheck){
+        let url = "http://localhost:3005/"
+        let credentials = { id: id }
+
+        this.axios
+        .post(url + "delete-post/", credentials)
+        .then(response => {
+          this.travelArray = []
+          this.fetchTravels()
+          
+          alert(response.data.message)
+        })
+        .catch(err => {
+          console.log(err.response.data)
+        })
+
+      }else{
+        console.log("Avbryt")
+      }
     }
   },
   computed: {
@@ -127,6 +156,9 @@ export default {
       get() {
         return this.$store.state.results;
       }
+    },
+    checkAdmin(){
+      return this.$store.state.admin
     }
   }
 };
@@ -344,4 +376,42 @@ h3 {
 .res-found {
   color: rgb(5, 41, 75);
 }
+
+.top-bar{
+  width: 100%;
+  height: 40px;
+}
+.left-part{
+  width: 50%;
+  height: 40px;
+  float: left;
+}
+.remove-button{
+  width: 50%;
+  height: 40px;
+  float: right;
+}
+
+.remove-post-button{
+  width: 20%;
+  height: 40px;
+  background-color: #026f7e;
+  border: 0px;
+  cursor: pointer;
+  color: white;
+  float: right;
+}
+
+@media screen and (max-width: 1130px) {
+  .remove-post-button{
+    width: 50%;
+    height: 40px;
+    background-color: #026f7e;
+    border: 0px;
+    cursor: pointer;
+    color: white;
+    float: right;
+  }
+}
+
 </style>

@@ -53,6 +53,14 @@ let router = new VueRouter({
       requiresAuth: true
     }
   }, {
+    name: "MyTrips",
+    component: MyTrips,
+    path: '/user/trips/:checkUser',
+    meta: {
+      requiresAuth: true
+    },
+    props: true
+  }, {
     name: "Settings",
     component: Settings,
     path: '/user/settings',

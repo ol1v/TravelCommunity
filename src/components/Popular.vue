@@ -6,6 +6,12 @@
         <div class="profile-image"></div>
         <h4 class="username-text">{{travelArray[index].username}}</h4>
         <h4 class="username-text">Uppladdat: {{travelArray[index].timestamp}}</h4>
+        
+        <!-- Remove post as an admin-->
+        <div class="remove-data" v-if="checkAdmin">
+          <input class="remove-post-button font" type="button" value="Radera inlägg" @click="deleteTravel(travelArray[index].id)">
+        </div>
+
       </div>
       <!-- Data -->
       <div class="right-column">
@@ -94,8 +100,6 @@
   </div>
 </template>
 
-
-
 <script>
 export default {
   data() {
@@ -106,20 +110,46 @@ export default {
     };
   },
   created() {
-    let url = "http://localhost:3005/";
-
-    this.axios
-      .post(url + "travels/")
-      .then(response => {
-        for (let i = 0; i < response.data.travelData.length; i++) {
-          this.travelArray.push(response.data.travelData[i]);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.fetchTravels()
   },
   methods: {
+    fetchTravels(){
+      let url = "http://localhost:3005/";
+
+      this.axios
+        .post(url + "travels/")
+        .then(response => {
+          for (let i = 0; i < response.data.travelData.length; i++) {
+            this.travelArray.push(response.data.travelData[i]);
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    },
+    deleteTravel(id){
+      //Verify that the user wants to delete the post.
+      let securityCheck = confirm("Är du säker att du vill radera inlägget?")
+      if(securityCheck){
+        let url = "http://localhost:3005/"
+        let credentials = { id: id }
+
+        this.axios
+        .post(url + "delete-post/", credentials)
+        .then(response => {
+          this.travelArray = []
+          this.fetchTravels()
+          
+          alert(response.data.message)
+        })
+        .catch(err => {
+          console.log(err.response.data)
+        })
+
+      }else{
+        console.log("Avbryt")
+      }
+    },
     fullTravelBtnClicked() {
       this.toggleFullTravel = !this.toggleFullTravel;
       if (this.toggleFullTravel) {
@@ -127,6 +157,11 @@ export default {
       } else {
         this.travelButtonText = "Se";
       }
+    }
+  },
+  computed:{
+    checkAdmin(){
+      return this.$store.state.admin
     }
   }
 };
@@ -178,6 +213,7 @@ export default {
   text-align: center;
   font-family: "Montserrat", sans-serif;
   font-weight: 100;
+  color: #026f7e;
 }
 
 .right-column {
@@ -308,5 +344,18 @@ export default {
   text-align: right;
   line-height: 20px;
   color: gold;
+}
+.remove-post-button{
+  width: 50%;
+  height: 40px;
+  background-color: #026f7e;
+  border: 0px;
+  cursor: pointer;
+  color: white;
+}
+.remove-data{
+  width: 100%;
+  height: auto;
+  text-align: center;
 }
 </style>
