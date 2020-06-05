@@ -246,7 +246,7 @@ app.post("/delete-post", (request, response) => {
     response.status(200).send({
       message: `Du har raderat inlägget med ID ${id}`
     })
-    
+
   })
 })
 
@@ -516,7 +516,6 @@ app.post('/updatetravel', (request, response) => {
         message: `Uppdaterade resan!`
       })
     })
-
   })
 })
 

@@ -355,7 +355,7 @@ export default {
 }
 .remove-data{
   width: 100%;
-  height: auto;
+  height: 50px;
   text-align: center;
 }
 </style>
