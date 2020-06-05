@@ -30,22 +30,24 @@
           <input class="close-window-button" type="button" value="X" @click="loginArea" />
         </div>
 
+        <!-- Login components -->
         <div id="login-components">
+          <!-- Logo -->
           <div id="login-logo">
             <span class="travelText">TRAVEL</span>
             <span class="communityText">COMMUNITY</span>
           </div>
-
+          <!-- Inputs -->
           <label for="login-username">Användarnamn</label>
           <input v-model="username" class="user-input" type="text" id="login-username" />
           <label for="login-password">Lösenord</label>
           <input v-model="password" class="user-input" type="password" id="login-password" />
-
+          <!-- Forgot password / login button -->
           <div id="buttons">
             <input class="forgot-pass-button" type="button" value="Glömt lösenord?" @click="resetPassword" />
             <input class="login-button" type="button" @click="login" value="Logga in" />
           </div>
-
+          <!-- Error message if failed to login -->
           <div id="error-message">{{errorMessage}}</div>
 
           <!-- Register button -->
@@ -53,9 +55,7 @@
             <p class="center">Eller</p>
             <input class="register-button" type="button" value="Registrera dig" @click="register" />
           </div>
-          
         </div>
-
       </div>
     </div>
   </div>
@@ -82,8 +82,9 @@ export default {
     }
   },
   methods: {
+    // Login button
     login() {
-      //Connect
+      //Pass data to server
       const credentials = { username: this.username, password: this.password };
       let url = "http://localhost:3005/";
 
@@ -102,15 +103,19 @@ export default {
           console.log(err);
         });
     },
+    // Login area
     loginArea() {
       this.errorMessage = "";
       this.displayLoginStatus = !this.displayLoginStatus;
     },
+    // Register button
     register() {
       this.displayLoginStatus = false;
       this.$router.push({ name: "RegisterUser" });
     },
+    // Logout button
     logout() {
+      // Check if user wants to logout
       let askLogout = confirm("Är du säker att du vill logga ut?")
       if(askLogout){
         this.$store.commit("SET_LOGGED_IN", false);
@@ -122,13 +127,14 @@ export default {
         console.log("Stayed logged in")
       }
     },
+    // Reset password button
     resetPassword(){
       this.displayLoginStatus = !this.displayLoginStatus
       this.$router.push({name: "ResetPassword"})
     },
+    // Change whitebar
     changeWhitebar(){
       if(this.$route.name == "Home"){
-        console.log("Home tapped")
         this.homeScreen = true
       }
       else{

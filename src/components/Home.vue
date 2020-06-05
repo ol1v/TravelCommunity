@@ -4,11 +4,12 @@
       <div class="background animate__animated animate__fadeIn"></div>
       <div class="searchbar">
         <div class="texts">
+          <!-- Animated text -->
           <h1 class="animh1">Search Travels.</h1>
           <p class="animp">Do you dream about going somewhere?</p>
           <h2 class="animh2">See Discovered Routes.</h2>
         </div>
-
+        <!-- Search button & textfields -->
         <home-search id="animsearch"></home-search>
       </div>
     </div>

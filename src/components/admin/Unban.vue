@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Elements to unban a user -->
     <div class="ban-user-wrapper">
       <h2 class="center font">Lås upp användare</h2>
       <label for="user" class="font">Användarnamn</label>
@@ -16,6 +17,7 @@ export default {
       username: ""
     }
   },
+  // Unban user method
   methods:{
     unbanUser(){
       let credentials = {username: this.username}

@@ -1,14 +1,16 @@
 <template>
   <div>
     <div id="left-admin-panel">
+      <!-- Shield-logo in side-panel -->
       <div id="admin-logo"><font-awesome-icon icon="shield-alt" size="4x"/></div>
       <div id="admin-links-wrapper">
+        <!-- Side panel buttons -->
         <input type="button" value="Stäng av användare" class="admin-link" @click="displayBan">
         <input type="button" value="Lås upp användare" class="admin-link" @click="displayUnban">
         <input type="button" value="Hantera inlägg" class="admin-link" @click="displayList">
       </div>
     </div>
-    
+    <!-- Right panel with components -->
     <div id="right-admin-panel">
       <Ban v-if="banBool"></Ban>
       <Unban v-if="unbanBool"></Unban>
@@ -35,6 +37,7 @@ export default {
     }
   },
   methods:{
+    // Show / hide components
     displayBan(){
       this.banBool = true
       this.unbanBool = false
@@ -58,7 +61,6 @@ export default {
 #left-admin-panel{
   width: 15%;
   height: calc(100vh - 126px);
-  /* background-color: #026f7e; */
   background: rgb(142, 197, 252);
   background: linear-gradient(
     180deg,

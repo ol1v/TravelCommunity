@@ -1,10 +1,12 @@
 <template>
   <div>
     <div id="remove_account_wrapper">
+      <!-- Header & password field -->
       <h2 class="center font">Radera konto</h2>
       <label for="currentPass" class="font">Ange ditt lösenord</label>
       <input type="password" id="currentPass" class="ban-user-input font" v-model="password" autocomplete="new-password">
       
+      <!-- Notes -->
       <div id="remove_account_info">
         <p class="font"><span class="red-note">Notering!</span><br>
         Om du raderar ditt konto kommer det att stängas av permanent.<br><br>
@@ -13,16 +15,19 @@
         </p>
       </div>
 
+      <!-- Checkboxes -->
       <div id="remove_trips">
+        <!-- Remove all trips -->
         <input type="checkbox" id="removeAllTravels" @click="removeTrips">
         <label for="removeAllTravels" class="font">Radera alla mina resor</label>
         <br>
+        <!-- Remove account checkbox -->
         <input type="checkbox" id="removeAccount" @click="readed">
         <label for="removeAccount" class="font">Jag har läst och godkänner radering av konto.</label>
       </div>
 
+      <!-- Button to remove account -->
       <input type="button" value="Radera mitt konto" class="remove-account-button font" @click="removeAccount">
-
     </div>
   </div>
 </template>
@@ -37,17 +42,18 @@ export default {
     }
   },
   methods:{
+    //Changing remove all trips status
     removeTrips(){
       this.removeTripsBool = !this.removeTripsBool
     },
+    //Changing readed status
     readed(){
       this.readBool = !this.readBool
     },
+    // Remove account
     removeAccount(){
-      console.log("asd")
-
+      // Check if user has read the agreements.
       if(this.readBool){
-        console.log("inne i remove")
         const data = { username: this.$store.state.username, password: this.password, removeAllData: this.removeTripsBool }
         let url = "http://localhost:3005/"
 

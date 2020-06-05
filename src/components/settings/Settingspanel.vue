@@ -1,13 +1,15 @@
 <template>
   <div>
+    <!-- Side-panel -->
     <div id="left-settings-panel">
       <div id="settings-logo"><font-awesome-icon icon="user-cog" size="4x"/></div>
       <div id="settings-links-wrapper">
+        <!-- Links in the side-panel -->
         <input type="button" value="Ändra lösenord" class="settings-link" @click="changePassword">
         <input type="button" value="Radera konto" class="settings-link"  @click="removeAccount">
       </div>
     </div>
-    
+    <!-- Right panel with components -->
     <div id="right-settings-panel">
       <ChangePass v-if="changePasswordBool"></ChangePass>
       <RemoveAccount v-if="removeAccountBool"></RemoveAccount>
@@ -30,6 +32,7 @@ export default {
     }
   },
   methods:{
+    // Show / hide components
     changePassword(){
       this.changePasswordBool = true
       this.removeAccountBool = false

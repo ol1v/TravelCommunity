@@ -2,10 +2,12 @@
   <div>
     <div class="user-wrapper">
       <div id="header-text">
+        <!-- Headers -->
         <span class="header font center">Användarnamn</span>
         <span class="header font center">Antal inlägg</span>
         <span class="header font center">Visa inlägg</span>
       </div>
+      <!-- Looping through all users with 1+ posts -->
       <div class="users" v-for="(users, index) in userData" :key="index">
         <span class="header font center">{{userData[index].username}}</span>
         <span class="header font center">{{userData[index].count}}</span>
@@ -36,8 +38,8 @@ export default {
     })
   },
   methods:{
+    // Pushing to MyTrips with params
     viewDetails(username){
-      console.log("clicked " + username)
       this.$router.push({ name: "MyTripsProps", params: { user: username } })
     }
   }
@@ -59,7 +61,6 @@ export default {
 .header{
   width: 33%;
 }
-
 .btn{
   background-color: rgb(142, 197, 252);
   color: black;

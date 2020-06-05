@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- Elements for banning a user -->
     <div class="ban-user-wrapper">
       <h2 class="center font">Stäng av användare</h2>
       <label for="user" class="font">Användarnamn</label>
@@ -17,6 +18,7 @@ export default {
     }
   },
   methods:{
+    // Ban user method
     banUser(){
       if(this.$store.state.username == this.username){
         alert("Du kan inte banna dig själv!")
@@ -39,7 +41,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .ban-user-wrapper{
   width: 20%;
   height: auto;
