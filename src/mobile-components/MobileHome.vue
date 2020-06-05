@@ -59,6 +59,4 @@ export default {
   margin: -100px auto;
   z-index: 0;
 }
-
-
 </style>

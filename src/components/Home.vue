@@ -114,8 +114,6 @@ export default {
   bottom: 0;
   width: 0;
   height: 0;
-  /* border-bottom: 200px solid white;
-  border-left: 600px solid transparent; */
   z-index: 0;
 }
 .flex-container .searchbar {

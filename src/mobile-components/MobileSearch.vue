@@ -46,7 +46,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #results-searchbar {
   text-align: center;
 }
