@@ -2,7 +2,7 @@
   <div>
     <nav>
       <div id="left-column">
-        <h1><span class="travel">Travel</span><span class="community">Community</span></h1>
+        <h1><span class="travel" :style="setWhiteText">Travel</span><span class="community">Community</span></h1>
       </div>
       <div id="right-column">
         <div id="dropDownButton" @click="displayDropdown" :style="changeButton"></div>
@@ -67,15 +67,25 @@ export default {
       dropDownStatus: false,
       changeButtonStatus: false,
       displayLoginScreen: false,
+      homeScreen: false,
       username: "",
       password: "",
       errorMessage: ""
+    }
+  },
+  created(){
+    if(this.$route.name == "Home"){
+      this.homeScreen = true
+    }
+    else{
+      this.homeScreen = false
     }
   },
   methods:{
     displayDropdown(){
       this.dropDownStatus = !this.dropDownStatus
       this.changeButtonStatus = !this.changeButtonStatus
+      this.changeWhiteColor()
     },
     showLoginArea(){
       this.displayLoginScreen = !this.displayLoginScreen
@@ -95,6 +105,7 @@ export default {
           this.$store.commit("SET_ADMIN_STATE", response.data.admin)
 
           this.showLoginArea()
+          this.homeScreen = false
 
           this.$router.push({ name: "User" });
         })
@@ -119,6 +130,15 @@ export default {
     resetPassword(){
       this.showLoginArea()
       this.$router.push({name: "ResetPassword"})
+    },
+    changeWhiteColor(){
+      if(this.$route.name == "Home"){
+        console.log("Home tapped")
+        this.homeScreen = true
+      }
+      else{
+        this.homeScreen = false
+      }
     }
   },
   computed:{
@@ -151,6 +171,18 @@ export default {
       else{
         return {}
       }
+    },
+    setWhiteText() {
+      if(this.homeScreen){
+        return{
+          "color":"white"
+        }
+      }
+      else{
+        return {
+          
+        }
+      } 
     }
   }
 }
@@ -188,6 +220,7 @@ nav{
   background-image: url('../assets/menu.png');
   background-repeat: no-repeat; 
   transition: 0.5s;
+  z-index: 10;
 }
 
 #dropDown{

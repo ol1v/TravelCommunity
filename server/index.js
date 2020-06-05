@@ -33,7 +33,7 @@ app.post("/login", (request, response) => {
 
   con.query(`SELECT username, password, admin, banned FROM userdetails WHERE username = ${con.escape(username)}`, function (err, result) {
     if (err) throw err
-    console.log(result.length + " < ---")
+    console.log(result.length + " <--")
 
     if (result.length) {
       //Retrieve hash from the result
