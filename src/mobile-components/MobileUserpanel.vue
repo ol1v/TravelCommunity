@@ -33,10 +33,9 @@ nav {
   background: rgb(142, 197, 252);
   background: linear-gradient(
     90deg,
-    rgba(142, 197, 252, 1) 0%,
-    rgba(142, 197, 252, 0.9009804605435925) 24%,
-    rgba(252, 176, 69, 0) 100%
-  ); 
+    rgb(142, 197, 252),
+    white
+  );
 }
 ul,
 li {

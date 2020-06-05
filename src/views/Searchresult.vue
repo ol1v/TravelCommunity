@@ -1,10 +1,6 @@
 <template>
   <div id="container">
-    Search result should appear here
     <Result></Result>
-    <div class="loading-wrapper">
-      <Loader></Loader>
-    </div>
   </div>
 </template>
 
@@ -19,7 +15,6 @@ export default {};
     rgba(255, 255, 255, 1) 0%,
     rgba(153, 202, 251, 1) 100.2%
   );
-  padding-bottom: 20em; /* Temporärt */
 }
 
 .loading-wrapper {

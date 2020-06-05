@@ -119,13 +119,19 @@ export default {
       this.$router.push({ name: "RegisterUser" });
     },
     logout(){
-      this.dropDownStatus = false
-      this.changeButtonStatus = false
+      let askLogout = confirm("Är du säker att du vill logga ut?")
+      if(askLogout){
+        this.dropDownStatus = false
+        this.changeButtonStatus = false
 
-      this.$store.commit("SET_LOGGED_IN", false);
-      this.$store.commit("SET_USERNAME", ""),
-      this.$store.commit("SET_ADMIN_STATE", 0)
-      this.$router.push({ name: "Home" });
+        this.$store.commit("SET_LOGGED_IN", false);
+        this.$store.commit("SET_USERNAME", ""),
+        this.$store.commit("SET_ADMIN_STATE", 0)
+        this.$router.push({ name: "Home" });
+      }
+      else{
+        console.log("Stayed logged in")
+      }
     },
     resetPassword(){
       this.showLoginArea()
@@ -227,7 +233,12 @@ nav{
   width: 80%;
   height: calc(100vh - 75px);
   float: right;
-  background-color: #026f7e;
+  background: rgb(142, 197, 252);
+  background: linear-gradient(
+    180deg,
+    rgba(142, 197, 252, 0.95),
+    white
+  ); 
   position: fixed;
   right: 0px;
   top: 75px;
@@ -275,7 +286,11 @@ h1{
 #login-full-screen{
   width: 100%;
   height: 100vh;
-  background-color: rgba(128, 128, 128, 0.9);
+  background-image: radial-gradient(
+    circle 1224px at 10.6% 8.8%,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(153, 202, 251, 0.9) 100.2%
+  );
   z-index: 501;
   position: fixed;
   margin-top: -75px;

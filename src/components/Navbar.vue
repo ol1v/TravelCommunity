@@ -111,10 +111,16 @@ export default {
       this.$router.push({ name: "RegisterUser" });
     },
     logout() {
-      this.$store.commit("SET_LOGGED_IN", false);
-      this.$store.commit("SET_USERNAME", ""),
-      this.$store.commit("SET_ADMIN_STATE", 0)
-      this.$router.push({ name: "Home" });
+      let askLogout = confirm("Är du säker att du vill logga ut?")
+      if(askLogout){
+        this.$store.commit("SET_LOGGED_IN", false);
+        this.$store.commit("SET_USERNAME", ""),
+        this.$store.commit("SET_ADMIN_STATE", 0)
+        this.$router.push({ name: "Home" });
+      }
+      else{
+        console.log("Stayed logged in")
+      }
     },
     resetPassword(){
       this.displayLoginStatus = !this.displayLoginStatus
@@ -244,7 +250,11 @@ li {
   width: 100%;
   height: 100vh;
   position: fixed;
-  background: rgba(128, 128, 128, 0.9);
+  background-image: radial-gradient(
+    circle 1224px at 10.6% 8.8%,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(153, 202, 251, 0.9) 100.2%
+  );
   display: none;
   margin-top: -75px;
   z-index: 25;

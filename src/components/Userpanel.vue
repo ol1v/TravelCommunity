@@ -21,7 +21,6 @@ export default {};
 nav {
   width: 100%;
   height: 50px;
-  /* background-color: #8ec5fc; */
   box-shadow: 0px 0.1px 0px 1px rgba(142, 197, 252, 0.2);
   margin-top: 1px;
 }
@@ -29,11 +28,16 @@ nav {
   width: 50%;
   height: 50px;
   background: rgb(142, 197, 252);
+  /* background-image: radial-gradient(
+    circle 1224px at 10.6% 8.8%,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(153, 202, 251, 0.9) 100.2%
+  ); */
+
   background: linear-gradient(
     90deg,
-    rgba(142, 197, 252, 1) 0%,
-    rgba(142, 197, 252, 0.9009804605435925) 24%,
-    rgba(252, 176, 69, 0) 100%
+    rgb(142, 197, 252),
+    white
   );
 }
 ul,

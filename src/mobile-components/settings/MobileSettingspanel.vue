@@ -87,9 +87,8 @@ export default {
   background: rgb(142, 197, 252);
   background: linear-gradient(
     180deg,
-    rgba(142, 197, 252, 1) 0%,
-    rgba(142, 197, 252, .9) 25%,
-    rgba(252, 176, 69, 0) 100%
+    rgba(142, 197, 252, 0.9),
+    white
   ); 
   transform: translateX(-85%);
   transition: 1s;
