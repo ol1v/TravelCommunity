@@ -5,6 +5,7 @@
         <div id="admin-links-wrapper">
           <input type="button" value="Stäng av användare" class="admin-link" @click="displayBan">
           <input type="button" value="Lås upp användare" class="admin-link" @click="displayUnban">
+          <input type="button" value="Hantera inlägg" class="admin-link" @click="displayAllUsers">
         </div>
         <div id="expand-button">
           <font-awesome-icon class="arrow" icon="angle-right" size="3x" @click="displaySidepanel" :style="rotateButton"/>
@@ -16,6 +17,7 @@
         <!-- Links -->
         <MobileBan v-if="banBool"></MobileBan>
         <MobileUnban v-if="unbanBool"></MobileUnban>
+        <MobileAllUsers v-if="allUsersBool"></MobileAllUsers>
       </div>
     </div>
   </div>
@@ -24,16 +26,19 @@
 <script>
 import MobileBan from './MobileBan'
 import MobileUnban from './MobileUnban'
+import MobileAllUsers from './MobileAllUsers'
 
 export default {
   components:{
     MobileBan,
-    MobileUnban
+    MobileUnban,
+    MobileAllUsers
   },
   data(){
     return{
       banBool: true,
       unbanBool: false,
+      allUsersBool: false,
       displayPanel: false,
       rotateBtn: false
     }
@@ -42,11 +47,19 @@ export default {
     displayUnban(){
       this.banBool = false
       this.unbanBool = true
+      this.allUsersBool = false
       this.displayPanel = !this.displayPanel
     },
     displayBan(){
       this.banBool = true
       this.unbanBool = false
+      this.allUsersBool = false
+      this.displayPanel = !this.displayPanel
+    },
+    displayAllUsers(){
+      this.banBool = false
+      this.unbanBool = false
+      this.allUsersBool = true
       this.displayPanel = !this.displayPanel
     },
     displaySidepanel(){
