@@ -14,8 +14,8 @@
       <!-- Right column -->
       <div id="right-column">
         <ul>
-          <li><router-link to="/" class="navbar-links">SÖK RESA</router-link></li>
-          <li><router-link to="/popular" class="navbar-links">POPULÄRA</router-link></li>
+          <li><router-link to="/" class="navbar-links" @click.native="changeWhitebar">SÖK RESA</router-link></li>
+          <li><router-link to="/popular" class="navbar-links" @click.native="changeWhitebar">POPULÄRA</router-link></li>
           <li v-if="!this.$store.state.loggedIn" class="navbar-links-login" @click="loginArea">LOGGA IN / REGISTRERA</li>
           <li><router-link to="/user" class="navbar-links" v-if="this.$store.state.loggedIn">{{this.$store.state.username.toUpperCase()}}</router-link></li>
           <li v-if="this.$store.state.loggedIn" class="navbar-links-login" @click="logout">LOGGA UT</li>
@@ -67,10 +67,19 @@ export default {
   data() {
     return {
       displayLoginStatus: false,
+      homeScreen: false,
       username: "",
       password: "",
       errorMessage: ""
     };
+  },
+  created(){
+    if(this.$route.name == "Home"){
+      this.homeScreen = true
+    }
+    else{
+      this.homeScreen = false
+    }
   },
   methods: {
     login() {
@@ -110,6 +119,15 @@ export default {
     resetPassword(){
       this.displayLoginStatus = !this.displayLoginStatus
       this.$router.push({name: "ResetPassword"})
+    },
+    changeWhitebar(){
+      if(this.$route.name == "Home"){
+        console.log("Home tapped")
+        this.homeScreen = true
+      }
+      else{
+        this.homeScreen = false
+      }
     }
   },
   computed: {
@@ -123,13 +141,14 @@ export default {
       }
     },
     setWhiteNavbar() {
-      if (this.displayLoginStatus) {
-        return {
-          "background-color": "white"
-        };
-      } else {
-        return {};
+      if(this.homeScreen){
+        return{
+          "background-color":"transparent"
+        }
       }
+      else{
+        return {}
+      } 
     },
     setNavbarText() {
       if (this.displayLoginStatus) {
@@ -160,7 +179,7 @@ li {
   width: 40%;
   height: 100%;
   float: left;
-  background-color: transparent;
+  background-color: white;
 }
 
 .travelText {

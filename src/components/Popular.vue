@@ -169,6 +169,7 @@ export default {
 
 <style scoped>
 .popular {
+  width: 100%;
   background-image: radial-gradient(
     circle 1224px at 10.6% 8.8%,
     rgba(255, 255, 255, 1) 0%,
