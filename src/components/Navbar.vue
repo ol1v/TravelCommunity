@@ -36,10 +36,10 @@
             <span class="communityText">COMMUNITY</span>
           </div>
 
-          <label for="username">Användarnamn</label>
-          <input v-model="username" class="user-input" type="text" id="username" />
-          <label for="password">Lösenord</label>
-          <input v-model="password" class="user-input" type="password" id="password" />
+          <label for="login-username">Användarnamn</label>
+          <input v-model="username" class="user-input" type="text" id="login-username" />
+          <label for="login-password">Lösenord</label>
+          <input v-model="password" class="user-input" type="password" id="login-password" />
 
           <div id="buttons">
             <input class="forgot-pass-button" type="button" value="Glömt lösenord?" @click="resetPassword" />
@@ -168,6 +168,7 @@ nav {
   width: 100%;
   height: 75px;
   z-index: 9999;
+  display: flex;
 }
 ul,
 li {
@@ -177,8 +178,6 @@ li {
 }
 #left-column {
   width: 40%;
-  height: 100%;
-  float: left;
   background-color: white;
 }
 
@@ -194,8 +193,6 @@ li {
 
 #right-column {
   width: 60%;
-  height: 100%;
-  float: right;
   background-color: white;
   font-family: "Montserrat", sans-serif;
   font-weight: 300;

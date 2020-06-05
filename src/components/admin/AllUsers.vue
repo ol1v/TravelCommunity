@@ -38,7 +38,7 @@ export default {
   methods:{
     viewDetails(username){
       console.log("clicked " + username)
-      this.$router.push({ name: "MyTrips", params: { user: username } })
+      this.$router.push({ name: "MyTripsProps", params: { user: username } })
     }
   }
 }
@@ -53,10 +53,11 @@ export default {
   height: 50px;
   margin: 0px auto 10px;
   line-height: 50px;
+  display: flex;
+  align-content: space-around;
 }
 .header{
   width: 33%;
-  float: left;
 }
 
 .btn{
@@ -74,6 +75,8 @@ export default {
   height: 30px;
   line-height: 30px;
   margin: 10px auto;
+  display: flex;
+  align-content: space-between;
 }
 
 </style>

@@ -194,7 +194,6 @@ export default {
   overflow: hidden;
   background-color: transparent;
   color: white;
-  float: left;
   border-right: 1pt solid white;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
@@ -220,9 +219,7 @@ export default {
 .right-column {
   width: 70%;
   height: 100%;
-  float: left;
   background-color: white;
-  position: relative;
 }
 
 .content-text {
@@ -291,7 +288,6 @@ export default {
 .bottom-report-button {
   width: 20px;
   height: 30px;
-  float: right;
   cursor: pointer;
 }
 

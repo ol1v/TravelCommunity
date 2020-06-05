@@ -7,8 +7,8 @@
         :key="index"
       >
         <div class="input-label-wrapper">
-          <label for="from">Från</label>
-          <input id="from" class="inputs" type="text" v-model="travelArray[index].from" />
+          <label for="mytrips-from">Från</label>
+          <input id="mytrips-from" class="inputs" type="text" v-model="travelArray[index].from" />
         </div>
 
         <div
@@ -18,27 +18,27 @@
         >
           <h4 class="milestone-header">Delmål {{ind + 1}}</h4>
           <div class="input-label-wrapper">
-            <label for="city">Stad</label>
+            <label for="mytrips-city">Stad</label>
             <input
-              id="city"
+              id="mytrips-city"
               class="inputs"
               type="text"
               v-model="travelArray[index].milestones[ind].city"
             />
           </div>
           <div class="input-label-wrapper">
-            <label for="country">Land</label>
+            <label for="mytrips-country">Land</label>
             <input
-              id="country"
+              id="mytrips-country"
               class="inputs"
               type="text"
               v-model="travelArray[index].milestones[ind].country"
             />
           </div>
           <div class="input-label-wrapper">
-            <label for="resident">Boende</label>
+            <label for="mytrips-resident">Boende</label>
             <input
-              id="resident"
+              id="mytrips-resident"
               class="inputs"
               type="text"
               v-model="travelArray[index].milestones[ind].resident"
@@ -57,24 +57,32 @@
         </div>
 
         <div class="input-label-wrapper">
-          <label for="to">Till</label>
-          <input id="to" class="inputs" type="text" v-model="travelArray[index].to" />
+          <label for="mytrips-to">Till</label>
+          <input id="mytrips-to" class="inputs" type="text" v-model="travelArray[index].to" />
         </div>
 
         <div class="input-label-wrapper">
-          <label for="traveltime">Resetid</label>
-          <input id="traveltime" class="inputs" type="text" v-model="travelArray[index].traveltime" />
+          <label for="mytrips-traveltime">Resetid</label>
+          <input id="mytrips-traveltime" class="inputs" type="text" v-model="travelArray[index].traveltime" />
         </div>
 
         <div class="input-label-wrapper">
-          <label for="price">Kostnad</label>
-          <input id="price" class="inputs" type="text" v-model="travelArray[index].price" />
+          <label for="mytrips-price">Kostnad</label>
+          <input id="mytrips-price" class="inputs" type="text" v-model="travelArray[index].price" />
         </div>
 
         <div class="travel-top-bar">
-          <p class="uploaded">Uppladdat av: {{travelArray[index].username}}</p>
+          <div class="equal-spacing">
+            <p class="uploaded">Uppladdat av: {{travelArray[index].username}}</p>
+          </div>
+
+          <div class="equal-spacing">
           <button class="update-button" @click="updateTravel(travelArray[index])">Ändra</button>
+          </div>
+
+          <div class="equal-spacing">
           <input type="button" class="remove-travel" value="X" @click="deleteTravel(travelArray[index].id)" />
+          </div>
         </div>
       </div>
     </div>
@@ -186,23 +194,39 @@ export default {
   width: 100%;
   height: 20px;
   bottom: 0px;
+  display: flex;
+  justify-content: space-around;
 }
 .uploaded {
-  height: 20px;
   padding-left: 10px;
   padding-right: 10px;
-  float: left;
   line-height: 20px;
   margin: 0px;
   font-size: 10px;
 }
+
+.update-button {
+  color: #fff;
+  font-weight: 500;
+  min-width: 15em;
+  height: 30px;
+  cursor: pointer;
+  font-size: 10px;
+  background-color: #222;
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
 .remove-travel {
-  width: 20px;
-  height: 20px;
-  float: right;
   cursor: pointer;
   margin-right: 10px;
   border: 0px;
+  text-align: right;
+}
+.equal-spacing{
+  width: 33%;
+  display: flex;
+  justify-content: center;
 }
 .travel-data-wrapper {
   background-color: white;
@@ -245,16 +269,6 @@ export default {
 }
 .select-wrapper {
   text-align: center;
-}
-.update-button {
-  color: #fff;
-  font-weight: 500;
-  font-size: 10px;
-  padding: 1em;
-  background-color: #222;
-  border: none;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  margin-left: 9em;
 }
 .input-label-wrapper {
   background-color: white;

@@ -33,7 +33,7 @@ export default {
   methods:{
     viewDetails(username){
       console.log("clicked " + username)
-      this.$router.push({ name: "MyTrips", params: { user: username } })
+      this.$router.push({ name: "MyTripsProps", params: { user: username } })
     }
   }
 }
@@ -44,15 +44,9 @@ export default {
   width: 100%;
   margin-top: 50px;
 }
-#header-text{
-  width: 100%;
-  height: 50px;
-  margin: 0px auto 10px;
-  line-height: 50px;
-}
+
 .header{
   width: 33%;
-  float: left;
   font-size: 12px;
 }
 
@@ -61,7 +55,7 @@ export default {
   color: black;
   border: 0px;
   display: block;
-  width: 50%;
+  min-width: 50%;
   margin: 0 auto;
   height: 30px;
   cursor: pointer;
@@ -71,6 +65,8 @@ export default {
   height: 30px;
   line-height: 30px;
   margin: 10px auto;
+  display: flex;
+  align-content: space-between;
 }
 
 </style>
