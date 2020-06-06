@@ -240,8 +240,8 @@ app.post("/my-travels", (request, response) => {
 app.post("/delete-post", (request, response) => {
   let id = request.body.id
 
-  con.query(`DELETE FROM travel WHERE id=${con.escape(id)}`, function(err, result){
-    if(err) throw err
+  con.query(`DELETE FROM travel WHERE id=${con.escape(id)}`, function (err, result) {
+    if (err) throw err
 
     response.status(200).send({
       message: `Du har raderat inlägget med ID ${id}`
