@@ -8,20 +8,19 @@
 
 <script>
 //Imports
-import CreateTrip from '../components/CreateTrip.vue'
-import Userpanel from '../components/Userpanel.vue'
-import MobileUserpanel from '../mobile-components/MobileUserpanel'
+import CreateTrip from "../components/CreateTrip.vue";
+import Userpanel from "../components/Userpanel.vue";
+import MobileUserpanel from "../mobile-components/MobileUserpanel";
 
 export default {
-name: 'App',
-  components:{
+  name: "App",
+  components: {
     CreateTrip,
     Userpanel,
     MobileUserpanel
   }
-}
+};
 </script>
 
 <style>
-
 </style>

@@ -154,7 +154,7 @@ app.post("/search", (request, response) => {
   // Get travels which responds to from and to searchwords
   con.query(`SELECT * FROM travel WHERE fromLoc = ${con.escape(from)} AND toLoc = ${con.escape(to)}`, function (err, result) {
     if (err) throw err;
-
+    console.log(result)
     let resultArray = []
 
     for (let i = 0; i < result.length; i++) {

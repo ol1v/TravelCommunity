@@ -15,6 +15,7 @@ import Controlpanel from '../views/Controlpanel'
 import Settings from '../views/Settings'
 import ResetPassword from '../views/ResetPassword'
 import RegisterUser from '../views/RegisterUser'
+import CreateTrip2 from '../components/CreateTrip2'
 
 let router = new VueRouter({
   mode: 'history',
@@ -30,7 +31,7 @@ let router = new VueRouter({
     name: "RegisterUser",
     component: RegisterUser,
     path: '/registerUser'
-  },{
+  }, {
     name: "Searchresult",
     component: Searchresult,
     path: '/results'
@@ -52,7 +53,16 @@ let router = new VueRouter({
     meta: {
       requiresAuth: true
     }
-  }, {
+  },
+  {
+    name: "CreateTrip2",
+    component: CreateTrip2,
+    path: '/user/test',
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     name: "MyTripsProps",
     component: MyTrips,
     path: '/user/trips/:checkUser',
@@ -74,7 +84,7 @@ let router = new VueRouter({
     meta: {
       requiresAdmin: true
     }
-  },{
+  }, {
     name: "ResetPassword",
     component: ResetPassword,
     path: '/reset-password'

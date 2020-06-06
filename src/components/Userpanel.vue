@@ -3,10 +3,25 @@
     <nav>
       <div id="left-user-column">
         <ul>
-          <li><router-link to="/user" class="user-links">NY RESA</router-link></li>
-          <li><router-link to="/user/trips" class="user-links">MINA RESOR</router-link></li>
-          <li><router-link to="/user/settings" class="user-links">INSTÄLLNINGAR</router-link></li>
-          <li><router-link to="/user/admin" class="user-links" v-if="this.$store.state.admin">ADMINPANEL</router-link></li>
+          <li>
+            <router-link to="/user" class="user-links">NY RESA</router-link>
+          </li>
+          <li>
+            <router-link to="/user/test" class="user-links">NY RESAtest</router-link>
+          </li>
+          <li>
+            <router-link to="/user/trips" class="user-links">MINA RESOR</router-link>
+          </li>
+          <li>
+            <router-link to="/user/settings" class="user-links">INSTÄLLNINGAR</router-link>
+          </li>
+          <li>
+            <router-link
+              to="/user/admin"
+              class="user-links"
+              v-if="this.$store.state.admin"
+            >ADMINPANEL</router-link>
+          </li>
         </ul>
       </div>
     </nav>
@@ -34,11 +49,7 @@ nav {
     rgba(153, 202, 251, 0.9) 100.2%
   ); */
 
-  background: linear-gradient(
-    90deg,
-    rgb(142, 197, 252),
-    white
-  );
+  background: linear-gradient(90deg, rgb(142, 197, 252), white);
 }
 ul,
 li {
