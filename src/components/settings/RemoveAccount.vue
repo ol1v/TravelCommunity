@@ -4,7 +4,7 @@
       <!-- Header & password field -->
       <h2 class="center font">Radera konto</h2>
       <label for="currentPass" class="font">Ange ditt lösenord</label>
-      <input type="password" id="currentPass" class="ban-user-input font" v-model="password" autocomplete="new-password">
+      <input type="password" id="currentPass" class="remove-account-input font" v-model="password" autocomplete="new-password">
       
       <!-- Notes -->
       <div id="remove_account_info">
@@ -113,4 +113,11 @@ export default {
   font-size: 15px;
   cursor: pointer;
 }
+
+.remove-account-input{
+  width: 100%;
+  height: 30px;
+  box-sizing: border-box;
+}
+
 </style>
