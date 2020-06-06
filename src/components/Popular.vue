@@ -26,8 +26,8 @@
           </span>
 
           <!-- <button class="full-travel-button" @click="fullTravelBtnClicked(index)">{{travelButtonText}} {{travelArray[index].milestones.length}} delmål</button> -->
-          <button v-if="postIds[index].show == false" class="full-travel-button" @click="showFullTravel(index)">Se {{travelArray[index].milestones.length}} delmål</button>
-          <button v-if="postIds[index].show == true" class="full-travel-button" @click="hideFullTravel(index)">Göm {{travelArray[index].milestones.length}} delmål</button>
+          <button v-if="!postIds[index].show" class="full-travel-button" @click="showFullTravel(index)">Se {{travelArray[index].milestones.length}} delmål</button>
+          <button v-if="postIds[index].show" class="full-travel-button" @click="hideFullTravel(index)">Göm {{travelArray[index].milestones.length}} delmål</button>
         
         </div>
         <!-- From location -->
@@ -54,7 +54,7 @@
               <span class="country">{{travelArray[index].milestones[ind].country}}</span>
             </p>
             <p class="content-text">
-              <font-awesome-icon icon="hotel" size="1x" />
+              <font-awesome-icon class="hotel-img" icon="hotel" size="1x" />
               {{travelArray[index].milestones[ind].resident}}
             </p>
             <div class="transportation-img" v-if="postIds[index].show">
@@ -71,18 +71,21 @@
             <span class="finish">{{travelArray[index].to}}</span>
             <span class="country">{{travelArray[index].toCountry}}</span>
           </p>
-        </div>
-        <!--- to travelicon --->
-        <div class="transportation-img-to">
-          <p>
-            <font-awesome-icon icon="map-pin" size="2x" />
-          </p>
+          <div class="col-x">
+            <span class="left-col font">
+              <font-awesome-icon class="hotel-img" icon="hotel" size="1x" />
+              {{travelArray[index].toResident}}
+            </span>
+            <span class="right-col">
+              <font-awesome-icon icon="map-pin" size="2x" />
+            </span>
+          </div>
         </div>
 
         <!-- Price & Traveltime -->
         <div class="bottom-div">
           <p class="content-text">
-            <span class="city">
+            <span class="travelTime">
               <font-awesome-icon icon="hourglass-end" size="1x" />
               {{travelArray[index].traveltime}}
             </span>
@@ -104,8 +107,6 @@ export default {
   data() {
     return {
       travelArray: [],
-      toggleFullTravel: false,
-      travelButtonText: "Se",
       postIds: [],
     };
   },
@@ -153,17 +154,10 @@ export default {
     },
     showFullTravel(index) {
       this.$set(this.postIds, index, { "show": true})
-      // console.log("visa")
-      // this.postIds[index] = !this.postIds[index]
-      // console.log(this.postIds[index])
 
     },
     hideFullTravel(index){
       this.$set(this.postIds, index, { "show": false})
-      console.log(index)
-      // console.log("göm")
-      // this.postIds[index] = !this.postIds[index]
-      // console.log(this.postIds[index])
     }
   },
   computed:{
@@ -234,7 +228,7 @@ export default {
   font-weight: 300;
   padding-left: 10px;
   padding-right: 10px;
-  background-color: rgba(5, 41, 75, 0.103);
+  display: flex;
   color: rgb(5, 41, 75);
 }
 
@@ -272,6 +266,7 @@ export default {
   width: 90%;
   height: 100pt;
   margin: 30pt auto;
+  background-color: #E6E9ED;
   border-radius: 5px;
   line-height: 50px;
 }
@@ -317,7 +312,6 @@ export default {
 
 .start {
   width: 50%;
-  float: left;
   text-align: left;
   text-transform: uppercase;
   font-weight: 500;
@@ -325,7 +319,6 @@ export default {
 
 .finish {
   width: 50%;
-  float: left;
   text-align: left;
   text-transform: uppercase;
   font-weight: 500;
@@ -333,12 +326,20 @@ export default {
 
 .city {
   width: 50%;
-  float: left;
   text-align: left;
+  text-transform: uppercase;
+  font-weight: 500;
 }
+
+.travelTime {
+  width: 50%;
+  text-align: left;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
 .country {
   width: 50%;
-  float: right;
   text-align: right;
 }
 .rating {
@@ -361,5 +362,26 @@ export default {
   width: 100%;
   height: 50px;
   text-align: center;
+}
+
+.hotel-img{
+  margin-top: 16px;
+  padding-right: 10px;
+  color: rgb(5, 41, 75);
+}
+
+.left-col {
+  width: 50%;
+  text-align: left;
+}
+.right-col {
+  width: 50%;
+  text-align: right;
+}
+.col-x{
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
 }
 </style>

@@ -129,7 +129,7 @@ app.post("/travels", (request, response) => {
         milestones: milestonesJson,
         to: result[i].toLoc,
         toCountry: result[i].toCountry,
-        toTrans: result[i].toTransportation,
+        toResident: result[i].toResident,
         traveltime: result[i].traveltime,
         timestamp: result[i].timestamp,
         price: result[i].price,

@@ -172,6 +172,11 @@ export default {
 </script>
 
 <style scoped>
+.results-object{
+  margin-top: 25px;
+  margin-bottom: 25px;
+  background-color: white;
+}
 h3 {
   font-family: "Montserrat", sans-serif;
   color: white;
@@ -180,7 +185,6 @@ h3 {
 }
 
 #results-container {
-  background-color: white;
   opacity: 0.9;
   width: 90%;
   margin: auto;
