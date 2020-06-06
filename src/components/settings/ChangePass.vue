@@ -1,22 +1,26 @@
 <template>
   <div>
     <div id="wrapper">
-      <div id="change_pass_wrapper">
+      <div id="change-pass-wrapper">
         <h2 class="center font">Ändra lösenord</h2>
         <!-- Current password -->
-        <label for="currentPass" class="font">Nuvarande lösenord</label>
-        <input type="password" id="currentPass" class="ban-user-input font" v-model="currentPass">
+        <label for="ch-currentPass" class="font">Nuvarande lösenord</label>
+        <input type="password" id="ch-currentPass" class="change-pass-input font" v-model="currentPass">
+        
         <!-- New password -->
-        <label for="newPass" class="font">Nytt lösenord</label>
-        <input :type="showPass" id="newPass" class="ban-user-input font" v-model="newPass">
+        <label for="ch-newPass" class="font">Nytt lösenord</label>
+        <input :type="showPass" id="ch-newPass" class="change-pass-input font" v-model="newPass">
+        
         <!-- Repeat password -->
-        <label for="repeatPass" class="font">Repetera lösenord</label>
-        <input :type="showPass" id="repeatPass" class="ban-user-input font" v-model="repeatPass">
+        <label for="ch-repeatPass" class="font">Repetera lösenord</label>
+        <input :type="showPass" id="ch-repeatPass" class="change-pass-input font" v-model="repeatPass">
+        
         <!-- Show/hide password -->
-        <input type="checkbox" id="showPass" @click="showPassword">
-        <label for="showPass" class="font">Visa lösenord</label>
+        <input type="checkbox" id="ch-showPass" @click="showPassword">
+        <label for="ch-showPass" class="font">Visa lösenord</label>
+        
         <!-- Button to change password -->
-        <input type="button" value="Byt lösenord" class="ban-user-button font" @click="changePassword">
+        <input type="button" value="Byt lösenord" class="change-pass-button font" @click="changePassword">
       </div>
     </div>
   </div>
@@ -75,9 +79,24 @@ export default {
   height: auto;
   margin: auto;
 }
-#change_pass_wrapper{
+#change-pass-wrapper{
   width: 50%;
   height: auto;
   margin: auto;
+}
+
+.change-pass-input{
+  width: 100%;
+  height: 30px;
+  box-sizing: border-box;
+}
+.change-pass-button{
+  width: 100%;
+  height: 40px;
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: #026f7e;
+  color: white;
+  border: 0;
 }
 </style>

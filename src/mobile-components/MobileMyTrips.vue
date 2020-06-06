@@ -6,8 +6,8 @@
         v-for="(travel, index) in travelArray"
         :key="index">
         <div class="input-label-wrapper">
-          <label for="from">Från</label>
-          <input id="from" class="inputs" type="text" v-model="travelArray[index].from" />
+          <label for="m-mytrips-from">Från</label>
+          <input id="m-mytrips-from" class="inputs" type="text" v-model="travelArray[index].from" />
         </div>
 
         <div
@@ -16,27 +16,27 @@
           :key="ind">
           <h4 class="milestone-header">Delmål {{ind + 1}}</h4>
           <div class="input-label-wrapper">
-            <label for="city">Stad</label>
+            <label for="m-mytrips-city">Stad</label>
             <input
-              id="city"
+              id="m-mytrips-city"
               class="inputs"
               type="text"
               v-model="travelArray[index].milestones[ind].city"
             />
           </div>
           <div class="input-label-wrapper">
-            <label for="country">Land</label>
+            <label for="m-mytrips-country">Land</label>
             <input
-              id="country"
+              id="m-mytrips-country"
               class="inputs"
               type="text"
               v-model="travelArray[index].milestones[ind].country"
             />
           </div>
           <div class="input-label-wrapper">
-            <label for="resident">Boende</label>
+            <label for="m-mytrips-resident">Boende</label>
             <input
-              id="resident"
+              id="m-mytrips-resident"
               class="inputs"
               type="text"
               v-model="travelArray[index].milestones[ind].resident"
@@ -55,8 +55,8 @@
         </div>
 
         <div class="input-label-wrapper">
-          <label for="to">Till</label>
-          <input id="to" class="inputs" type="text" v-model="travelArray[index].to" />
+          <label for="m-mytrips-to">Till</label>
+          <input id="m-mytrips-to" class="inputs" type="text" v-model="travelArray[index].to" />
         </div>
         <p>Transporttid: {{travelArray[index].traveltime}}</p>
 

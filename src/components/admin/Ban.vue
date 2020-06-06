@@ -3,8 +3,8 @@
     <!-- Elements for banning a user -->
     <div class="ban-user-wrapper">
       <h2 class="center font">Stäng av användare</h2>
-      <label for="user" class="font">Användarnamn</label>
-      <input type="text" id="user" class="ban-user-input font" v-model="username">
+      <label for="ban-user" class="font">Användarnamn</label>
+      <input type="text" id="ban-user" class="ban-user-input font" v-model="username">
       <input type="button" value="Stäng av konto" class="ban-user-button font" @click="banUser">
     </div>
   </div>

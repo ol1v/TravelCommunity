@@ -1,11 +1,13 @@
 <template>
   <div>
     <!-- Elements to unban a user -->
-    <div class="ban-user-wrapper">
+    <div class="unban-user-wrapper">
       <h2 class="center font">Lås upp användare</h2>
-      <label for="user" class="font">Användarnamn</label>
-      <input type="text" id="user" class="ban-user-input font" v-model="username">
-      <input type="button" value="Lås upp konto" class="ban-user-button font" @click="unbanUser">
+
+      <label for="unban-user" class="font">Användarnamn</label>
+      <input type="text" id="unban-user" class="unban-user-input font" v-model="username">
+
+      <input type="button" value="Lås upp konto" class="unban-user-button font" @click="unbanUser">
     </div>
   </div>
 </template>
@@ -36,6 +38,26 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.unban-user-wrapper{
+  width: 20%;
+  height: auto;
+  padding: 10px;
+  margin: 15px auto;
 
+}
+.unban-user-input{
+  width: 100%;
+  height: 30px;
+  box-sizing: border-box;
+}
+.unban-user-button{
+  width: 100%;
+  height: 40px;
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: #026f7e;
+  color: white;
+  border: 0;
+}
 </style>

@@ -5,23 +5,23 @@
 
       <div class="input-x">
         <label for="currentPass" class="font">Nuvarande lösenord</label>
-        <input type="password" id="currentPass" class="ban-user-input font" v-model="currentPass">
+        <input type="password" id="currentPass" class="change-pass-input font" v-model="currentPass">
       </div>
 
       <div class="input-x">
         <label for="newPass" class="font">Nytt lösenord</label>
-        <input :type="showPass" id="newPass" class="ban-user-input font" v-model="newPass">
+        <input :type="showPass" id="newPass" class="change-pass-input font" v-model="newPass">
       </div>
 
       <div class="input-x">
         <label for="repeatPass" class="font spacing">Repetera lösenord</label>
-        <input :type="showPass" id="repeatPass" class="ban-user-input font" v-model="repeatPass">
+        <input :type="showPass" id="repeatPass" class="change-pass-input font" v-model="repeatPass">
       </div>
 
       <input type="checkbox" id="showPass" @click="showPassword">
       <label for="showPass" class="font">Visa lösenord</label>
 
-      <input type="button" value="Byt lösenord" class="ban-user-button font" @click="changePassword">
+      <input type="button" value="Byt lösenord" class="change-pass-button font" @click="changePassword">
     </div>
   </div>
 </template>
@@ -79,6 +79,21 @@ export default {
 
 .input-x{
   margin-top: 10px;
+}
+
+.change-pass-input{
+  width: 100%;
+  height: 30px;
+  box-sizing: border-box;
+}
+.change-pass-button{
+  width: 100%;
+  height: 40px;
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: #026f7e;
+  color: white;
+  border: 0;
 }
 
 </style>
