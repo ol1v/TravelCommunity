@@ -25,10 +25,10 @@
             <span v-if="travelArray[index].ratingScore >= 5">☆</span>
           </span>
 
-          <button
-            class="full-travel-button"
-            @click="fullTravelBtnClicked"
-          >{{travelButtonText}} {{travelArray[index].milestones.length}} delmål</button>
+          <!-- <button class="full-travel-button" @click="fullTravelBtnClicked(index)">{{travelButtonText}} {{travelArray[index].milestones.length}} delmål</button> -->
+          <button v-if="postIds[index].show == false" class="full-travel-button" @click="showFullTravel(index)">Se {{travelArray[index].milestones.length}} delmål</button>
+          <button v-if="postIds[index].show == true" class="full-travel-button" @click="hideFullTravel(index)">Göm {{travelArray[index].milestones.length}} delmål</button>
+        
         </div>
         <!-- From location -->
         <div>
@@ -40,7 +40,7 @@
           </div>
         </div>
         <!--- from vehicle icon --->
-        <div class="transportation-img-from" v-if="toggleFullTravel">
+        <div class="transportation-img-from">
           <p>
             <font-awesome-icon icon="car" size="2x" />
           </p>
@@ -48,7 +48,7 @@
 
         <!-- Milestones -->
         <div v-for="(milestones, ind) in travelArray[index].milestones" :key="ind">
-          <div class="content-wrapper-milestones" v-if="toggleFullTravel">
+          <div class="content-wrapper-milestones" v-if="postIds[index].show">
             <p class="content-text">
               <span class="city">{{travelArray[index].milestones[ind].city}}</span>
               <span class="country">{{travelArray[index].milestones[ind].country}}</span>
@@ -57,7 +57,7 @@
               <font-awesome-icon icon="hotel" size="1x" />
               {{travelArray[index].milestones[ind].resident}}
             </p>
-            <div class="transportation-img" v-if="toggleFullTravel">
+            <div class="transportation-img" v-if="postIds[index].show">
               <p>
                 <font-awesome-icon icon="plane" size="2x" />
               </p>
@@ -73,7 +73,7 @@
           </p>
         </div>
         <!--- to travelicon --->
-        <div class="transportation-img-to" v-if="toggleFullTravel">
+        <div class="transportation-img-to">
           <p>
             <font-awesome-icon icon="map-pin" size="2x" />
           </p>
@@ -105,7 +105,8 @@ export default {
     return {
       travelArray: [],
       toggleFullTravel: false,
-      travelButtonText: "Se"
+      travelButtonText: "Se",
+      postIds: [],
     };
   },
   created() {
@@ -120,6 +121,7 @@ export default {
         .then(response => {
           for (let i = 0; i < response.data.travelData.length; i++) {
             this.travelArray.push(response.data.travelData[i]);
+            this.postIds.push({"show":false})
           }
         })
         .catch(err => {
@@ -149,13 +151,19 @@ export default {
         console.log("Avbryt")
       }
     },
-    fullTravelBtnClicked() {
-      this.toggleFullTravel = !this.toggleFullTravel;
-      if (this.toggleFullTravel) {
-        this.travelButtonText = "Göm";
-      } else {
-        this.travelButtonText = "Se";
-      }
+    showFullTravel(index) {
+      this.$set(this.postIds, index, { "show": true})
+      // console.log("visa")
+      // this.postIds[index] = !this.postIds[index]
+      // console.log(this.postIds[index])
+
+    },
+    hideFullTravel(index){
+      this.$set(this.postIds, index, { "show": false})
+      console.log(index)
+      // console.log("göm")
+      // this.postIds[index] = !this.postIds[index]
+      // console.log(this.postIds[index])
     }
   },
   computed:{
