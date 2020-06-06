@@ -1,10 +1,6 @@
 <template>
   <div id="container">
-    Search result should appear here
     <Result></Result>
-    <div class="loading-wrapper">
-      <Loader></Loader>
-    </div>
   </div>
 </template>
 
@@ -14,9 +10,11 @@ export default {};
 
 <style>
 #container {
-  background-color: #8ec5fc;
-  background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
-  padding-bottom: 20em; /* Temporärt */
+  background-image: radial-gradient(
+    circle 1224px at 10.6% 8.8%,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(153, 202, 251, 1) 100.2%
+  );
 }
 
 .loading-wrapper {

@@ -1,10 +1,9 @@
 <template>
   <div>
-    <!-- Elements for banning a user -->
     <div class="ban-user-wrapper">
       <h2 class="center font">Stäng av användare</h2>
-      <label for="ban-user" class="font">Användarnamn</label>
-      <input type="text" id="ban-user" class="ban-user-input font" v-model="username">
+      <label for="user" class="font">Användarnamn</label>
+      <input type="text" id="user" class="ban-user-input font" v-model="username">
       <input type="button" value="Stäng av konto" class="ban-user-button font" @click="banUser">
     </div>
   </div>
@@ -18,7 +17,6 @@ export default {
     }
   },
   methods:{
-    // Ban user method
     banUser(){
       if(this.$store.state.username == this.username){
         alert("Du kan inte banna dig själv!")
@@ -43,7 +41,7 @@ export default {
 
 <style scoped>
 .ban-user-wrapper{
-  width: 20%;
+  width: 100%;
   height: auto;
   padding: 10px;
   margin: 15px auto;

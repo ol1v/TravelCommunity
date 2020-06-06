@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar v-responsive.lg.xl></Navbar>
+    <Navbar v-responsive.md.lg.xl></Navbar>
     <MobileNavbar v-responsive.sm.xs></MobileNavbar>
     
     <router-view></router-view>
@@ -11,7 +11,7 @@
 <script>
 //Imports
 import Navbar from './components/Navbar'
-import MobileNavbar from './components/MobileNavbar'
+import MobileNavbar from './mobile-components/MobileNavbar'
 // import MyFooter from './components/MyFooter'
 
 export default {
@@ -32,5 +32,9 @@ html, body{
 }
 .center{
   text-align: center;
+}
+.font{
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
 }
 </style>

@@ -13,6 +13,8 @@ import Popular from '../views/Popular'
 import MyTrips from '../views/MyTrips'
 import Controlpanel from '../views/Controlpanel'
 import Settings from '../views/Settings'
+import ResetPassword from '../views/ResetPassword'
+import RegisterUser from '../views/RegisterUser'
 
 let router = new VueRouter({
   mode: 'history',
@@ -24,8 +26,11 @@ let router = new VueRouter({
     name: "Register",
     component: Register,
     path: '/register'
-  },
-  {
+  }, {
+    name: "RegisterUser",
+    component: RegisterUser,
+    path: '/registerUser'
+  },{
     name: "Searchresult",
     component: Searchresult,
     path: '/results'
@@ -48,6 +53,14 @@ let router = new VueRouter({
       requiresAuth: true
     }
   }, {
+    name: "MyTripsProps",
+    component: MyTrips,
+    path: '/user/trips/:checkUser',
+    meta: {
+      requiresAuth: true
+    },
+    props: true
+  }, {
     name: "Settings",
     component: Settings,
     path: '/user/settings',
@@ -61,6 +74,10 @@ let router = new VueRouter({
     meta: {
       requiresAdmin: true
     }
+  },{
+    name: "ResetPassword",
+    component: ResetPassword,
+    path: '/reset-password'
   }]
 })
 

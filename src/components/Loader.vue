@@ -1,4 +1,5 @@
 <template>
+  <!-- Loading wheel -->
   <div class="loader">
     <div class="lds-roller">
       <div></div>

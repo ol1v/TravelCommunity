@@ -13,7 +13,7 @@ let state = {
   from: null,
   to: null,
   // searchresult
-  results: null
+  results: 0
 }
 
 let mutations = {

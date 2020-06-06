@@ -14,8 +14,8 @@
       <!-- Right column -->
       <div id="right-column">
         <ul>
-          <li><router-link to="/" class="navbar-links">SÖK RESA</router-link></li>
-          <li><router-link to="/popular" class="navbar-links">POPULÄRA</router-link></li>
+          <li><router-link to="/" class="navbar-links" @click.native="changeWhitebar">SÖK RESA</router-link></li>
+          <li><router-link to="/popular" class="navbar-links" @click.native="changeWhitebar">POPULÄRA</router-link></li>
           <li v-if="!this.$store.state.loggedIn" class="navbar-links-login" @click="loginArea">LOGGA IN / REGISTRERA</li>
           <li><router-link to="/user" class="navbar-links" v-if="this.$store.state.loggedIn">{{this.$store.state.username.toUpperCase()}}</router-link></li>
           <li v-if="this.$store.state.loggedIn" class="navbar-links-login" @click="logout">LOGGA UT</li>
@@ -30,22 +30,24 @@
           <input class="close-window-button" type="button" value="X" @click="loginArea" />
         </div>
 
+        <!-- Login components -->
         <div id="login-components">
+          <!-- Logo -->
           <div id="login-logo">
             <span class="travelText">TRAVEL</span>
             <span class="communityText">COMMUNITY</span>
           </div>
-
-          <label for="username">Användarnamn</label>
-          <input v-model="username" class="user-input" type="text" id="username" />
-          <label for="password">Lösenord</label>
-          <input v-model="password" class="user-input" type="password" id="password" />
-
+          <!-- Inputs -->
+          <label for="login-username">Användarnamn</label>
+          <input v-model="username" class="user-input" type="text" id="login-username" />
+          <label for="login-password">Lösenord</label>
+          <input v-model="password" class="user-input" type="password" id="login-password" />
+          <!-- Forgot password / login button -->
           <div id="buttons">
-            <input class="forgot-pass-button" type="button" value="Glömt lösenord?" />
+            <input class="forgot-pass-button" type="button" value="Glömt lösenord?" @click="resetPassword" />
             <input class="login-button" type="button" @click="login" value="Logga in" />
           </div>
-
+          <!-- Error message if failed to login -->
           <div id="error-message">{{errorMessage}}</div>
 
           <!-- Register button -->
@@ -53,7 +55,6 @@
             <p class="center">Eller</p>
             <input class="register-button" type="button" value="Registrera dig" @click="register" />
           </div>
-          
         </div>
       </div>
     </div>
@@ -62,19 +63,28 @@
 
 <script>
 
-
 export default {
   data() {
     return {
       displayLoginStatus: false,
+      homeScreen: false,
       username: "",
       password: "",
       errorMessage: ""
     };
   },
+  created(){
+    if(this.$route.name == "Home"){
+      this.homeScreen = true
+    }
+    else{
+      this.homeScreen = false
+    }
+  },
   methods: {
+    // Login button
     login() {
-      //Connect
+      //Pass data to server
       const credentials = { username: this.username, password: this.password };
       let url = "http://localhost:3005/";
 
@@ -93,39 +103,64 @@ export default {
           console.log(err);
         });
     },
+    // Login area
     loginArea() {
       this.errorMessage = "";
       this.displayLoginStatus = !this.displayLoginStatus;
     },
+    // Register button
     register() {
       this.displayLoginStatus = false;
-      this.$router.push({ name: "Register" });
+      this.$router.push({ name: "RegisterUser" });
     },
+    // Logout button
     logout() {
-      this.$store.commit("SET_LOGGED_IN", false);
-      this.$store.commit("SET_USERNAME", ""),
-      this.$store.commit("SET_ADMIN_STATE", 0)
-      this.$router.push({ name: "Home" });
+      // Check if user wants to logout
+      let askLogout = confirm("Är du säker att du vill logga ut?")
+      if(askLogout){
+        this.$store.commit("SET_LOGGED_IN", false);
+        this.$store.commit("SET_USERNAME", ""),
+        this.$store.commit("SET_ADMIN_STATE", 0)
+        this.$router.push({ name: "Home" });
+      }
+      else{
+        console.log("Stayed logged in")
+      }
+    },
+    // Reset password button
+    resetPassword(){
+      this.displayLoginStatus = !this.displayLoginStatus
+      this.$router.push({name: "ResetPassword"})
+    },
+    // Change whitebar
+    changeWhitebar(){
+      if(this.$route.name == "Home"){
+        this.homeScreen = true
+      }
+      else{
+        this.homeScreen = false
+      }
     }
   },
   computed: {
     displayLogin() {
       if (this.displayLoginStatus) {
         return {
-          display: "block"
-        };
+          "display": "block",
+        }
       } else {
-        return {};
+        return {}
       }
     },
     setWhiteNavbar() {
-      if (this.displayLoginStatus) {
-        return {
-          "background-color": "white"
-        };
-      } else {
-        return {};
+      if(this.homeScreen){
+        return{
+          "background-color":"transparent"
+        }
       }
+      else{
+        return {}
+      } 
     },
     setNavbarText() {
       if (this.displayLoginStatus) {
@@ -145,6 +180,7 @@ nav {
   width: 100%;
   height: 75px;
   z-index: 9999;
+  display: flex;
 }
 ul,
 li {
@@ -154,9 +190,7 @@ li {
 }
 #left-column {
   width: 40%;
-  height: 100%;
-  float: left;
-  background-color: transparent;
+  background-color: white;
 }
 
 .travelText {
@@ -171,8 +205,6 @@ li {
 
 #right-column {
   width: 60%;
-  height: 100%;
-  float: right;
   background-color: white;
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
@@ -223,14 +255,21 @@ li {
 #login-fullscreen {
   width: 100%;
   height: 100vh;
-  background: rgba(128, 128, 128, 0.9);
   position: fixed;
+  background-image: radial-gradient(
+    circle 1224px at 10.6% 8.8%,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(153, 202, 251, 0.9) 100.2%
+  );
   display: none;
-  z-index: 2;
+  margin-top: -75px;
+  z-index: 25;
 }
+
 #login-area {
   width: 25%;
-  height: 55%;
+  min-width: 300px;
+  height: auto;
   background-color: white;
   margin: auto;
   position: relative;

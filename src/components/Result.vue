@@ -18,36 +18,84 @@
         </select>
       </div>
     </div>
-    <h3>Found 1 travel</h3>
+    <div class="res-found-wrapper">
+      <h3
+        class="res-found"
+      >Hittade {{searchResult.length}} resultat för {{this.$store.state.from}} till {{this.$store.state.to}}</h3>
+    </div>
     <section id="results-container">
       <!--- result object --->
-      <div class="results-object">
-        <div class="rating">
-          <span>☆</span>
-          <span>☆</span>
-          <span>☆</span>
-          <span>☆</span>
-          <span>☆</span>
+      <div class="results-object" v-for="(result, index) in searchResult" :key="index">
+        <div class="top-bar">
+          <div class="left-part">
+            <div class="rating">
+              <span @click="insertRating(5, result.id)">☆</span>
+              <span @click="insertRating(4, result.id)">☆</span>
+              <span @click="insertRating(3, result.id)">☆</span>
+              <span @click="insertRating(2, result.id)">☆</span>
+              <span @click="insertRating(1, result.id)">☆</span>
+            </div>
+          </div>
+          <div class="remove-button" v-if="checkAdmin">
+            <input class="remove-post-button font" type="button" value="Radera inlägg" @click="deleteTravel(result.id)">
+          </div>
         </div>
-        <span class="destinations">From Götlaborg</span>
-        <span class="destinations">to Rome</span>
 
-        <ul id="travel-info">
-          <li>9487 SEK</li>
-          <li>Stops: 3</li>
-          <li>Traveltime</li>
-        </ul>
+        <div class="from-wrapper">
+          <span class="destinations">{{result.from}}</span>
+        </div>
+        <!-- Replace line with icons -->
+        <div class="line-wrapper">
+          <div class="line">|</div>
+          <font-awesome-icon class="icons" icon="car" size="2x" />
+        </div>
+
+        <div
+          class="milestone-wrapper"
+          v-for="(res, ind) in searchResult[index].milestones"
+          :key="ind"
+        >
+          <div class="milestones">
+            <span>{{result.milestones[ind].city}}</span>
+            <span>{{result.milestones[ind].country}}</span>
+
+            <div class="hotel">
+              <font-awesome-icon icon="hotel" size="1x" />
+              {{result.milestones[ind].resident}}
+            </div>
+          </div>
+          <!-- Add icon specific (From db) -->
+          <div class="line-wrapper">
+            <font-awesome-icon class="icons" icon="plane" size="2x" />
+          </div>
+        </div>
+
         <!--- loop to get all icons --->
         <!--- Icons (Create enum with icons) --->
-        <span id="travel-icons">
+        <!-- <span id="travel-icons">
           <p>
             <font-awesome-icon icon="plane" size="2x" />
             <font-awesome-icon icon="ship" size="2x" />
             <font-awesome-icon icon="car" size="2x" />
           </p>
-        </span>
+        </span>-->
 
-        <input type="button" value="View Details" />
+        <div class="line-wrapper">
+          <div class="line">|</div>
+        </div>
+        <!-- Replace line with icons -->
+        <div class="to-wrapper">
+          <span class="destinations">{{result.to}}</span>
+        </div>
+        <div id="travel-info">
+          <span>Antal Resemål {{result.milestones.length}}</span>
+          <span>
+            <font-awesome-icon icon="hourglass-end" size="1x" />
+            {{result.traveltime}}
+          </span>
+        </div>
+
+        <input class="info-btn" type="button" value="Läs mer om resan" />
         <!--- View all details --->
       </div>
     </section>
@@ -71,12 +119,64 @@ export default {
   methods: {
     openFilterMenu() {
       this.filterMenu = !this.filterMenu;
+    },
+    insertRating(value, index) {
+      const values = { rating: value, index: index };
+
+      let url = "http://localhost:3005/";
+
+      this.axios
+        .post(url + "rating/", values)
+        .then(response => {
+          console.log(response.data);
+        })
+        .catch(err => {
+          console.log(err.response.data);
+        });
+    },
+    deleteTravel(id){
+      //Verify that the user wants to delete the post.
+      let securityCheck = confirm("Är du säker att du vill radera inlägget?")
+      if(securityCheck){
+        let url = "http://localhost:3005/"
+        let credentials = { id: id }
+
+        this.axios
+        .post(url + "delete-post/", credentials)
+        .then(response => {
+          this.travelArray = []
+          this.fetchTravels()
+          
+          alert(response.data.message)
+        })
+        .catch(err => {
+          console.log(err.response.data)
+        })
+
+      }else{
+        console.log("Avbryt")
+      }
+    }
+  },
+  computed: {
+    searchResult: {
+      get() {
+        return this.$store.state.results;
+      }
+    },
+    checkAdmin(){
+      return this.$store.state.admin
     }
   }
 };
 </script>
 
-<style>
+<style scoped>
+.results-object{
+  margin-top: 25px;
+  margin-bottom: 25px;
+  background-color: white;
+}
 h3 {
   font-family: "Montserrat", sans-serif;
   color: white;
@@ -85,7 +185,6 @@ h3 {
 }
 
 #results-container {
-  background-color: white;
   opacity: 0.9;
   width: 90%;
   margin: auto;
@@ -210,4 +309,121 @@ h3 {
 .results-inputs {
   margin: 1em;
 }
+
+.from-wrapper,
+.to-wrapper {
+  text-align: center;
+  font-size: 18pt;
+  color: rgb(5, 41, 75);
+}
+
+.milestone-wrapper {
+  text-align: center;
+  margin: 1em;
+}
+
+.milestones {
+  font-weight: 300;
+  color: rgb(5, 41, 75);
+  background-color: #8ec5fc1a;
+  font-size: 13pt;
+  margin-left: 1em;
+  margin-right: 1em;
+  padding: 1em;
+}
+.milestones span {
+  margin: 0.3em;
+}
+
+.hotel {
+  margin-top: 0.5em;
+  font-size: 15pt;
+}
+
+.line-wrapper {
+  text-align: center;
+  color: rgb(5, 41, 75);
+}
+
+.line {
+  font-size: 1.5em;
+  font-weight: 100;
+  margin: 0.4em;
+}
+
+#travel-info {
+  text-align: center;
+  margin-top: 1em;
+  color: rgb(5, 41, 75);
+}
+
+#travel-info span {
+  margin: 1em;
+}
+
+.info-btn {
+  border: none;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+  background-color: rgb(5, 41, 75);
+  padding: 10px 40px;
+  margin: 0 auto;
+  margin-top: 1em;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.res-found-wrapper {
+  width: 90%;
+  margin: auto;
+}
+
+.res-found {
+  color: rgb(5, 41, 75);
+}
+
+.top-bar{
+  width: 100%;
+  height: 40px;
+}
+.left-part{
+  width: 50%;
+  height: 40px;
+  float: left;
+}
+.remove-button{
+  width: 50%;
+  height: 40px;
+  float: right;
+}
+
+.remove-post-button{
+  width: 20%;
+  height: 40px;
+  background-color: #026f7e;
+  border: 0px;
+  cursor: pointer;
+  color: white;
+  float: right;
+}
+
+@media screen and (max-width: 1130px) {
+  .remove-post-button{
+    width: 50%;
+    height: 40px;
+    background-color: #026f7e;
+    border: 0px;
+    cursor: pointer;
+    color: white;
+    float: right;
+  }
+}
+
 </style>

@@ -57,7 +57,11 @@ export default {
   font-weight: 400;
   color: black;
   font-size: 15px;
+  width: 100%;
+  height: 45px;
+  box-sizing: border-box;
   padding: 10px 40px;
+  margin-bottom: 5px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 

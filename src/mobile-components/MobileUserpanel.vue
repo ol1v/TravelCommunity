@@ -21,19 +21,16 @@ export default {};
 nav {
   width: 100%;
   height: 50px;
+  /* background-color: #8ec5fc; */
   box-shadow: 0px 0.1px 0px 1px rgba(142, 197, 252, 0.2);
   margin-top: 1px;
 }
 #left-user-column {
-  width: 50%;
-  height: 50px;
+  width: 100%;
+  height: auto;
+  overflow: auto;
+  white-space: nowrap;
   background: rgb(142, 197, 252);
-  /* background-image: radial-gradient(
-    circle 1224px at 10.6% 8.8%,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(153, 202, 251, 0.9) 100.2%
-  ); */
-
   background: linear-gradient(
     90deg,
     rgb(142, 197, 252),
@@ -53,7 +50,7 @@ li {
   font-family: "Montserrat", sans-serif;
   font-size: 15px;
   text-decoration: none;
-  color: white;
+  color: black;
   padding-left: 10px;
   padding-right: 10px;
   line-height: 50px;

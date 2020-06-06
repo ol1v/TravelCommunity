@@ -1,27 +1,27 @@
 <template>
   <div>
-    <div id="wrapper">
-      <div id="change-pass-wrapper">
-        <h2 class="center font">Ändra lösenord</h2>
-        <!-- Current password -->
-        <label for="ch-currentPass" class="font">Nuvarande lösenord</label>
-        <input type="password" id="ch-currentPass" class="change-pass-input font" v-model="currentPass">
-        
-        <!-- New password -->
-        <label for="ch-newPass" class="font">Nytt lösenord</label>
-        <input :type="showPass" id="ch-newPass" class="change-pass-input font" v-model="newPass">
-        
-        <!-- Repeat password -->
-        <label for="ch-repeatPass" class="font">Repetera lösenord</label>
-        <input :type="showPass" id="ch-repeatPass" class="change-pass-input font" v-model="repeatPass">
-        
-        <!-- Show/hide password -->
-        <input type="checkbox" id="ch-showPass" @click="showPassword">
-        <label for="ch-showPass" class="font">Visa lösenord</label>
-        
-        <!-- Button to change password -->
-        <input type="button" value="Byt lösenord" class="change-pass-button font" @click="changePassword">
+    <div id="pass-wrapper">
+      <h2 class="center font">Ändra lösenord</h2>
+
+      <div class="input-x">
+        <label for="currentPass" class="font">Nuvarande lösenord</label>
+        <input type="password" id="currentPass" class="change-pass-input font" v-model="currentPass">
       </div>
+
+      <div class="input-x">
+        <label for="newPass" class="font">Nytt lösenord</label>
+        <input :type="showPass" id="newPass" class="change-pass-input font" v-model="newPass">
+      </div>
+
+      <div class="input-x">
+        <label for="repeatPass" class="font spacing">Repetera lösenord</label>
+        <input :type="showPass" id="repeatPass" class="change-pass-input font" v-model="repeatPass">
+      </div>
+
+      <input type="checkbox" id="showPass" @click="showPassword">
+      <label for="showPass" class="font">Visa lösenord</label>
+
+      <input type="button" value="Byt lösenord" class="change-pass-button font" @click="changePassword">
     </div>
   </div>
 </template>
@@ -39,11 +39,8 @@ export default {
     }
   },
   methods:{
-    // Method for changing a user password
     changePassword(){
-      // If password matches repeat password
       if(this.newPass == this.repeatPass){
-        // If passwords lenght is 6+
         if(this.newPass.length > 5){
           let credentials = { username: this.$store.state.username, currentPass: this.currentPass, newPass: this.newPass }
           let url = "http://localhost:3005/"
@@ -74,15 +71,14 @@ export default {
 </script>
 
 <style scoped>
-#wrapper{
-  width: 40%;
-  height: auto;
-  margin: auto;
+#pass-wrapper{
+  width: 100%;
+  height: 500px;
+  background-color: transparent;
 }
-#change-pass-wrapper{
-  width: 50%;
-  height: auto;
-  margin: auto;
+
+.input-x{
+  margin-top: 10px;
 }
 
 .change-pass-input{
@@ -99,4 +95,5 @@ export default {
   color: white;
   border: 0;
 }
+
 </style>
