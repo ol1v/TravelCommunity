@@ -25,7 +25,6 @@
             <span v-if="travelArray[index].ratingScore >= 5">☆</span>
           </span>
 
-          <!-- <button class="full-travel-button" @click="fullTravelBtnClicked(index)">{{travelButtonText}} {{travelArray[index].milestones.length}} delmål</button> -->
           <button v-if="!postIds[index].show" class="full-travel-button" @click="showFullTravel(index)">Se {{travelArray[index].milestones.length}} delmål</button>
           <button v-if="postIds[index].show" class="full-travel-button" @click="hideFullTravel(index)">Göm {{travelArray[index].milestones.length}} delmål</button>
         
@@ -107,7 +106,7 @@ export default {
   data() {
     return {
       travelArray: [],
-      postIds: [],
+      postIds: []
     };
   },
   created() {
@@ -377,6 +376,7 @@ export default {
 .right-col {
   width: 50%;
   text-align: right;
+  color: rgb(5, 41, 75);
 }
 .col-x{
   width: 100%;

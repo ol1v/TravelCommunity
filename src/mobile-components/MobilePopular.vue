@@ -26,7 +26,8 @@
           </span>
         </div>
 
-        <button class="full-travel-button" @click="fullTravelBtnClicked" >{{travelButtonText}} {{travelArray[index].milestones.length}} delmål</button>
+        <button v-if="!postIds[index].show" class="full-travel-button" @click="showFullTravel(index)">Se {{travelArray[index].milestones.length}} delmål</button>
+        <button v-if="postIds[index].show" class="full-travel-button" @click="hideFullTravel(index)">Göm {{travelArray[index].milestones.length}} delmål</button>
 
         <!-- From location -->
         <div>
@@ -38,7 +39,7 @@
           </div>
         </div>
         <!--- from vehicle icon --->
-        <div class="transportation-img" v-if="toggleFullTravel">
+        <div class="transportation-img">
           <p>
             <font-awesome-icon icon="car" size="2x" />
           </p>
@@ -46,7 +47,7 @@
 
         <!-- Milestones -->
         <div v-for="(milestones, ind) in travelArray[index].milestones" :key="ind">
-          <div class="content-wrapper-milestones" v-if="toggleFullTravel">
+          <div class="content-wrapper-milestones" v-if="postIds[index].show">
             <p class="content-text-milestones">
               <span class="city">{{travelArray[index].milestones[ind].city}}</span>
               <span class="country">{{travelArray[index].milestones[ind].country}}</span>
@@ -55,7 +56,7 @@
               <font-awesome-icon icon="hotel" size="1x" />
               {{travelArray[index].milestones[ind].resident}}
             </p>
-            <div class="transportation-img" v-if="toggleFullTravel">
+            <div class="transportation-img" v-if="postIds[index].show">
               <p>
                 <font-awesome-icon icon="plane" size="2x" />
               </p>
@@ -69,9 +70,15 @@
             <span class="finish">{{travelArray[index].to}}</span>
             <span class="country">{{travelArray[index].toCountry}}</span>
           </p>
-          <p class="map-pin">
-            <font-awesome-icon icon="map-pin" size="2x" />
-          </p>
+          <div class="col-x">
+            <span class="left-col font">
+              <font-awesome-icon class="hotel-img" icon="hotel" size="1x" />
+              {{travelArray[index].toResident}}
+            </span>
+            <span class="right-col">
+              <font-awesome-icon icon="map-pin" size="2x" />
+            </span>
+          </div>
         </div>
 
         <!-- Price & Traveltime -->
@@ -99,8 +106,7 @@ export default {
   data() {
     return {
       travelArray: [],
-      toggleFullTravel: false,
-      travelButtonText: "Se"
+      postIds: []
     };
   },
   created() {
@@ -115,6 +121,7 @@ export default {
         .then(response => {
           for (let i = 0; i < response.data.travelData.length; i++) {
             this.travelArray.push(response.data.travelData[i]);
+            this.postIds.push({"show":false})
           }
         })
         .catch(err => {
@@ -144,13 +151,12 @@ export default {
         console.log("Avbryt")
       }
     },
-    fullTravelBtnClicked() {
-      this.toggleFullTravel = !this.toggleFullTravel;
-      if (this.toggleFullTravel) {
-        this.travelButtonText = "Göm";
-      } else {
-        this.travelButtonText = "Se";
-      }
+    showFullTravel(index) {
+      this.$set(this.postIds, index, { "show": true})
+
+    },
+    hideFullTravel(index){
+      this.$set(this.postIds, index, { "show": false})
     }
   },
   computed:{
@@ -285,5 +291,27 @@ export default {
   width: 100%;
   height: auto;
   text-align: center;
+}
+
+.hotel-img{
+  margin-top: 16px;
+  padding-right: 10px;
+  color: rgb(5, 41, 75);
+}
+
+.left-col {
+  width: 80%;
+  text-align: left;
+}
+.right-col {
+  width: 20%;
+  text-align: right;
+  color: rgb(5, 41, 75);
+}
+.col-x{
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
 }
 </style>
