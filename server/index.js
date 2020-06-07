@@ -547,12 +547,26 @@ app.post('/all-users', (request, response) => {
 
 
 //Putte's notering. DONT TOUCHHHHHHHHHH
-  // var obj = [{"city":"asd", "country":"asd"}]
-  // let json = JSON.stringify(obj)
+// var obj = [{"city":"asd", "country":"asd"}]
+// let json = JSON.stringify(obj)
 
-  // console.log(obj)
+// console.log(obj)
 
-  // con.query(`INSERT INTO travel (username, fromLoc, milestones) VALUES("putt", "älv", ?)`, json, function(err, result){
-  //   if(err) throw err
-  //   console.log("pushed new")
-  // })
+// con.query(`INSERT INTO travel (username, fromLoc, milestones) VALUES("putt", "älv", ?)`, json, function(err, result){
+//   if(err) throw err
+//   console.log("pushed new")
+// })
+
+// CreateTrip
+app.post('/create-trip2', (request, response) => {
+  let newTrip = request.body.trip
+  console.log(newTrip)
+  console.log(newTrip.milestones[0])
+
+  // insert into db - fill query
+  con.query(`INSERT INTO travel VALUES (${con.escape(newTrip.username)}, ${con.escape(newTrip.from)} )`, function (error, result) {
+    if (error) throw error
+  })
+
+  return response.status(201)
+})

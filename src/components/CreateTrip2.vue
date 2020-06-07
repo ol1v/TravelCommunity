@@ -97,7 +97,7 @@ export default {
       createdTripSuccess: false,
       milestone: { city: null, country: null, resident: null, transport: null }, // push this milestone to trip.milestones when adding a new milestone
       trip: {
-        user: null,
+        username: this.$store.state.username,
         from: null,
         fromCountry: null,
         transport: null,
@@ -134,6 +134,19 @@ export default {
       // post to db
       console.log(this.trip);
       console.log(this.milestone);
+
+      const credentials = { trip: this.trip };
+      let url = "http://localhost:3005/";
+
+      this.axios
+        .post(url + "create-trip2/", credentials)
+        .then(response => {
+          console.log("SUCCESS!");
+          console.log(response);
+        })
+        .catch(err => {
+          console.log("err:" + err);
+        });
       // show success (connect with db 201)
       this.createdTripSuccess = true;
       // reset variables
@@ -142,7 +155,6 @@ export default {
       this.createdTripSuccess = false;
       this.milestone = { city: null, country: null, resident: null };
       this.trip = {
-        user: null,
         from: null,
         fromCountry: null,
         transport: null,
