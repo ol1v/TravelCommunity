@@ -8,7 +8,7 @@
       <div class="newtrip" v-if="toggleTravelForm">
         <!-- New Travel form -->
         <div class="from-wrapper">
-          <h4>Välj startdestination för din resa</h4>
+          <h3>Välj startdestination för din resa</h3>
           <label for="from"></label>
           <input id="from" type="text" placeholder="from" v-model="trip.from" />
         </div>
@@ -18,17 +18,17 @@
         <!-- From to first milestone transport -->
         <div class="icon-buttons">
           <h4>Välj transportmedel till nästa resemål</h4>
-          <input type="radio" id="car" name="transport" value="0" />
+          <input type="radio" id="car" name="transport" value="0" v-model="trip.transport" />
           <label for="car">
             <font-awesome-icon icon="car" size="2x" />
           </label>
 
-          <input type="radio" id="plane" name="transport" value="1" />
+          <input type="radio" id="plane" name="transport" value="1" v-model="trip.transport" />
           <label for="plane">
             <font-awesome-icon icon="plane" size="2x" />
           </label>
 
-          <input type="radio" id="boat" name="transport" value="2" />
+          <input type="radio" id="boat" name="transport" value="2" v-model="trip.transport" />
           <label for="boat">
             <font-awesome-icon icon="ship" size="2x" />
           </label>
@@ -47,33 +47,40 @@
           <p class="milestone-errmsg" v-bind="milestoneErrorMsg">{{ milestoneErrorMsg }}</p>
           <!-- milestone travelradiobuttons -->
           <h4>Ange transportmedel till nästa resemål</h4>
-          <input type="radio" id="car" name="transport" value="0" />
+          <input type="radio" id="car" name="transport" value="0" v-model="milestone.transport" />
           <label for="car">
             <font-awesome-icon icon="car" size="2x" />
           </label>
 
-          <input type="radio" id="plane" name="transport" value="1" />
+          <input type="radio" id="plane" name="transport" value="1" v-model="milestone.transport" />
           <label for="plane">
             <font-awesome-icon icon="plane" size="2x" />
           </label>
 
-          <input type="radio" id="boat" name="transport" value="2" />
+          <input type="radio" id="boat" name="transport" value="2" v-model="milestone.transport" />
           <label for="boat">
             <font-awesome-icon icon="ship" size="2x" />
           </label>
         </div>
 
         <!-- Add another milestone -->
-        <h5>Lägg till ett till delmål</h5>
+
         <button class="addmilestone-button" v-if="toggleMilestone" @click="addMilestone">+</button>
         <!-- if more than one milestone -->
         <div class="milestone-wrapper" v-for="(milestone, index) in trip.milestones" :key="index"></div>
-
+        <h3>Välj slutdestination för din resa</h3>
         <div class="to-wrapper">
           <input type="text" placeholder="to" v-model="trip.to" />
         </div>
         <div class="country-wrapper">
           <input type="text" placeholder="country" v-model="trip.toCountry" />
+        </div>
+        <h5>Ange uppskattat pris och resetid för resan</h5>
+        <div class="price-wrapper">
+          <input type="text" placeholder="kostnad" v-model="trip.price" />
+        </div>
+        <div class="traveltime-wrapper">
+          <input type="text" placeholder="resetid" v-model="trip.traveltime" />
         </div>
         <button class="buttons" @click="createTrip">Skapa resa</button>
       </div>
@@ -88,7 +95,7 @@ export default {
       toggleTravelForm: false,
       toggleMilestone: false,
       createdTripSuccess: false,
-      milestone: { city: null, country: null, resident: null }, // push this milestone to trip.milestones when adding a new milestone
+      milestone: { city: null, country: null, resident: null, transport: null }, // push this milestone to trip.milestones when adding a new milestone
       trip: {
         user: null,
         from: null,
@@ -125,6 +132,8 @@ export default {
     },
     createTrip() {
       // post to db
+      console.log(this.trip);
+      console.log(this.milestone);
       // show success (connect with db 201)
       this.createdTripSuccess = true;
       // reset variables
@@ -150,6 +159,10 @@ export default {
 </script>
 
 <style scoped>
+h3 {
+  background-color: rgba(22, 113, 197, 0.089);
+}
+
 .CreateTrip-wrapper {
   text-align: center;
 }
@@ -162,6 +175,8 @@ export default {
 .from-wrapper,
 .to-wrapper {
   margin: 0.5em;
+}
+.country-wrapper {
 }
 input {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
