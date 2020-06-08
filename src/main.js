@@ -10,6 +10,11 @@ import axios from "axios";
 import vueAxios from "vue-axios";
 Vue.use(vueAxios, axios);
 
+//Bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'jquery/src/jquery.js'
+import 'bootstrap/dist/js/bootstrap.min.js'
+
 //Responsive
 import responsive from 'vue-responsive'
 Vue.use(responsive)
