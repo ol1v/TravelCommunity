@@ -39,12 +39,12 @@ export default {
 </script>
 
 <style scoped>
+
 .unban-user-wrapper{
-  width: 20%;
+  width: 100%;
   height: auto;
   padding: 10px;
   margin: 15px auto;
-
 }
 .unban-user-input{
   width: 100%;
@@ -59,5 +59,14 @@ export default {
   background-color: #026f7e;
   color: white;
   border: 0;
+}
+
+@media only screen and (min-width: 600px) {
+  .unban-user-wrapper{
+    width: 20%;
+    height: auto;
+    padding: 10px;
+    margin: 15px auto;
+  }
 }
 </style>

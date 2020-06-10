@@ -47,11 +47,14 @@ export default {
 </script>
 
 <style scoped>
+
 .user-wrapper{
+  width: 100%;
   margin-top: 50px;
 }
+
 #header-text{
-  width: 50%;
+  width: 100%;
   height: 50px;
   margin: 0px auto 10px;
   line-height: 50px;
@@ -60,24 +63,41 @@ export default {
 }
 .header{
   width: 33%;
+  font-size: 12px;
 }
 .btn{
   background-color: rgb(142, 197, 252);
   color: black;
   border: 0px;
   display: block;
-  width: 50%;
+  min-width: 50%;
   margin: 0 auto;
   height: 30px;
   cursor: pointer;
 }
 .users{
-  width: 50%;
+  width: 100%;
   height: 30px;
   line-height: 30px;
   margin: 10px auto;
   display: flex;
   align-content: space-between;
 }
+
+
+@media only screen and (min-width: 600px) {
+  .user-wrapper{
+    margin-top: 50px;
+    width: auto;
+  }
+  #header-text{
+    width: 100%;
+  }
+  .header{
+    width: 33%;
+    font-size: 15px;
+  }
+}
+
 
 </style>

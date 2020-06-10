@@ -81,8 +81,9 @@ export default {
 </script>
 
 <style scoped>
+
 #remove_account_wrapper{
-  width: 20%;
+  width: 100%;
   margin: auto;
 }
 
@@ -118,6 +119,20 @@ export default {
   width: 100%;
   height: 30px;
   box-sizing: border-box;
+}
+
+@media only screen and (min-width: 600px) {
+  #remove_account_wrapper{
+    width: 50%;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #remove_account_wrapper{
+    width: 20%;
+    margin: auto;
+  }
 }
 
 </style>

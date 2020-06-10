@@ -242,7 +242,6 @@ li {
   float: right;
   font-size: 18px;
   padding-right: 30px;
-  padding-left: 30px;
   cursor: pointer;
 }
 .navbar-links:hover,

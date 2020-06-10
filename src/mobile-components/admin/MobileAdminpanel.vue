@@ -15,24 +15,25 @@
     <div id="panel" @click="closePanel">
       <div id="content">
         <!-- Links -->
-        <MobileBan v-if="banBool"></MobileBan>
-        <MobileUnban v-if="unbanBool"></MobileUnban>
-        <MobileAllUsers v-if="allUsersBool"></MobileAllUsers>
+        <Ban v-if="banBool"></Ban>
+        <Unban v-if="unbanBool"></Unban>
+        <AllUsers v-if="allUsersBool"></AllUsers>
+
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import MobileBan from './MobileBan'
-import MobileUnban from './MobileUnban'
-import MobileAllUsers from './MobileAllUsers'
+  import Ban from '../../components/admin/Ban'
+  import Unban from '../../components/admin/Unban'
+  import AllUsers from '../../components/admin/AllUsers'
 
 export default {
   components:{
-    MobileBan,
-    MobileUnban,
-    MobileAllUsers
+    Ban,
+    Unban,
+    AllUsers
   },
   data(){
     return{

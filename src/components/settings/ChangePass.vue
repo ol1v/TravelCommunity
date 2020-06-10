@@ -1,27 +1,32 @@
 <template>
   <div>
     <div id="wrapper">
-      <div id="change-pass-wrapper">
         <h2 class="center font">Ändra lösenord</h2>
+
         <!-- Current password -->
-        <label for="ch-currentPass" class="font">Nuvarande lösenord</label>
-        <input type="password" id="ch-currentPass" class="change-pass-input font" v-model="currentPass">
-        
+        <div class="input-x">
+          <label for="currentPass" class="font">Nuvarande lösenord</label>
+          <input type="password" id="currentPass" class="change-pass-input font" v-model="currentPass">
+        </div>
+
         <!-- New password -->
-        <label for="ch-newPass" class="font">Nytt lösenord</label>
-        <input :type="showPass" id="ch-newPass" class="change-pass-input font" v-model="newPass">
-        
+        <div class="input-x">
+          <label for="newPass" class="font">Nytt lösenord</label>
+          <input :type="showPass" id="newPass" class="change-pass-input font" v-model="newPass">
+        </div>
+
         <!-- Repeat password -->
-        <label for="ch-repeatPass" class="font">Repetera lösenord</label>
-        <input :type="showPass" id="ch-repeatPass" class="change-pass-input font" v-model="repeatPass">
-        
-        <!-- Show/hide password -->
-        <input type="checkbox" id="ch-showPass" @click="showPassword">
-        <label for="ch-showPass" class="font">Visa lösenord</label>
-        
-        <!-- Button to change password -->
+        <div class="input-x">
+          <label for="repeatPass" class="font spacing">Repetera lösenord</label>
+          <input :type="showPass" id="repeatPass" class="change-pass-input font" v-model="repeatPass">
+        </div>
+
+        <!-- Show / hide password -->
+        <input type="checkbox" id="showPass" @click="showPassword">
+        <label for="showPass" class="font">Visa lösenord</label>
+
+        <!-- Change password button -->
         <input type="button" value="Byt lösenord" class="change-pass-button font" @click="changePassword">
-      </div>
     </div>
   </div>
 </template>
@@ -74,15 +79,23 @@ export default {
 </script>
 
 <style scoped>
+
 #wrapper{
-  width: 40%;
+  width: 100%;
   height: auto;
   margin: auto;
 }
-#change-pass-wrapper{
-  width: 50%;
-  height: auto;
-  margin: auto;
+
+@media only screen and (min-width: 600px) {
+  #wrapper{
+    width: 50%;
+    height: auto;
+    margin: auto;
+  }
+}
+
+.input-x{
+  margin-top: 10px;
 }
 
 .change-pass-input{
@@ -98,5 +111,14 @@ export default {
   background-color: #026f7e;
   color: white;
   border: 0;
+}
+
+/* Screens and tablets */
+@media only screen and (min-width: 1200px) {
+  #wrapper{
+    width: 20%;
+    height: auto;
+    margin: auto;
+  }
 }
 </style>

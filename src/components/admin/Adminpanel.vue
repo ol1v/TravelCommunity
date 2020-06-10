@@ -23,6 +23,7 @@
   import Ban from '../../components/admin/Ban'
   import Unban from '../../components/admin/Unban'
   import AllUsers from '../../components/admin/AllUsers'
+  
 export default {
   components:{
     Ban,

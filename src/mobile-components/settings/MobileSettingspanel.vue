@@ -14,20 +14,20 @@
     <div id="panel" @click="closePanel">
       <div id="content">
         <!-- Links -->
-        <MobileChangePass v-if="changePasswordBool"></MobileChangePass>
-        <MobileRemoveAccount v-if="removeAccountBool"></MobileRemoveAccount> 
+        <ChangePass v-if="changePasswordBool"></ChangePass>
+        <RemoveAccount v-if="removeAccountBool"></RemoveAccount> 
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import MobileChangePass from '../settings/MobileChangePass'
-  import MobileRemoveAccount from '../settings/MobileRemoveAccount'
+  import ChangePass from '../../components/settings/ChangePass'
+  import RemoveAccount from '../../components/settings/RemoveAccount'
 export default {
   components:{
-    MobileChangePass,
-    MobileRemoveAccount
+    ChangePass,
+    RemoveAccount
   },
   data(){
     return{

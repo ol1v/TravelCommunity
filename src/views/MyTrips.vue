@@ -1,19 +1,19 @@
 <template>
   <div>
-    <!-- <Userpanel v-responsive.md.lg.xl></Userpanel>
-    <MobileUserpanel v-responsive.sm.xs></MobileUserpanel>-->
+    <Userpanel></Userpanel>
+    <!-- <MobileUserpanel v-responsive.sm.xs></MobileUserpanel>-->
     <MyTrips :userToCheck="passUsername"></MyTrips>
   </div>
 </template>
 
 <script>
-// import Userpanel from "../components/Userpanel";
+import Userpanel from "../components/Userpanel";
 // import MobileUserpanel from "../mobile-components/MobileUserpanel";
 import MyTrips from "../components/MyTrips";
 
 export default {
   components: {
-    // Userpanel,
+    Userpanel,
     // MobileUserpanel,
     MyTrips
   },

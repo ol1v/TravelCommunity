@@ -43,11 +43,10 @@ export default {
 
 <style scoped>
 .ban-user-wrapper{
-  width: 20%;
+  width: 100%;
   height: auto;
   padding: 10px;
   margin: 15px auto;
-
 }
 .ban-user-input{
   width: 100%;
@@ -62,5 +61,23 @@ export default {
   background-color: #026f7e;
   color: white;
   border: 0;
+}
+
+@media only screen and (min-width: 600px) {
+  .ban-user-wrapper{
+    width: 50%;
+    height: auto;
+    padding: 10px;
+    margin: 15px auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .ban-user-wrapper{
+    width: 20%;
+    height: auto;
+    padding: 10px;
+    margin: 15px auto;
+  }
 }
 </style>
