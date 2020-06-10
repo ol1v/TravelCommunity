@@ -1,22 +1,18 @@
 <template>
   <div>
-    <Popular v-responsive.md.lg.xl></Popular>
-    <MobilePopular v-responsive.sm.xs></MobilePopular>
+    <Popular></Popular>
   </div>
 </template>
 
 <script>
-import Popular from '../components/Popular'
-import MobilePopular from '../mobile-components/MobilePopular'
+import Popular from "../components/Popular";
 
 export default {
-  components:{
-    Popular,
-    MobilePopular
+  components: {
+    Popular
   }
-}
+};
 </script>
 
 <style>
-
 </style>

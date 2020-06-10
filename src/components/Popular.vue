@@ -6,12 +6,16 @@
         <div class="profile-image"></div>
         <h4 class="username-text">{{travelArray[index].username}}</h4>
         <h4 class="username-text">Uppladdat: {{travelArray[index].timestamp}}</h4>
-        
+
         <!-- Remove post as an admin-->
         <div class="remove-data" v-if="checkAdmin">
-          <input class="remove-post-button font" type="button" value="Radera inlägg" @click="deleteTravel(travelArray[index].id)">
+          <input
+            class="remove-post-button font"
+            type="button"
+            value="Radera inlägg"
+            @click="deleteTravel(travelArray[index].id)"
+          />
         </div>
-
       </div>
       <!-- Data -->
       <div class="right-column">
@@ -25,9 +29,16 @@
             <span v-if="travelArray[index].ratingScore >= 5">☆</span>
           </span>
 
-          <button v-if="!postIds[index].show" class="full-travel-button" @click="showFullTravel(index)">Se {{travelArray[index].milestones.length}} delmål</button>
-          <button v-if="postIds[index].show" class="full-travel-button" @click="hideFullTravel(index)">Göm {{travelArray[index].milestones.length}} delmål</button>
-        
+          <button
+            v-if="!postIds[index].show"
+            class="full-travel-button"
+            @click="showFullTravel(index)"
+          >Se {{travelArray[index].milestones.length}} delmål</button>
+          <button
+            v-if="postIds[index].show"
+            class="full-travel-button"
+            @click="hideFullTravel(index)"
+          >Göm {{travelArray[index].milestones.length}} delmål</button>
         </div>
         <!-- From location -->
         <div>
@@ -110,10 +121,10 @@ export default {
     };
   },
   created() {
-    this.fetchTravels()
+    this.fetchTravels();
   },
   methods: {
-    fetchTravels(){
+    fetchTravels() {
       let url = "http://localhost:3005/";
 
       this.axios
@@ -121,47 +132,45 @@ export default {
         .then(response => {
           for (let i = 0; i < response.data.travelData.length; i++) {
             this.travelArray.push(response.data.travelData[i]);
-            this.postIds.push({"show":false})
+            this.postIds.push({ show: false });
           }
         })
         .catch(err => {
           console.log(err);
         });
     },
-    deleteTravel(id){
+    deleteTravel(id) {
       //Verify that the user wants to delete the post.
-      let securityCheck = confirm("Är du säker att du vill radera inlägget?")
-      if(securityCheck){
-        let url = "http://localhost:3005/"
-        let credentials = { id: id }
+      let securityCheck = confirm("Är du säker att du vill radera inlägget?");
+      if (securityCheck) {
+        let url = "http://localhost:3005/";
+        let credentials = { id: id };
 
         this.axios
-        .post(url + "delete-post/", credentials)
-        .then(response => {
-          this.travelArray = []
-          this.fetchTravels()
-          
-          alert(response.data.message)
-        })
-        .catch(err => {
-          console.log(err.response.data)
-        })
+          .post(url + "delete-post/", credentials)
+          .then(response => {
+            this.travelArray = [];
+            this.fetchTravels();
 
-      }else{
-        console.log("Avbryt")
+            alert(response.data.message);
+          })
+          .catch(err => {
+            console.log(err.response.data);
+          });
+      } else {
+        console.log("Avbryt");
       }
     },
     showFullTravel(index) {
-      this.$set(this.postIds, index, { "show": true})
-
+      this.$set(this.postIds, index, { show: true });
     },
-    hideFullTravel(index){
-      this.$set(this.postIds, index, { "show": false})
+    hideFullTravel(index) {
+      this.$set(this.postIds, index, { show: false });
     }
   },
-  computed:{
-    checkAdmin(){
-      return this.$store.state.admin
+  computed: {
+    checkAdmin() {
+      return this.$store.state.admin;
     }
   }
 };
@@ -265,7 +274,7 @@ export default {
   width: 90%;
   height: 100pt;
   margin: 30pt auto;
-  background-color: #E6E9ED;
+  background-color: #e6e9ed;
   border-radius: 5px;
   line-height: 50px;
 }
@@ -349,7 +358,7 @@ export default {
   line-height: 20px;
   color: gold;
 }
-.remove-post-button{
+.remove-post-button {
   width: 50%;
   height: 40px;
   background-color: #026f7e;
@@ -357,13 +366,13 @@ export default {
   cursor: pointer;
   color: white;
 }
-.remove-data{
+.remove-data {
   width: 100%;
   height: 50px;
   text-align: center;
 }
 
-.hotel-img{
+.hotel-img {
   margin-top: 16px;
   padding-right: 10px;
   color: rgb(5, 41, 75);
@@ -378,10 +387,44 @@ export default {
   text-align: right;
   color: rgb(5, 41, 75);
 }
-.col-x{
+.col-x {
   width: 100%;
   padding: 10px;
   box-sizing: border-box;
   display: flex;
+}
+@media screen and (max-width: 1200px) {
+  .travel-data-wrapper {
+    width: 80%;
+    height: auto;
+    margin: 50px auto;
+    display: flex;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+}
+@media screen and (max-width: 800px) {
+  .travel-data-wrapper {
+    width: 100%;
+    height: auto;
+    margin: 50px auto;
+    display: flex;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+  .content-wrapper-milestones {
+    width: 100%;
+    height: 80pt;
+    margin: 30pt auto;
+    background-color: #e6e9ed;
+    border-radius: 5px;
+    line-height: 50px;
+  }
+  .content-wrapper {
+    width: 100%;
+    height: 100pt;
+    margin-top: 5em;
+    border-radius: 5px;
+    background-color: white;
+    line-height: 50px;
+  }
 }
 </style>
