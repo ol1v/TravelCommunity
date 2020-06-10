@@ -11,9 +11,9 @@ import vueAxios from "vue-axios";
 Vue.use(vueAxios, axios);
 
 //Bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'jquery/src/jquery.js'
-import 'bootstrap/dist/js/bootstrap.min.js'
+// import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'jquery/src/jquery.js'
+// import 'bootstrap/dist/js/bootstrap.min.js'
 
 //Responsive
 import responsive from 'vue-responsive'
@@ -28,7 +28,7 @@ import { faHotel } from "@fortawesome/free-solid-svg-icons";
 import { faMapPin } from "@fortawesome/free-solid-svg-icons";
 import { faHourglassEnd } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faShieldAlt } from "@fortawesome/free-solid-svg-icons" 
+import { faShieldAlt } from "@fortawesome/free-solid-svg-icons"
 import { faUserCog } from "@fortawesome/free-solid-svg-icons"
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons"
 

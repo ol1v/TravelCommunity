@@ -2,161 +2,195 @@
   <div class="container">
     <div class="row my-row">
       <div class="col">
-        <input type="text" v-model="routeStructure.startLoc" placeholder="Start destination..">
+        <input type="text" v-model="routeStructure.startLoc" placeholder="Start destination.." />
       </div>
     </div>
-    
+
     <div v-for="entry in routeStructure.milestonesData" :key="entry.id" class="row my-row">
       <div class="col">
-        <input type="text" v-model="entry.city" placeholder="City..">
+        <input type="text" v-model="entry.city" placeholder="City.." />
       </div>
       <div class="col">
-        <input type="text" v-model="entry.country" placeholder="Country..">
+        <input type="text" v-model="entry.country" placeholder="Country.." />
       </div>
       <div class="col">
-        <input type="text" v-model="entry.resident" placeholder="Resident..">
+        <input type="text" v-model="entry.resident" placeholder="Resident.." />
       </div>
       <div class="col">
         <select v-model="entry.transport">
-        <option selected disabled="">Transportation</option>
-        <option value="airplane">Airplane</option>
-        <option value="train">Train</option>
-        <option value="boat">Boat</option>
-        <option value="car">Car</option></select>
+          <option selected disabled>Transportation</option>
+          <option value="airplane">Airplane</option>
+          <option value="train">Train</option>
+          <option value="boat">Boat</option>
+          <option value="car">Car</option>
+        </select>
       </div>
       <div class="col">
-        <input class="centerButton" type="button" value="Remove" @click="removeRoute(entry)">
+        <input class="centerButton" type="button" value="Remove" @click="removeRoute(entry)" />
       </div>
     </div>
-      
-  <div class="container">
-    <div class="row my-row">
-      <div class="col">
-        <input type="text" v-model="milestone.city" placeholder="City..">
-      </div>
-      <div class="col">
-        <input type="text" v-model="milestone.country" placeholder="Country..">
-      </div>
-      <div class="col">
-        <input type="text" v-model="milestone.resident" placeholder="Resident..">
-      </div>
-      <div class="col">
-        <select v-model="milestone.transport">
-        <option selected disabled="">Transportation</option>
-        <option value="airplane">Airplane</option>
-        <option value="train">Train</option>
-        <option value="boat">Boat</option>
-        <option value="car">Car</option></select>
-      </div>
-      <div class="col">
-        <input class="centerButton" type="button" value="Add" @click="addRoute()">
+
+    <div class="container">
+      <div class="row my-row">
+        <div class="col">
+          <input type="text" v-model="milestone.city" placeholder="City.." />
+        </div>
+        <div class="col">
+          <input type="text" v-model="milestone.country" placeholder="Country.." />
+        </div>
+        <div class="col">
+          <input type="text" v-model="milestone.resident" placeholder="Resident.." />
+        </div>
+        <div class="col">
+          <select v-model="milestone.transport">
+            <option selected disabled>Transportation</option>
+            <option value="airplane">Airplane</option>
+            <option value="train">Train</option>
+            <option value="boat">Boat</option>
+            <option value="car">Car</option>
+          </select>
+        </div>
+        <div class="col">
+          <input class="centerButton" type="button" value="Add" @click="addRoute()" />
+        </div>
       </div>
     </div>
-  </div>
 
     <div class="row my-row">
       <div class="col">
-        <input type="text" v-model="routeStructure.endLoc" placeholder="End destination..">
+        <input type="text" v-model="routeStructure.endLoc" placeholder="End destination.." />
       </div>
       <div class="col">
-        <input type="number" v-model.number="routeStructure.price" placeholder="Estimated travel cost">
+        <input
+          type="number"
+          v-model.number="routeStructure.price"
+          placeholder="Estimated travel cost"
+        />
       </div>
       <div class="col">
-        <input type="checkbox" v-model="routeStructure.isPublic" id="isPublicCheckbox">
+        <input type="checkbox" v-model="routeStructure.isPublic" id="isPublicCheckbox" />
         <label for="isPublicCheckbox">Make trip private {{ routeStructure.isPublic }}</label>
       </div>
     </div>
 
-    <input class="centerButton" type="button" value="Debug log" @click="printObject()">
-
+    <input class="centerButton" type="button" value="Debug log" @click="printObject()" />
   </div>
 </template>
 
 <script>
 export default {
- data(){
-    return{
+  data() {
+    return {
       routeStructure: {
-        startLoc: '',
+        startLoc: "",
         milestonesData: [],
-        endLoc: '',
+        endLoc: "",
         price: Number(),
         isPublic: false
       },
-      milestone: {city: '', country: '', resident: '', transport: 'Transportation'},
-    }
+      milestone: {
+        city: "",
+        country: "",
+        resident: "",
+        transport: "Transportation"
+      }
+    };
   },
   methods: {
     //Adding a new route when pressing the button under the form.
-    addRoute(){
-      if(this.milestone.city.length < 1 || this.milestone.country.length < 1 || this.milestone.resident.length < 1 || this.milestone.transport == 'Transportation'){
-        console.log('All fields must be used')
+    addRoute() {
+      if (
+        this.milestone.city.length < 1 ||
+        this.milestone.country.length < 1 ||
+        this.milestone.resident.length < 1 ||
+        this.milestone.transport == "Transportation"
+      ) {
+        console.log("All fields must be used");
         //Put some red icon / warning sign
-      } else{
-        console.log(this.milestone.city)
-      this.routeStructure.milestonesData.push({city: this.milestone.city, country: this.milestone.country, resident: this.milestone.resident, transport: this.milestone.transport})
+      } else {
+        console.log(this.milestone.city);
+        this.routeStructure.milestonesData.push({
+          city: this.milestone.city,
+          country: this.milestone.country,
+          resident: this.milestone.resident,
+          transport: this.milestone.transport
+        });
 
-      this.milestone.city = ''
-      this.milestone.country = ''
-      this.milestone.resident = ''
-      this.milestone.transport = 'Transportation'
-      
-      console.log('Added new route, ' + this.routeStructure.milestonesData.length + ' routes')
+        this.milestone.city = "";
+        this.milestone.country = "";
+        this.milestone.resident = "";
+        this.milestone.transport = "Transportation";
+
+        console.log(
+          "Added new route, " +
+            this.routeStructure.milestonesData.length +
+            " routes"
+        );
       }
     },
-    removeRoute(object){
-      console.log(object)
+    removeRoute(object) {
+      console.log(object);
       var i = this.routeStructure.milestonesData.indexOf(object);
-      console.log(i)
-      this.routeStructure.milestonesData.splice(i ,1);
+      console.log(i);
+      this.routeStructure.milestonesData.splice(i, 1);
 
-      console.log(this.routeStructure.milestonesData.length + ' routes')
+      console.log(this.routeStructure.milestonesData.length + " routes");
     },
 
-    printObject(){
-      console.log('\n \n* RouteStructure object \n \n' + this.routeStructure.startLoc + ' - Start location.')  
-      
-      for(var i = 0; i < this.routeStructure.milestonesData.length; i++){
-        console.log('\n \nMilestone: ' + (i+1) + '\n \n')
-        console.log(this.routeStructure.milestonesData[i].city + ' - City')
-        console.log(this.routeStructure.milestonesData[i].country + ' - Country')
-        console.log(this.routeStructure.milestonesData[i].resident + ' - Resident')
-        console.log(this.routeStructure.milestonesData[i].transport + ' - Transport') 
+    printObject() {
+      console.log(
+        "\n \n* RouteStructure object \n \n" +
+          this.routeStructure.startLoc +
+          " - Start location."
+      );
+
+      for (var i = 0; i < this.routeStructure.milestonesData.length; i++) {
+        console.log("\n \nMilestone: " + (i + 1) + "\n \n");
+        console.log(this.routeStructure.milestonesData[i].city + " - City");
+        console.log(
+          this.routeStructure.milestonesData[i].country + " - Country"
+        );
+        console.log(
+          this.routeStructure.milestonesData[i].resident + " - Resident"
+        );
+        console.log(
+          this.routeStructure.milestonesData[i].transport + " - Transport"
+        );
       }
 
-      console.log('\n \n' + this.routeStructure.endLoc + ' - End location.') 
-      console.log(this.routeStructure.price + ' - Price.') 
-      console.log(this.routeStructure.isPublic + ' - Is public \n \n* \n \n') 
+      console.log("\n \n" + this.routeStructure.endLoc + " - End location.");
+      console.log(this.routeStructure.price + " - Price.");
+      console.log(this.routeStructure.isPublic + " - Is public \n \n* \n \n");
     }
   }
-}
+};
 </script>
 
 <style>
-  li{
-    padding: 0.4rem;
-  }
-  li input{
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    border-style:groove;
-  }
+li {
+  padding: 0.4rem;
+}
+li input {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border-style: groove;
+}
 
-  ul{
-    display: inline;
-  }
+ul {
+  display: inline;
+}
 
-  #component{
-    text-align: center;
-  }
+#component {
+  text-align: center;
+}
 
-  .centerButton{
-    display: inline;
-    min-width: 10rem;
-  }
+.centerButton {
+  display: inline;
+  min-width: 10rem;
+}
 
-  .my-row{
-    border: 3px red;
-    padding: 0.5rem;
-  }
+.my-row {
+  border: 3px red;
+  padding: 0.5rem;
+}
 </style>

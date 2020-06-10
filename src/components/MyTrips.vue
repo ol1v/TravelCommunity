@@ -63,7 +63,12 @@
 
         <div class="input-label-wrapper">
           <label for="mytrips-traveltime">Resetid</label>
-          <input id="mytrips-traveltime" class="inputs" type="text" v-model="travelArray[index].traveltime" />
+          <input
+            id="mytrips-traveltime"
+            class="inputs"
+            type="text"
+            v-model="travelArray[index].traveltime"
+          />
         </div>
 
         <div class="input-label-wrapper">
@@ -81,7 +86,12 @@
           </div>
 
           <div class="equal-spacing">
-            <input type="button" class="remove-travel" value="X" @click="deleteTravel(travelArray[index].id)" />
+            <input
+              type="button"
+              class="remove-travel"
+              value="X"
+              @click="deleteTravel(travelArray[index].id)"
+            />
           </div>
         </div>
       </div>
@@ -111,18 +121,17 @@ export default {
     };
   },
   created() {
-    this.fetchTravels()
+    this.fetchTravels();
   },
   methods: {
-    fetchTravels(){
+    fetchTravels() {
       let url = "http://localhost:3005/";
-      let credentials = {}
+      let credentials = {};
 
       // Set credentials depending on status
-      if(this.user){
-        credentials = { username: this.user }
-      }
-      else{
+      if (this.user) {
+        credentials = { username: this.user };
+      } else {
         credentials = { username: this.$store.state.username };
       }
 
@@ -139,25 +148,24 @@ export default {
     },
     deleteTravel(id) {
       //Verify that the user wants to delete the post.
-      let securityCheck = confirm("Är du säker att du vill radera inlägget?")
-      if(securityCheck){
-        let url = "http://localhost:3005/"
-        let credentials = { id: id }
+      let securityCheck = confirm("Är du säker att du vill radera inlägget?");
+      if (securityCheck) {
+        let url = "http://localhost:3005/";
+        let credentials = { id: id };
 
         this.axios
-        .post(url + "delete-post/", credentials)
-        .then(response => {
-          this.travelArray = []
-          this.fetchTravels()
+          .post(url + "delete-post/", credentials)
+          .then(response => {
+            this.travelArray = [];
+            this.fetchTravels();
 
-          alert(response.data.message)
-        })
-        .catch(err => {
-          console.log(err.response.data)
-        })
-
-      }else{
-        console.log("Avbryt")
+            alert(response.data.message);
+          })
+          .catch(err => {
+            console.log(err.response.data);
+          });
+      } else {
+        console.log("Avbryt");
       }
     },
     updateTravel(travel) {
@@ -177,7 +185,7 @@ export default {
         });
     }
   },
-  props:{
+  props: {
     userToCheck: String
   }
 };
@@ -224,7 +232,7 @@ export default {
   border: 0px;
   text-align: right;
 }
-.equal-spacing{
+.equal-spacing {
   width: 33%;
   display: flex;
   justify-content: center;
@@ -274,7 +282,7 @@ export default {
 .input-label-wrapper {
   background-color: white;
   margin: 0.5em;
-  width: 45%;
+  width: 150pt;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   border-radius: 0.1em;
 }
@@ -287,5 +295,19 @@ label {
   font-size: 9pt;
   padding-top: 0.2em;
   padding-left: 0.4em;
+}
+@media screen and (max-width: 1000px) {
+  .travel-data-wrapper {
+    background-color: white;
+    width: 90%;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 400;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    padding-top: 1em;
+    margin-top: 1em;
+    margin-left: 0.5em;
+    margin-bottom: 1em;
+    border-radius: 0.5em;
+  }
 }
 </style>
