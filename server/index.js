@@ -72,17 +72,21 @@ app.post("/login", (request, response) => {
   })
 })
 
+// Register
 app.post("/register", (request, response) => {
   let username = request.body.username
   let email = request.body.email
   let password = request.body.password
 
+  // Kolla om användarnamn finns i Databas
   con.query(`SELECT username FROM userdetails WHERE username = ${con.escape(username)}`, function (err, userNameResult) {
     if (userNameResult.length > 0) {
       return response.status(406).send({
         message: "Användarnamnet finns redan!"
       })
     }
+
+    // Check Email - exists?
     else {
       con.query(`SELECT email FROM userdetails WHERE email = ${con.escape(email)}`, function (err, emailResult) {
         if (emailResult.length > 0) {
@@ -104,6 +108,22 @@ app.post("/register", (request, response) => {
     }
   })
 })
+
+// Post Trip - A & K 
+app.post('/user', (request, response) => {
+  let trip = request.body.trip
+  console.log(trip)
+  console.log("Milestones - " + trip.milestonesData)
+  console.log(trip.milestonesData[0])
+
+  // Insert Data
+  con.query(`INSERT INTO travel VALUES (${con.escape(trip.startLoc)}, ${con.escape(trip.endLoc)}, ${con.escape(trip.price)}, ${con.escape(trip.isPublic)} )`, function (error, result) {
+    if (error) throw error
+  })
+
+  return response.status(201)
+})
+
 
 //Get travels
 app.post("/travels", (request, response) => {
