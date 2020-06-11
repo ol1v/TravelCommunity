@@ -33,9 +33,8 @@ export default {};
 </script>
 
 <style scoped>
-
 @media only screen and (min-width: 600px) {
-  .user-links{
+  .user-links {
     color: white;
   }
 }
@@ -51,11 +50,12 @@ nav {
   height: auto;
   overflow: auto;
   white-space: nowrap;
-  background: rgb(142, 197, 252);
+  background: #026f7e;
   background: linear-gradient(
     90deg,
-    rgb(142, 197, 252),
-    white
+    #8ec5fc 0%,
+    rgba(2, 111, 126, 1) 100%,
+    rgba(255, 255, 255, 1) 100%
   );
 }
 ul,

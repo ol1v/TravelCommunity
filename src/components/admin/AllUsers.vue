@@ -11,71 +11,77 @@
       <div class="users" v-for="(users, index) in userData" :key="index">
         <span class="header font center">{{userData[index].username}}</span>
         <span class="header font center">{{userData[index].count}}</span>
-        <span class="header center"><input type="button" class="btn font" @click="viewDetails(userData[index].username)" value="Visa inlägg"></span>
+        <span class="header center">
+          <input
+            type="button"
+            class="btn font"
+            @click="viewDetails(userData[index].username)"
+            value="Visa inlägg"
+          />
+        </span>
       </div>
-
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  data(){
-    return{
+  data() {
+    return {
       userData: []
-    }
+    };
   },
-  created(){
-    let url = "http://localhost:3005/"
+  created() {
+    let url = "http://localhost:3005/";
     this.axios
-    .post(url + "all-users/")
-    .then(response => {
-      console.log(response.data.message)
-      this.userData = response.data.message
-    })
-    .catch(err => {
-      console.log(err.response.data)
-    })
+      .post(url + "all-users/")
+      .then(response => {
+        console.log(response.data.message);
+        this.userData = response.data.message;
+      })
+      .catch(err => {
+        console.log(err.response.data);
+      });
   },
-  methods:{
+  methods: {
     // Pushing to MyTrips with params
-    viewDetails(username){
-      this.$router.push({ name: "MyTripsProps", params: { user: username } })
+    viewDetails(username) {
+      this.$router.push({ name: "MyTripsProps", params: { user: username } });
     }
   }
-}
+};
 </script>
 
 <style scoped>
-
-.user-wrapper{
+.user-wrapper {
   width: 100%;
   margin-top: 50px;
 }
 
-#header-text{
+#header-text {
   width: 100%;
-  height: 50px;
+  height: 50pt;
   margin: 0px auto 10px;
   line-height: 50px;
   display: flex;
   align-content: space-around;
 }
-.header{
+.header {
   width: 33%;
-  font-size: 12px;
+  font-size: 14pt;
 }
-.btn{
+.btn {
   background-color: rgb(142, 197, 252);
   color: black;
   border: 0px;
+  padding: 1em;
   display: block;
   min-width: 50%;
   margin: 0 auto;
   height: 30px;
   cursor: pointer;
 }
-.users{
+.users {
   width: 100%;
   height: 30px;
   line-height: 30px;
@@ -84,20 +90,17 @@ export default {
   align-content: space-between;
 }
 
-
 @media only screen and (min-width: 600px) {
-  .user-wrapper{
+  .user-wrapper {
     margin-top: 50px;
     width: auto;
   }
-  #header-text{
+  #header-text {
     width: 100%;
   }
-  .header{
+  .header {
     width: 33%;
     font-size: 15px;
   }
 }
-
-
 </style>

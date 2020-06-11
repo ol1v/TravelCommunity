@@ -193,10 +193,12 @@ export default {
 
 <style scoped>
 .bg {
-  background-image: radial-gradient(
-    circle 1224px at 10.6% 8.8%,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(153, 202, 251, 1) 100.2%
+  background: #026f7e;
+  background: linear-gradient(
+    90deg,
+    rgba(142, 197, 252, 1) 0%,
+    rgba(2, 111, 126, 1) 100%,
+    rgba(255, 255, 255, 1) 100%
   );
 }
 .travel-top-bar {
@@ -244,9 +246,9 @@ export default {
   font-weight: 400;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   padding-top: 1em;
-  margin-top: 1em;
-  margin-left: 0.5em;
-  margin-bottom: 1em;
+  margin-top: 0.09em;
+  margin-left: 4em;
+  margin-bottom: 2em;
   border-radius: 0.5em;
 }
 .milestone-header {
@@ -255,7 +257,7 @@ export default {
   color: rgb(5, 41, 75);
 }
 .milestones {
-  background-color: #1066e615;
+  background-color: #1066e60a;
   margin-top: 1em;
   margin-left: 1em;
   color: white;

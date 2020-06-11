@@ -59,6 +59,7 @@ export default {
   font-size: 15px;
   padding: 10px 40px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  margin: 1em;
 }
 
 .results-btn {
