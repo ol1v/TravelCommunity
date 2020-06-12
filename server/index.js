@@ -113,9 +113,6 @@ app.post("/register", (request, response) => {
 // Post Trip - A & K 
 app.post('/user', (request, response) => {
   let trip = request.body.trip
-  // console.log(trip)
-  // console.log("Milestones - " + trip.milestonesData)
-  // console.log(trip.milestonesData[0])
 
   // Insert Data
   con.query(`INSERT INTO travel VALUES (${con.escape(trip.startLoc)}, ${con.escape(trip.endLoc)}, ${con.escape(trip.price)}, ${con.escape(trip.isPublic)} )`, function (error, result) {
@@ -500,7 +497,6 @@ app.post('/reset-password', (request, response) => {
             })
           }
           else {
-            console.log("Email was sent")
             response.status(200).send({
               message: "Email was sent successfully"
             })
@@ -518,7 +514,6 @@ app.post('/updatetravel', (request, response) => {
   con.query(`SELECT * FROM travel WHERE id = ${con.escape(travel.id)}`, function (err, result) {
     if (err) throw err
 
-    console.log(result)
     // Update travel
     con.query(`UPDATE travel SET fromLoc=${con.escape(travel.from)} WHERE id=${con.escape(travel.id)}`, function (err, result) {
       if (err) throw err
@@ -540,16 +535,14 @@ app.post('/updatetravel', (request, response) => {
       if (err) throw err
 
     })
-
     return response.status(201)
-
   })
 })
 
 //All users
 app.post('/all-users', (request, response) => {
   let resultArray = []
-  con.query(`SELECT username, COUNT (*) as count FROM travel GROUP BY username`, function (err, travelResult) {
+  con.query(`SELECT username, COUNT (*) AS COUNT FROM travel GROUP BY username`, function (err, travelResult) {
     return response.status(201).send({
       message: travelResult
     })
