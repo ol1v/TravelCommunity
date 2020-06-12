@@ -21,7 +21,7 @@ Vue.use(responsive)
 
 // Fontawesome
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faPlane } from "@fortawesome/free-solid-svg-icons";
+import { faPlane, faSubway } from "@fortawesome/free-solid-svg-icons";
 import { faShip } from "@fortawesome/free-solid-svg-icons";
 import { faCar } from "@fortawesome/free-solid-svg-icons";
 import { faHotel } from "@fortawesome/free-solid-svg-icons";
@@ -32,7 +32,7 @@ import { faShieldAlt } from "@fortawesome/free-solid-svg-icons"
 import { faUserCog } from "@fortawesome/free-solid-svg-icons"
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons"
 
-library.add(faPlane, faShip, faCar, faHotel, faMapPin, faHourglassEnd, faShieldAlt, faUserCog, faAngleRight);
+library.add(faPlane, faShip, faCar, faSubway, faHotel, faMapPin, faHourglassEnd, faShieldAlt, faUserCog, faAngleRight);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.config.productionTip = false;
