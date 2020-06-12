@@ -5,6 +5,8 @@ const bodyParser = require("body-parser"); //npm install body-parser
 const bcrypt = require("bcryptjs"); //npm install bcryptjs
 const mysql = require("mysql"); //npm install mysql
 
+const credentials = require("./credentials")
+
 //Settings
 const app = express();
 const port = 3005;
@@ -14,10 +16,10 @@ app.use(cors());
 app.use(express.json());
 
 var con = mysql.createConnection({
-  host: "den1.mysql1.gear.host",
-  user: "travelcommunity",
-  password: "De21A21aZ~-c",
-  database: "travelcommunity",
+  host: credentials.host,
+  user: credentials.user,
+  password: credentials.password,
+  database: credentials.database,
 });
 
 con.connect(function (err) {
@@ -33,7 +35,6 @@ app.post("/login", (request, response) => {
 
   con.query(`SELECT username, password, admin, banned FROM userdetails WHERE username = ${con.escape(username)}`, function (err, result) {
     if (err) throw err
-    console.log(result.length + " <--")
 
     if (result.length) {
       //Retrieve hash from the result
@@ -112,9 +113,9 @@ app.post("/register", (request, response) => {
 // Post Trip - A & K 
 app.post('/user', (request, response) => {
   let trip = request.body.trip
-  console.log(trip)
-  console.log("Milestones - " + trip.milestonesData)
-  console.log(trip.milestonesData[0])
+  // console.log(trip)
+  // console.log("Milestones - " + trip.milestonesData)
+  // console.log(trip.milestonesData[0])
 
   // Insert Data
   con.query(`INSERT INTO travel VALUES (${con.escape(trip.startLoc)}, ${con.escape(trip.endLoc)}, ${con.escape(trip.price)}, ${con.escape(trip.isPublic)} )`, function (error, result) {
@@ -174,7 +175,6 @@ app.post("/search", (request, response) => {
   // Get travels which responds to from and to searchwords
   con.query(`SELECT * FROM travel WHERE fromLoc = ${con.escape(from)} AND toLoc = ${con.escape(to)}`, function (err, result) {
     if (err) throw err;
-    console.log(result)
     let resultArray = []
 
     for (let i = 0; i < result.length; i++) {
@@ -277,7 +277,6 @@ app.post("/create-trip", (request, response) => {
   con.query(
     `INSERT INTO Travel (username, from, milestones, to, traveltime) VALUES(${newTrip[0]}, ${newTrip[1]}, ${newTrip[2]}, ${newTrip[3]}, ${newTrip[4]}, ${newTrip[5]}`, function (err, result) {
       if (err) throw err;
-      console.log(result);
       response.status(200).send();
     })
 })
@@ -306,7 +305,6 @@ app.post("/ban", (request, response) => {
           )} WHERE username=${con.escape(user)}`,
           function (err, result) {
             if (err) throw err;
-            console.log("Successfully banned user '" + user + "'");
 
             response.status(200).send({
               message: `Avstäningsstatus för användare '${user}' har ändrats.`,
@@ -336,7 +334,6 @@ app.post('/unban', (request, response) => {
       let banUser = 0
       con.query(`UPDATE userdetails SET banned=${con.escape(banUser)} WHERE username=${con.escape(user)}`, function (err, result) {
         if (err) throw err
-        console.log("Successfully unbanned user '" + user + "'")
 
         response.status(200).send({
           message: `Avstäningsstatus för användare '${user}' har ändrats.`
@@ -355,8 +352,6 @@ app.post('/rating', (request, response) => {
     if (err) throw err
 
     var obj = { "v": rating }
-
-    console.log(result[0].ratingScore + " <-- scoren")
 
     //Retrieve the current rating result
     const ratingRes = result[0].rating
@@ -380,8 +375,6 @@ app.post('/rating', (request, response) => {
     //Update the current value
     con.query(`UPDATE travel SET rating=${con.escape(json)}, ratingScore=${con.escape(ratingResult)} WHERE id=${con.escape(travelIndex)}`, function (err, updateResult) {
       if (err) throw err
-
-      console.log("updated")
     })
   })
 })
@@ -488,13 +481,13 @@ app.post('/reset-password', (request, response) => {
         let transporter = nodemailer.createTransport({
           service: "hotmail",
           auth: {
-            user: "reset-travelcommunity@hotmail.com",
-            pass: "travelcommunity1"
+            user: credentials.email,
+            pass: credentials.emailPass
           }
         })
 
         let mailOptions = {
-          from: "reset-travelcommunity@hotmail.com",
+          from: credentials.email,
           to: toEmail,
           subject: "Återställ lösenord",
           text: `Ditt lösenord har återställts! Logga in på webbsidan och byt till ett nytt lösenord. Lösenord: ${newTempPass}`
@@ -502,7 +495,6 @@ app.post('/reset-password', (request, response) => {
 
         transporter.sendMail(mailOptions, function (err, info) {
           if (err) {
-            console.log(err)
             response.status(404).send({
               message: "Email was NOT sent successfully"
             })
@@ -522,7 +514,6 @@ app.post('/reset-password', (request, response) => {
 // update users travel
 app.post('/updatetravel', (request, response) => {
   let travel = request.body.travel
-  console.log(travel)
 
   con.query(`SELECT * FROM travel WHERE id = ${con.escape(travel.id)}`, function (err, result) {
     if (err) throw err
@@ -565,23 +556,9 @@ app.post('/all-users', (request, response) => {
   })
 })
 
-
-//Putte's notering. DONT TOUCHHHHHHHHHH
-// var obj = [{"city":"asd", "country":"asd"}]
-// let json = JSON.stringify(obj)
-
-// console.log(obj)
-
-// con.query(`INSERT INTO travel (username, fromLoc, milestones) VALUES("putt", "älv", ?)`, json, function(err, result){
-//   if(err) throw err
-//   console.log("pushed new")
-// })
-
 // CreateTrip
 app.post('/create-trip2', (request, response) => {
   let newTrip = request.body.trip
-  console.log(newTrip)
-  console.log(newTrip.milestones[0])
 
   // insert into db - fill query
   con.query(`INSERT INTO travel VALUES (${con.escape(newTrip.username)}, ${con.escape(newTrip.from)} )`, function (error, result) {
