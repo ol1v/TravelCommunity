@@ -1,14 +1,8 @@
 <template>
   <div class="container">
-<<<<<<< HEAD
     <div class="my-row">
       <div>
         <input type="text" v-model="routeStructure.startLoc" placeholder="Start destination..">
-=======
-    <div class="row my-row">
-      <div class="col">
-        <input type="text" v-model="routeStructure.startLoc" placeholder="Start destination.." />
->>>>>>> 07e5dd8bd039c83cf658942cb00d80e56b8695d0
       </div>
       <div>
         <input type="text" v-model="routeStructure.startCountry" placeholder="Start country..">
@@ -36,12 +30,8 @@
       </div>
     </div>
 
-<<<<<<< HEAD
     <div v-if="!hideCreatedMilestones.value">
     <div v-for="entry in routeStructure.milestonesData" :key="entry.id" class="row">
-=======
-    <div v-for="entry in routeStructure.milestonesData" :key="entry.id" class="row my-row">
->>>>>>> 07e5dd8bd039c83cf658942cb00d80e56b8695d0
       <div class="col">
         <input type="text" v-model="entry.city" placeholder="City.." />
       </div>
@@ -52,7 +42,6 @@
         <input type="text" v-model="entry.resident" placeholder="Resident.." />
       </div>
       <div class="col">
-<<<<<<< HEAD
         <input type="radio" id="car" :name="entry.id" value="0" v-model="entry.transport" />
           <label for="car">
             <font-awesome-icon icon="car" size="2x" />
@@ -72,21 +61,11 @@
           <label for="train">
             <font-awesome-icon icon="subway" size="2x" />
           </label>
-=======
-        <select v-model="entry.transport">
-          <option selected disabled>Transportation</option>
-          <option value="airplane">Airplane</option>
-          <option value="train">Train</option>
-          <option value="boat">Boat</option>
-          <option value="car">Car</option>
-        </select>
->>>>>>> 07e5dd8bd039c83cf658942cb00d80e56b8695d0
       </div>
       <div class="col">
         <input class="centerButton" type="button" value="Remove" @click="removeRoute(entry)" />
       </div>
     </div>
-<<<<<<< HEAD
     </div>
       
     <div class="row">
@@ -127,36 +106,9 @@
       </div>
       <div class="col">
         <input class="centerButton" type="button" value="Add" @click="addRoute()">
-=======
-
-    <div class="container">
-      <div class="row my-row">
-        <div class="col">
-          <input type="text" v-model="milestone.city" placeholder="City.." />
-        </div>
-        <div class="col">
-          <input type="text" v-model="milestone.country" placeholder="Country.." />
-        </div>
-        <div class="col">
-          <input type="text" v-model="milestone.resident" placeholder="Resident.." />
-        </div>
-        <div class="col">
-          <select v-model="milestone.transport">
-            <option selected disabled>Transportation</option>
-            <option value="airplane">Airplane</option>
-            <option value="train">Train</option>
-            <option value="boat">Boat</option>
-            <option value="car">Car</option>
-          </select>
-        </div>
-        <div class="col">
-          <input class="centerButton" type="button" value="Add" @click="addRoute()" />
-        </div>
->>>>>>> 07e5dd8bd039c83cf658942cb00d80e56b8695d0
       </div>
     </div>
 
-<<<<<<< HEAD
     <div class="my-row">
       <div>
         <input type="text" v-model="routeStructure.endLoc" placeholder="End destination..">
@@ -176,22 +128,6 @@
       <div>
         <input type="checkbox" v-model="routeStructure.isPublic" id="isPublicCheckbox">
         <label for="isPublicCheckbox">Private trip</label>
-=======
-    <div class="row my-row">
-      <div class="col">
-        <input type="text" v-model="routeStructure.endLoc" placeholder="End destination.." />
-      </div>
-      <div class="col">
-        <input
-          type="number"
-          v-model.number="routeStructure.price"
-          placeholder="Estimated travel cost"
-        />
-      </div>
-      <div class="col">
-        <input type="checkbox" v-model="routeStructure.isPublic" id="isPublicCheckbox" />
-        <label for="isPublicCheckbox">Make trip private {{ routeStructure.isPublic }}</label>
->>>>>>> 07e5dd8bd039c83cf658942cb00d80e56b8695d0
       </div>
     </div>
 
@@ -283,7 +219,6 @@ export default {
         );
       }
 
-<<<<<<< HEAD
       console.log('\n \n' + this.routeStructure.endLoc + ' - End location.') 
       console.log(this.routeStructure.price + ' - Price.') 
       console.log(this.routeStructure.isPublic + ' - Is public \n \n* \n \n') 
@@ -298,12 +233,6 @@ export default {
         this.hideCreatedMilestones.text = 'Hide'
       }
     },
-=======
-      console.log("\n \n" + this.routeStructure.endLoc + " - End location.");
-      console.log(this.routeStructure.price + " - Price.");
-      console.log(this.routeStructure.isPublic + " - Is public \n \n* \n \n");
-    }
->>>>>>> 07e5dd8bd039c83cf658942cb00d80e56b8695d0
   }
 };
 </script>
@@ -326,7 +255,6 @@ ul {
   text-align: center;
 }
 
-<<<<<<< HEAD
   .centerButton{
     display: inline;
     min-width: 8rem;
@@ -339,15 +267,4 @@ ul {
   .my-row div{
     padding: 0.5rem;
   }
-=======
-.centerButton {
-  display: inline;
-  min-width: 10rem;
-}
-
-.my-row {
-  border: 3px red;
-  padding: 0.5rem;
-}
->>>>>>> 07e5dd8bd039c83cf658942cb00d80e56b8695d0
 </style>
