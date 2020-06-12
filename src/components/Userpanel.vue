@@ -33,6 +33,12 @@ export default {};
 </script>
 
 <style scoped>
+@media only screen and (min-width: 600px) {
+  .user-links {
+    color: white;
+  }
+}
+
 nav {
   width: 100%;
   height: 50px;
@@ -40,16 +46,17 @@ nav {
   margin-top: 1px;
 }
 #left-user-column {
-  width: 50%;
-  height: 50px;
-  background: rgb(142, 197, 252);
-  /* background-image: radial-gradient(
-    circle 1224px at 10.6% 8.8%,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(153, 202, 251, 0.9) 100.2%
-  ); */
-
-  background: linear-gradient(90deg, rgb(142, 197, 252), white);
+  width: 100%;
+  height: auto;
+  overflow: auto;
+  white-space: nowrap;
+  background: #026f7e;
+  background: linear-gradient(
+    90deg,
+    #8ec5fc 0%,
+    rgba(2, 111, 126, 1) 100%,
+    rgba(255, 255, 255, 1) 100%
+  );
 }
 ul,
 li {

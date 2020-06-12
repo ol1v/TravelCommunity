@@ -2,11 +2,13 @@
   <div>
     <!-- Side-panel -->
     <div id="left-settings-panel">
-      <div id="settings-logo"><font-awesome-icon icon="user-cog" size="4x"/></div>
+      <div id="settings-logo">
+        <font-awesome-icon icon="user-cog" size="4x" />
+      </div>
       <div id="settings-links-wrapper">
         <!-- Links in the side-panel -->
-        <input type="button" value="Ändra lösenord" class="settings-link" @click="changePassword">
-        <input type="button" value="Radera konto" class="settings-link"  @click="removeAccount">
+        <input type="button" value="Ändra lösenord" class="settings-link" @click="changePassword" />
+        <input type="button" value="Radera konto" class="settings-link" @click="removeAccount" />
       </div>
     </div>
     <!-- Right panel with components -->
@@ -18,68 +20,68 @@
 </template>
 
 <script>
-import ChangePass from '../../components/settings/ChangePass'
-import RemoveAccount from '../../components/settings/RemoveAccount'
+import ChangePass from "../../components/settings/ChangePass";
+import RemoveAccount from "../../components/settings/RemoveAccount";
 export default {
-  components:{
+  components: {
     ChangePass,
     RemoveAccount
   },
-  data(){
-    return{
+  data() {
+    return {
       changePasswordBool: true,
       removeAccountBool: false
-    }
+    };
   },
-  methods:{
+  methods: {
     // Show / hide components
-    changePassword(){
-      this.changePasswordBool = true
-      this.removeAccountBool = false
+    changePassword() {
+      this.changePasswordBool = true;
+      this.removeAccountBool = false;
     },
-    removeAccount(){
-      this.changePasswordBool = false
-      this.removeAccountBool = true
+    removeAccount() {
+      this.changePasswordBool = false;
+      this.removeAccountBool = true;
     }
   }
-}
+};
 </script>
 
 <style scoped>
-#left-settings-panel{
+#left-settings-panel {
   width: 15%;
   height: calc(100vh - 126px);
-  background: rgb(142, 197, 252);
+  background: #8ec5fc;
   background: linear-gradient(
     180deg,
-    rgba(142, 197, 252, 1) 0%,
-    rgba(142, 197, 252, .9) 25%,
+    #85c0f4 0%,
+    rgba(142, 197, 252, 0.9) 25%,
     rgba(252, 176, 69, 0) 100%
   );
   float: left;
 }
 
-#right-settings-panel{
+#right-settings-panel {
   width: 85%;
   height: calc(100vh - 126px);
   float: right;
 }
 
-#settings-logo{
+#settings-logo {
   width: 100%;
   height: auto;
-  color: black;
+  color: #0e4e79;
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-#settings-links-wrapper{
+#settings-links-wrapper {
   width: 100%;
   height: auto;
 }
 
-.settings-link{
+.settings-link {
   display: block;
   width: 100%;
   height: 50px;
@@ -92,8 +94,7 @@ export default {
   cursor: pointer;
 }
 
-.settings-link:hover{
+.settings-link:hover {
   background-color: white;
 }
-
 </style>

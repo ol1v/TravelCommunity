@@ -5,7 +5,11 @@
       <!-- Left column -->
       <div id="left-column" :style="setWhiteNavbar">
         <div id="navbar-logo">
-          <span v-if="this.$route.name == 'Home'" class="travelTextHome" :style="setNavbarText">TRAVEL</span>
+          <span
+            v-if="this.$route.name == 'Home'"
+            class="travelTextHome"
+            :style="setNavbarText"
+          >TRAVEL</span>
           <span v-else class="travelText" :style="setNavbarText">TRAVEL</span>
           <span class="communityText">COMMUNITY</span>
         </div>
@@ -14,10 +18,24 @@
       <!-- Right column -->
       <div id="right-column">
         <ul>
-          <li><router-link to="/" class="navbar-links" @click.native="changeWhitebar">SÖK RESA</router-link></li>
-          <li><router-link to="/popular" class="navbar-links" @click.native="changeWhitebar">POPULÄRA</router-link></li>
-          <li v-if="!this.$store.state.loggedIn" class="navbar-links-login" @click="loginArea">LOGGA IN / REGISTRERA</li>
-          <li><router-link to="/user" class="navbar-links" v-if="this.$store.state.loggedIn">{{this.$store.state.username.toUpperCase()}}</router-link></li>
+          <li>
+            <router-link to="/" class="navbar-links" @click.native="changeWhitebar">SÖK RESA</router-link>
+          </li>
+          <li>
+            <router-link to="/popular" class="navbar-links" @click.native="changeWhitebar">POPULÄRA</router-link>
+          </li>
+          <li
+            v-if="!this.$store.state.loggedIn"
+            class="navbar-links-login"
+            @click="loginArea"
+          >LOGGA IN / REGISTRERA</li>
+          <li>
+            <router-link
+              to="/user"
+              class="navbar-links"
+              v-if="this.$store.state.loggedIn"
+            >{{this.$store.state.username.toUpperCase()}}</router-link>
+          </li>
           <li v-if="this.$store.state.loggedIn" class="navbar-links-login" @click="logout">LOGGA UT</li>
         </ul>
       </div>
@@ -44,7 +62,12 @@
           <input v-model="password" class="user-input" type="password" id="login-password" />
           <!-- Forgot password / login button -->
           <div id="buttons">
-            <input class="forgot-pass-button" type="button" value="Glömt lösenord?" @click="resetPassword" />
+            <input
+              class="forgot-pass-button"
+              type="button"
+              value="Glömt lösenord?"
+              @click="resetPassword"
+            />
             <input class="login-button" type="button" @click="login" value="Logga in" />
           </div>
           <!-- Error message if failed to login -->
@@ -62,7 +85,6 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {
@@ -73,12 +95,11 @@ export default {
       errorMessage: ""
     };
   },
-  created(){
-    if(this.$route.name == "Home"){
-      this.homeScreen = true
-    }
-    else{
-      this.homeScreen = false
+  created() {
+    if (this.$route.name == "Home") {
+      this.homeScreen = true;
+    } else {
+      this.homeScreen = false;
     }
   },
   methods: {
@@ -93,7 +114,7 @@ export default {
         .then(response => {
           this.$store.commit("SET_LOGGED_IN", true);
           this.$store.commit("SET_USERNAME", this.username);
-          this.$store.commit("SET_ADMIN_STATE", response.data.admin)
+          this.$store.commit("SET_ADMIN_STATE", response.data.admin);
 
           this.displayLoginStatus = false;
           this.$router.push({ name: "User" });
@@ -116,29 +137,27 @@ export default {
     // Logout button
     logout() {
       // Check if user wants to logout
-      let askLogout = confirm("Är du säker att du vill logga ut?")
-      if(askLogout){
+      let askLogout = confirm("Är du säker att du vill logga ut?");
+      if (askLogout) {
         this.$store.commit("SET_LOGGED_IN", false);
         this.$store.commit("SET_USERNAME", ""),
-        this.$store.commit("SET_ADMIN_STATE", 0)
+          this.$store.commit("SET_ADMIN_STATE", 0);
         this.$router.push({ name: "Home" });
-      }
-      else{
-        console.log("Stayed logged in")
+      } else {
+        console.log("Stayed logged in");
       }
     },
     // Reset password button
-    resetPassword(){
-      this.displayLoginStatus = !this.displayLoginStatus
-      this.$router.push({name: "ResetPassword"})
+    resetPassword() {
+      this.displayLoginStatus = !this.displayLoginStatus;
+      this.$router.push({ name: "ResetPassword" });
     },
     // Change whitebar
-    changeWhitebar(){
-      if(this.$route.name == "Home"){
-        this.homeScreen = true
-      }
-      else{
-        this.homeScreen = false
+    changeWhitebar() {
+      if (this.$route.name == "Home") {
+        this.homeScreen = true;
+      } else {
+        this.homeScreen = false;
       }
     }
   },
@@ -146,21 +165,20 @@ export default {
     displayLogin() {
       if (this.displayLoginStatus) {
         return {
-          "display": "block",
-        }
+          display: "block"
+        };
       } else {
-        return {}
+        return {};
       }
     },
     setWhiteNavbar() {
-      if(this.homeScreen){
-        return{
-          "background-color":"transparent"
-        }
+      if (this.homeScreen) {
+        return {
+          "background-color": "transparent"
+        };
+      } else {
+        return {};
       }
-      else{
-        return {}
-      } 
     },
     setNavbarText() {
       if (this.displayLoginStatus) {
@@ -242,7 +260,6 @@ li {
   float: right;
   font-size: 18px;
   padding-right: 30px;
-  padding-left: 30px;
   cursor: pointer;
 }
 .navbar-links:hover,
