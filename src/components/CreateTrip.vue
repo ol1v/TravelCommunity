@@ -210,7 +210,7 @@ export default {
   data() {
     return {
       routeStructure: {
-        username: "",
+        username: this.$store.state.username,
         startLoc: "",
         startCountry: "",
         startLocTransport: 0,
@@ -292,6 +292,7 @@ export default {
       console.log("\n \n" + this.routeStructure.endLoc + " - End location.");
       console.log(this.routeStructure.price + " - Price.");
       console.log(this.routeStructure.isPublic + " - Is public \n \n* \n \n");
+      this.saveTrip();
     },
 
     toggleMilestones() {
