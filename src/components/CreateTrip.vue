@@ -133,6 +133,7 @@
 
     <input class="centerButton" type="button" value="Debug log" @click="printObject()" />
   </div>
+  </div>
 </template>
 
 <script>
