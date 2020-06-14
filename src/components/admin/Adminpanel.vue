@@ -2,12 +2,14 @@
   <div>
     <div id="left-admin-panel">
       <!-- Shield-logo in side-panel -->
-      <div id="admin-logo"><font-awesome-icon icon="shield-alt" size="4x"/></div>
+      <div id="admin-logo">
+        <font-awesome-icon icon="shield-alt" size="4x" />
+      </div>
       <div id="admin-links-wrapper">
         <!-- Side panel buttons -->
-        <input type="button" value="Stäng av användare" class="admin-link" @click="displayBan">
-        <input type="button" value="Lås upp användare" class="admin-link" @click="displayUnban">
-        <input type="button" value="Hantera inlägg" class="admin-link" @click="displayList">
+        <input type="button" value="Stäng av användare" class="admin-link" @click="displayBan" />
+        <input type="button" value="Lås upp användare" class="admin-link" @click="displayUnban" />
+        <input type="button" value="Hantera inlägg" class="admin-link" @click="displayList" />
       </div>
     </div>
     <!-- Right panel with components -->
@@ -20,79 +22,79 @@
 </template>
 
 <script>
-  import Ban from '../../components/admin/Ban'
-  import Unban from '../../components/admin/Unban'
-  import AllUsers from '../../components/admin/AllUsers'
-  
+import Ban from "../../components/admin/Ban";
+import Unban from "../../components/admin/Unban";
+import AllUsers from "../../components/admin/AllUsers";
+
 export default {
-  components:{
+  components: {
     Ban,
     Unban,
     AllUsers
   },
-  data(){
-    return{
+  data() {
+    return {
       banBool: true,
       unbanBool: false,
       displayListBool: false
-    }
+    };
   },
-  methods:{
+  methods: {
     // Show / hide components
-    displayBan(){
-      this.banBool = true
-      this.unbanBool = false
-      this.displayListBool = false
+    displayBan() {
+      this.banBool = true;
+      this.unbanBool = false;
+      this.displayListBool = false;
     },
-    displayUnban(){
-      this.banBool = false
-      this.unbanBool = true
-      this.displayListBool = false
+    displayUnban() {
+      this.banBool = false;
+      this.unbanBool = true;
+      this.displayListBool = false;
     },
-    displayList(){
-      this.banBool = false
-      this.unbanBool = false
-      this.displayListBool = true
+    displayList() {
+      this.banBool = false;
+      this.unbanBool = false;
+      this.displayListBool = true;
     }
   }
-}
+};
 </script>
 
 <style scoped>
-#left-admin-panel{
+#left-admin-panel {
   width: 15%;
   height: calc(100vh - 126px);
-  background: rgb(142, 197, 252);
+  background: #8ec5fc;
   background: linear-gradient(
     180deg,
-    rgba(142, 197, 252, 1) 0%,
-    rgba(142, 197, 252, .9) 25%,
+    #85c0f4 0%,
+    rgba(142, 197, 252, 0.9) 25%,
     rgba(252, 176, 69, 0) 100%
   );
   float: left;
 }
 
-#right-admin-panel{
+#right-admin-panel {
   width: 85%;
   height: calc(100vh - 126px);
   float: right;
 }
 
-#admin-logo{
+#admin-logo {
   width: 100%;
   height: auto;
-  color: rgb(0, 0, 0);
+  color: #0e4e79;
   text-align: center;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-#admin-links-wrapper{
+#admin-links-wrapper {
   width: 100%;
   height: auto;
 }
 
-.admin-link{
+.admin-link {
   display: block;
   width: 100%;
   height: 50px;
@@ -105,8 +107,7 @@ export default {
   cursor: pointer;
 }
 
-.admin-link:hover{
+.admin-link:hover {
   background-color: white;
 }
-
 </style>

@@ -37,7 +37,12 @@
             </div>
           </div>
           <div class="remove-button" v-if="checkAdmin">
-            <input class="remove-post-button font" type="button" value="Radera inlägg" @click="deleteTravel(result.id)">
+            <input
+              class="remove-post-button font"
+              type="button"
+              value="Radera inlägg"
+              @click="deleteTravel(result.id)"
+            />
           </div>
         </div>
 
@@ -47,7 +52,30 @@
         <!-- Replace line with icons -->
         <div class="line-wrapper">
           <div class="line">|</div>
-          <font-awesome-icon class="icons" icon="car" size="2x" />
+          <font-awesome-icon
+            class="icons"
+            icon="car"
+            size="2x"
+            v-if="result.fromTransportation == 0"
+          />
+          <font-awesome-icon
+            class="icons"
+            icon="car"
+            size="2x"
+            v-if="result.fromTransportation == 1"
+          />
+          <font-awesome-icon
+            class="icons"
+            icon="car"
+            size="2x"
+            v-if="result.fromTransportation == 2"
+          />
+          <font-awesome-icon
+            class="icons"
+            icon="car"
+            size="2x"
+            v-if="result.fromTransportation == 3"
+          />
         </div>
 
         <div
@@ -66,7 +94,18 @@
           </div>
           <!-- Add icon specific (From db) -->
           <div class="line-wrapper">
-            <font-awesome-icon class="icons" icon="plane" size="2x" />
+            <font-awesome-icon
+              class="icons"
+              icon="car"
+              size="2x"
+              v-if="result.milestones[ind].Transportation == 0"
+            />
+            <font-awesome-icon
+              class="icons"
+              icon="plane"
+              size="2x"
+              v-if="result.milestones[ind].Transportation == 1"
+            />
           </div>
         </div>
 
@@ -134,27 +173,26 @@ export default {
           console.log(err.response.data);
         });
     },
-    deleteTravel(id){
+    deleteTravel(id) {
       //Verify that the user wants to delete the post.
-      let securityCheck = confirm("Är du säker att du vill radera inlägget?")
-      if(securityCheck){
-        let url = "http://localhost:3005/"
-        let credentials = { id: id }
+      let securityCheck = confirm("Är du säker att du vill radera inlägget?");
+      if (securityCheck) {
+        let url = "http://localhost:3005/";
+        let credentials = { id: id };
 
         this.axios
-        .post(url + "delete-post/", credentials)
-        .then(response => {
-          this.travelArray = []
-          this.fetchTravels()
-          
-          alert(response.data.message)
-        })
-        .catch(err => {
-          console.log(err.response.data)
-        })
+          .post(url + "delete-post/", credentials)
+          .then(response => {
+            this.travelArray = [];
+            this.fetchTravels();
 
-      }else{
-        console.log("Avbryt")
+            alert(response.data.message);
+          })
+          .catch(err => {
+            console.log(err.response.data);
+          });
+      } else {
+        console.log("Avbryt");
       }
     }
   },
@@ -164,15 +202,15 @@ export default {
         return this.$store.state.results;
       }
     },
-    checkAdmin(){
-      return this.$store.state.admin
+    checkAdmin() {
+      return this.$store.state.admin;
     }
   }
 };
 </script>
 
 <style scoped>
-.results-object{
+.results-object {
   margin-top: 25px;
   margin-bottom: 25px;
   background-color: white;
@@ -386,25 +424,25 @@ h3 {
 }
 
 .res-found {
-  color: rgb(5, 41, 75);
+  color: #05294b;
 }
 
-.top-bar{
+.top-bar {
   width: 100%;
   height: 40px;
 }
-.left-part{
+.left-part {
   width: 50%;
   height: 40px;
   float: left;
 }
-.remove-button{
+.remove-button {
   width: 50%;
   height: 40px;
   float: right;
 }
 
-.remove-post-button{
+.remove-post-button {
   width: 20%;
   height: 40px;
   background-color: #026f7e;
@@ -415,7 +453,7 @@ h3 {
 }
 
 @media screen and (max-width: 1130px) {
-  .remove-post-button{
+  .remove-post-button {
     width: 50%;
     height: 40px;
     background-color: #026f7e;
@@ -425,5 +463,4 @@ h3 {
     float: right;
   }
 }
-
 </style>

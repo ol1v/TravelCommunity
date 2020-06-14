@@ -1,37 +1,117 @@
 <template>
   <div class="container">
-    <div class="row my-row">
-      <div class="col">
+    <div class="my-row">
+      <h2>Välj vart din resa börjar</h2>
+    </div>
+    <div class="my-row">
+      <div>
         <input type="text" v-model="routeStructure.startLoc" placeholder="Start destination.." />
       </div>
+      <div>
+        <input type="text" v-model="routeStructure.startCountry" placeholder="Start country.." />
+      </div>
+      <div>
+        <input
+          type="radio"
+          id="car"
+          name="startTransport"
+          value="0"
+          v-model="routeStructure.startLocTransport"
+        />
+        <label for="car">
+          <font-awesome-icon icon="car" size="2x" />
+        </label>
+
+        <input
+          type="radio"
+          id="plane"
+          name="startTransport"
+          value="1"
+          v-model="routeStructure.startLocTransport"
+        />
+        <label for="plane">
+          <font-awesome-icon icon="plane" size="2x" />
+        </label>
+
+        <input
+          type="radio"
+          id="boat"
+          name="startTransport"
+          value="2"
+          v-model="routeStructure.startLocTransport"
+        />
+        <label for="boat">
+          <font-awesome-icon icon="ship" size="2x" />
+        </label>
+
+        <input
+          type="radio"
+          id="train"
+          name="startTransport"
+          value="3"
+          v-model="routeStructure.startLocTransport"
+        />
+        <label for="train">
+          <font-awesome-icon icon="subway" size="2x" />
+        </label>
+      </div>
     </div>
 
-    <div v-for="entry in routeStructure.milestonesData" :key="entry.id" class="row my-row">
-      <div class="col">
-        <input type="text" v-model="entry.city" placeholder="City.." />
+    <div v-if="!hideCreatedMilestones.value">
+      <div class="my-row">
+        <h2>Mina milstolpar</h2>
       </div>
-      <div class="col">
-        <input type="text" v-model="entry.country" placeholder="Country.." />
-      </div>
-      <div class="col">
-        <input type="text" v-model="entry.resident" placeholder="Resident.." />
-      </div>
-      <div class="col">
-        <select v-model="entry.transport">
-          <option selected disabled>Transportation</option>
-          <option value="airplane">Airplane</option>
-          <option value="train">Train</option>
-          <option value="boat">Boat</option>
-          <option value="car">Car</option>
-        </select>
-      </div>
-      <div class="col">
-        <input class="centerButton" type="button" value="Remove" @click="removeRoute(entry)" />
+      <div v-for="entry in routeStructure.milestonesData" :key="entry.id" class="row">
+        <div class="col">
+          <input type="text" v-model="entry.city" placeholder="City.." />
+        </div>
+        <div class="col">
+          <input type="text" v-model="entry.country" placeholder="Country.." />
+        </div>
+        <div class="col">
+          <input type="text" v-model="entry.resident" placeholder="Resident.." />
+        </div>
+        <div class="col">
+          <input type="radio" id="car" :name="entry.id" value="0" v-model="entry.transport" />
+          <label for="car">
+            <font-awesome-icon icon="car" size="2x" />
+          </label>
+
+          <input type="radio" id="plane" :name="entry.id" value="1" v-model="entry.transport" />
+          <label for="plane">
+            <font-awesome-icon icon="plane" size="2x" />
+          </label>
+
+          <input type="radio" id="boat" :name="entry.id" value="2" v-model="entry.transport" />
+          <label for="boat">
+            <font-awesome-icon icon="ship" size="2x" />
+          </label>
+
+          <input type="radio" id="train" :name="entry.id" value="3" v-model="entry.transport" />
+          <label for="train">
+            <font-awesome-icon icon="subway" size="2x" />
+          </label>
+        </div>
+        <div class="col">
+          <input class="centerButton" type="button" value="Remove" @click="removeRoute(entry)" />
+        </div>
       </div>
     </div>
 
+    <div class="row">
+      <input
+        class="centerButton"
+        type="button"
+        :value="hideCreatedMilestones.text"
+        @click="toggleMilestones()"
+      />
+    </div>
+
+    <div class="my-row">
+      <h2>Skapa milstolpe</h2>
+    </div>
     <div class="container">
-      <div class="row my-row">
+      <div class="row">
         <div class="col">
           <input type="text" v-model="milestone.city" placeholder="City.." />
         </div>
@@ -42,58 +122,109 @@
           <input type="text" v-model="milestone.resident" placeholder="Resident.." />
         </div>
         <div class="col">
-          <select v-model="milestone.transport">
-            <option selected disabled>Transportation</option>
-            <option value="airplane">Airplane</option>
-            <option value="train">Train</option>
-            <option value="boat">Boat</option>
-            <option value="car">Car</option>
-          </select>
+          <input
+            type="radio"
+            id="car"
+            name="milestoneTransport"
+            value="0"
+            v-model="milestone.transport"
+          />
+          <label for="car">
+            <font-awesome-icon icon="car" size="2x" />
+          </label>
+
+          <input
+            type="radio"
+            id="plane"
+            name="milestoneTransport"
+            value="1"
+            v-model="milestone.transport"
+          />
+          <label for="plane">
+            <font-awesome-icon icon="plane" size="2x" />
+          </label>
+
+          <input
+            type="radio"
+            id="boat"
+            name="milestoneTransport"
+            value="2"
+            v-model="milestone.transport"
+          />
+          <label for="boat">
+            <font-awesome-icon icon="ship" size="2x" />
+          </label>
+
+          <input
+            type="radio"
+            id="train"
+            name="milestoneTransport"
+            value="3"
+            v-model="milestone.transport"
+          />
+          <label for="train">
+            <font-awesome-icon icon="subway" size="2x" />
+          </label>
         </div>
         <div class="col">
           <input class="centerButton" type="button" value="Add" @click="addRoute()" />
         </div>
       </div>
-    </div>
 
-    <div class="row my-row">
-      <div class="col">
-        <input type="text" v-model="routeStructure.endLoc" placeholder="End destination.." />
+      <div class="my-row">
+        <h2>Här slutar din resa</h2>
       </div>
-      <div class="col">
-        <input
-          type="number"
-          v-model.number="routeStructure.price"
-          placeholder="Estimated travel cost"
-        />
+      <div class="my-row">
+        <div>
+          <input type="text" v-model="routeStructure.endLoc" placeholder="End destination.." />
+        </div>
+        <div>
+          <input type="text" v-model="routeStructure.endCountry" placeholder="End country.." />
+        </div>
+        <div>
+          <input type="text" v-model="routeStructure.endResident" placeholder="End resident.." />
+        </div>
+        <div>
+          <input type="text" v-model="routeStructure.travelTime" placeholder="Travel time.." />
+        </div>
+        <div>
+          <input
+            type="number"
+            v-model.number="routeStructure.price"
+            placeholder="Estimated travel cost"
+          />
+        </div>
+        <div>
+          <input type="checkbox" v-model="routeStructure.isPublic" id="isPublicCheckbox" />
+          <label for="isPublicCheckbox">Private trip</label>
+        </div>
       </div>
-      <div class="col">
-        <input type="checkbox" v-model="routeStructure.isPublic" id="isPublicCheckbox" />
-        <label for="isPublicCheckbox">Make trip private {{ routeStructure.isPublic }}</label>
-      </div>
-    </div>
 
-    <input class="centerButton" type="button" value="Debug log" @click="printObject()" />
+      <input class="centerButton" type="button" value="Debug log" @click="printObject()" />
+    </div>
   </div>
 </template>
-
+ 
 <script>
 export default {
   data() {
     return {
       routeStructure: {
+        username: "",
         startLoc: "",
+        startCountry: "",
+        startLocTransport: 0,
         milestonesData: [],
         endLoc: "",
-        price: Number(),
+        endCountry: "",
+        endResident: "",
+        travelTime: "",
+        price: null,
         isPublic: false
       },
-      milestone: {
-        city: "",
-        country: "",
-        resident: "",
-        transport: "Transportation"
-      }
+      milestone: { city: "", country: "", resident: "", transport: 0 },
+
+      hideCreatedMilestones: { value: true, text: "Show" }
     };
   },
   methods: {
@@ -138,14 +269,12 @@ export default {
     },
 
     printObject() {
-      /*console.log(
+      console.log(
         "\n \n* RouteStructure object \n \n" +
           this.routeStructure.startLoc +
           " - Start location."
       );
-      */
-      console.log(this.routeStructure);
-      /*
+
       for (var i = 0; i < this.routeStructure.milestonesData.length; i++) {
         console.log("\n \nMilestone: " + (i + 1) + "\n \n");
         console.log(this.routeStructure.milestonesData[i].city + " - City");
@@ -163,31 +292,21 @@ export default {
       console.log("\n \n" + this.routeStructure.endLoc + " - End location.");
       console.log(this.routeStructure.price + " - Price.");
       console.log(this.routeStructure.isPublic + " - Is public \n \n* \n \n");
-        */
-      this.saveTrip();
     },
-    saveTrip() {
-      // Set data
-      const credentials = {
-        trip: this.routeStructure
-      };
-      let url = "http://localhost:3005/";
 
-      // Send data
-      this.axios
-        .post(url + "user/", credentials)
-        .then(response => {
-          console.log("SUGSE");
-          console.log(response);
-        })
-        .catch(err => {
-          alert(err);
-        });
+    toggleMilestones() {
+      this.hideCreatedMilestones.value = !this.hideCreatedMilestones.value;
+
+      if (this.hideCreatedMilestones.value == true) {
+        this.hideCreatedMilestones.text = "Show";
+      } else {
+        this.hideCreatedMilestones.text = "Hide";
+      }
     }
   }
 };
 </script>
-
+ 
 <style>
 li {
   padding: 0.4rem;
@@ -208,11 +327,14 @@ ul {
 
 .centerButton {
   display: inline;
-  min-width: 10rem;
+  min-width: 8rem;
 }
 
 .my-row {
-  border: 3px red;
+  display: flex;
+}
+
+.my-row div {
   padding: 0.5rem;
 }
 </style>
