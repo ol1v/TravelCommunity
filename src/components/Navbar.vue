@@ -237,7 +237,28 @@ li {
   color: white;
   font-size: 25px;
 }
+
+.navbar-links:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: #61a3ff;
+  position: absolute;
+  left: 0;
+  bottom: -1px; /* this is to match where the border is */
+  transform-origin: left;
+  transform: scale(0);
+  transition: 0.25s linear;
+  /*   will-change: transform; */
+}
+
+.navbar-links:hover:before {
+  transform: scale(1);
+}
 .navbar-links {
+  transition: all 0.25s linear;
+  position: relative;
   display: inline-block;
   width: auto;
   height: 50px;
@@ -262,7 +283,7 @@ li {
   padding-right: 30px;
   cursor: pointer;
 }
-.navbar-links:hover,
+
 .navbar-links-login:hover {
   color: #00cbff;
   height: 50px;
