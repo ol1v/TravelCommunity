@@ -14,14 +14,16 @@
       </div>
     </div>
     <div class="banner"></div>
-    <span>
-      <p>
-        <font-awesome-icon icon="js" size="2x" />
-      </p>
+
+    <span class="dev-icons-wrapper">
       <span>
-        <font-awesome-icon icon="vuejs" size="6x" />
+        <p>
+          <font-awesome-icon :icon="['fab', 'html5']" size="4x" class="dev-icons" />
+          <font-awesome-icon :icon="['fab', 'js']" size="4x" class="dev-icons" />
+          <font-awesome-icon :icon="['fab', 'vuejs']" size="4x" class="dev-icons" />
+          <font-awesome-icon :icon="['fab', 'node-js']" size="4x" class="dev-icons" />
+        </p>
       </span>
-      <span>hejSan</span>
     </span>
   </div>
 </template>
@@ -143,5 +145,13 @@ export default {};
   position: relative;
   top: -20pt;
   z-index: -20;
+}
+.dev-icons-wrapper {
+  text-align: center;
+}
+.dev-icons {
+  margin-left: 1.4em;
+  margin-right: 1.4em;
+  color: #026f7e;
 }
 </style>

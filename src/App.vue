@@ -4,7 +4,6 @@
     <MobileNavbar v-responsive.sm.xs></MobileNavbar>
 
     <router-view></router-view>
-    <!-- <MyFooter></MyFooter> -->
   </div>
 </template>
 
@@ -12,14 +11,12 @@
 //Imports
 import Navbar from "./components/Navbar";
 import MobileNavbar from "./mobile-components/MobileNavbar";
-// import MyFooter from './components/MyFooter'
 
 export default {
   name: "App",
   components: {
     Navbar,
     MobileNavbar
-    // MyFooter
   }
 };
 </script>
