@@ -132,7 +132,7 @@ export default {
     // Register button
     register() {
       this.displayLoginStatus = false;
-      this.$router.push({ name: "RegisterUser" });
+      this.$router.push({ name: "Register" });
     },
     // Logout button
     logout() {
