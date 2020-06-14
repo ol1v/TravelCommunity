@@ -2,7 +2,7 @@
   <div>
     <Navbar v-responsive.md.lg.xl></Navbar>
     <MobileNavbar v-responsive.sm.xs></MobileNavbar>
-    
+
     <router-view></router-view>
     <!-- <MyFooter></MyFooter> -->
   </div>
@@ -10,30 +10,30 @@
 
 <script>
 //Imports
-import Navbar from './components/Navbar'
-import MobileNavbar from './mobile-components/MobileNavbar'
+import Navbar from "./components/Navbar";
+import MobileNavbar from "./mobile-components/MobileNavbar";
 // import MyFooter from './components/MyFooter'
 
 export default {
-  name: 'App',
-  components:{
+  name: "App",
+  components: {
     Navbar,
     MobileNavbar
     // MyFooter
   }
-
-}
+};
 </script>
 
 <style>
-html, body{
+html,
+body {
   margin: 0px;
   padding: 0px;
 }
-.center{
+.center {
   text-align: center;
 }
-.font{
+.font {
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
 }

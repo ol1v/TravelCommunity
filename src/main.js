@@ -31,8 +31,9 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faShieldAlt } from "@fortawesome/free-solid-svg-icons"
 import { faUserCog } from "@fortawesome/free-solid-svg-icons"
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons"
+import { faJs, faVuejs, faNodeJs, faHtml5 } from '@fortawesome/free-brands-svg-icons';
 
-library.add(faPlane, faShip, faCar, faHotel, faMapPin, faHourglassEnd, faShieldAlt, faUserCog, faAngleRight);
+library.add(faPlane, faShip, faCar, faHotel, faMapPin, faHourglassEnd, faShieldAlt, faUserCog, faAngleRight, faJs, faVuejs, faNodeJs, faHtml5);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 Vue.config.productionTip = false;

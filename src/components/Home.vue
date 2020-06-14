@@ -14,13 +14,20 @@
       </div>
     </div>
     <div class="banner"></div>
+    <span>
+      <p>
+        <font-awesome-icon icon="js" size="2x" />
+      </p>
+      <span>
+        <font-awesome-icon icon="vuejs" size="6x" />
+      </span>
+      <span>hejSan</span>
+    </span>
   </div>
 </template>
 
 <script>
-export default {
-  
-}
+export default {};
 </script>
 
 <style>
@@ -124,8 +131,8 @@ export default {
 
 .banner {
   width: 100%;
-  height: 200px;
-  background: rgb(2, 111, 126);
+  height: 200pt;
+  background: #026f7e;
   background: linear-gradient(
     90deg,
     rgba(2, 111, 126, 1) 0%,
