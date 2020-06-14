@@ -138,12 +138,14 @@ export default {
     },
 
     printObject() {
-      console.log(
+      /*console.log(
         "\n \n* RouteStructure object \n \n" +
           this.routeStructure.startLoc +
           " - Start location."
       );
-
+      */
+      console.log(this.routeStructure);
+      /*
       for (var i = 0; i < this.routeStructure.milestonesData.length; i++) {
         console.log("\n \nMilestone: " + (i + 1) + "\n \n");
         console.log(this.routeStructure.milestonesData[i].city + " - City");
@@ -161,6 +163,26 @@ export default {
       console.log("\n \n" + this.routeStructure.endLoc + " - End location.");
       console.log(this.routeStructure.price + " - Price.");
       console.log(this.routeStructure.isPublic + " - Is public \n \n* \n \n");
+        */
+      this.saveTrip();
+    },
+    saveTrip() {
+      // Set data
+      const credentials = {
+        trip: this.routeStructure
+      };
+      let url = "http://localhost:3005/";
+
+      // Send data
+      this.axios
+        .post(url + "user/", credentials)
+        .then(response => {
+          console.log("SUGSE");
+          console.log(response);
+        })
+        .catch(err => {
+          alert(err);
+        });
     }
   }
 };
