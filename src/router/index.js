@@ -14,7 +14,6 @@ import MyTrips from '../views/MyTrips'
 import Controlpanel from '../views/Controlpanel'
 import Settings from '../views/Settings'
 import ResetPassword from '../views/ResetPassword'
-import RegisterUser from '../views/RegisterUser'
 import CreateTrip2 from '../components/CreateTrip2'
 
 let router = new VueRouter({
@@ -27,11 +26,11 @@ let router = new VueRouter({
     name: "Register",
     component: Register,
     path: '/register'
-  }, {
+  }, /* {
     name: "RegisterUser",
     component: RegisterUser,
     path: '/registerUser'
-  }, {
+  }, */ {
     name: "Searchresult",
     component: Searchresult,
     path: '/results'

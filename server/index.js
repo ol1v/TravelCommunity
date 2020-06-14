@@ -110,18 +110,45 @@ app.post("/register", (request, response) => {
   })
 })
 
+/* ---------------------------------- // ? ---------------------------------- */
+
 // Post Trip - A & K 
 app.post('/user', (request, response) => {
   let trip = request.body.trip
+  const milestones = JSON.parse(request.body.trip.milestones)
 
   // Insert Data
-  con.query(`INSERT INTO travel VALUES (${con.escape(trip.startLoc)}, ${con.escape(trip.endLoc)}, ${con.escape(trip.price)}, ${con.escape(trip.isPublic)} )`, function (error, result) {
+  con.query(
+    `INSERT INTO travel (username, fromLoc, fromCountry, fromTransportation, milestones, toLoc, toCountry, toResident, price, traveltime) VALUES(
+      ${con.escape(trip.username)}, 
+      ${con.escape(trip.startLoc)},
+      ${con.escape(trip.startCountry)}, 
+      ${con.escape(trip.startLocTransport)}, 
+      ${con.escape(milestones)}, 
+      ${con.escape(trip.endLoc)}, 
+      ${con.escape(trip.endCountry)}, 
+      ${con.escape(trip.endResident)}, 
+      ${con.escape(trip.price)}, 
+      ${con.escape(trip.travelTime)})`, function (error, result) {
     if (error) throw error
   })
 
   return response.status(201)
 })
 
+/*
+        username: this.$store.state.username,
+        startLoc: "",
+        startCountry: "",
+        startLocTransport: 0,
+        milestonesData: [],
+        endLoc: "",
+        endCountry: "",
+        endResident: "",
+        travelTime: "",
+        price: null,
+        isPublic: false
+*/
 
 //Get travels
 app.post("/travels", (request, response) => {

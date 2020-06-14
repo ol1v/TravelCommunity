@@ -1,12 +1,3 @@
-<!-- 
-TODO: 
-	•	Set Password to input on submit - REQUIRED #1
-	•	Set Username to input on submit - REQUIRED #2
-	•	Email subscription checkbox     - OPTIONAL
-	•	CSS RED TEXT - OPTIONAL        -#-HIGH PRIO-#-
-  •	ToS Link - REQUIRED            -#-LOW PRIO -#-
--->
-
 <template>
   <div>
     <div id="register-wrapper">
