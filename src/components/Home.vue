@@ -14,13 +14,22 @@
       </div>
     </div>
     <div class="banner"></div>
+
+    <span class="dev-icons-wrapper">
+      <span>
+        <p>
+          <font-awesome-icon :icon="['fab', 'html5']" size="4x" class="dev-icons" />
+          <font-awesome-icon :icon="['fab', 'js']" size="4x" class="dev-icons" />
+          <font-awesome-icon :icon="['fab', 'vuejs']" size="4x" class="dev-icons" />
+          <font-awesome-icon :icon="['fab', 'node-js']" size="4x" class="dev-icons" />
+        </p>
+      </span>
+    </span>
   </div>
 </template>
 
 <script>
-export default {
-  
-}
+export default {};
 </script>
 
 <style>
@@ -124,8 +133,8 @@ export default {
 
 .banner {
   width: 100%;
-  height: 200px;
-  background: rgb(2, 111, 126);
+  height: 200pt;
+  background: #026f7e;
   background: linear-gradient(
     90deg,
     rgba(2, 111, 126, 1) 0%,
@@ -136,5 +145,13 @@ export default {
   position: relative;
   top: -20pt;
   z-index: -20;
+}
+.dev-icons-wrapper {
+  text-align: center;
+}
+.dev-icons {
+  margin-left: 1.4em;
+  margin-right: 1.4em;
+  color: #026f7e;
 }
 </style>
