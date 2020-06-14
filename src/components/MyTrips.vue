@@ -1,97 +1,99 @@
 <template>
   <div>
     <div class="bg">
-      <div
-        class="travel-data-wrapper rounded-corners"
-        v-for="(travel, index) in travelArray"
-        :key="index"
-      >
-        <div class="input-label-wrapper">
-          <label for="mytrips-from">Från</label>
-          <input id="mytrips-from" class="inputs" type="text" v-model="travelArray[index].from" />
-        </div>
-
+      <div class="bg-transp">
         <div
-          class="milestones"
-          v-for="(milestones, ind) in travelArray[index].milestones"
-          :key="ind"
+          class="travel-data-wrapper rounded-corners"
+          v-for="(travel, index) in travelArray"
+          :key="index"
         >
-          <h4 class="milestone-header">Delmål {{ind + 1}}</h4>
           <div class="input-label-wrapper">
-            <label for="mytrips-city">Stad</label>
+            <label for="mytrips-from">Från</label>
+            <input id="mytrips-from" class="inputs" type="text" v-model="travelArray[index].from" />
+          </div>
+
+          <div
+            class="milestones"
+            v-for="(milestones, ind) in travelArray[index].milestones"
+            :key="ind"
+          >
+            <h4 class="milestone-header">Delmål {{ind + 1}}</h4>
+            <div class="input-label-wrapper">
+              <label for="mytrips-city">Stad</label>
+              <input
+                id="mytrips-city"
+                class="inputs"
+                type="text"
+                v-model="travelArray[index].milestones[ind].city"
+              />
+            </div>
+            <div class="input-label-wrapper">
+              <label for="mytrips-country">Land</label>
+              <input
+                id="mytrips-country"
+                class="inputs"
+                type="text"
+                v-model="travelArray[index].milestones[ind].country"
+              />
+            </div>
+            <div class="input-label-wrapper">
+              <label for="mytrips-resident">Boende</label>
+              <input
+                id="mytrips-resident"
+                class="inputs"
+                type="text"
+                v-model="travelArray[index].milestones[ind].resident"
+              />
+            </div>
+            <!--- Fixa select med ikoner för transportation--->
+            <div class="select-wrapper">
+              <select class="selects" v-model="travelArray[index].milestones[ind].Transportation">
+                <option selected>{{travelArray[index].milestones[ind].Transportation}}</option>
+                <option value="fa fa-address-card">&#xf2bb;</option>
+                <option value="train">Train</option>
+                <option value="boat">Boat</option>
+                <option value="car">Car</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-label-wrapper">
+            <label for="mytrips-to">Till</label>
+            <input id="mytrips-to" class="inputs" type="text" v-model="travelArray[index].to" />
+          </div>
+
+          <div class="input-label-wrapper">
+            <label for="mytrips-traveltime">Resetid</label>
             <input
-              id="mytrips-city"
+              id="mytrips-traveltime"
               class="inputs"
               type="text"
-              v-model="travelArray[index].milestones[ind].city"
+              v-model="travelArray[index].traveltime"
             />
           </div>
+
           <div class="input-label-wrapper">
-            <label for="mytrips-country">Land</label>
-            <input
-              id="mytrips-country"
-              class="inputs"
-              type="text"
-              v-model="travelArray[index].milestones[ind].country"
-            />
-          </div>
-          <div class="input-label-wrapper">
-            <label for="mytrips-resident">Boende</label>
-            <input
-              id="mytrips-resident"
-              class="inputs"
-              type="text"
-              v-model="travelArray[index].milestones[ind].resident"
-            />
-          </div>
-          <!--- Fixa select med ikoner för transportation--->
-          <div class="select-wrapper">
-            <select class="selects" v-model="travelArray[index].milestones[ind].Transportation">
-              <option selected>{{travelArray[index].milestones[ind].Transportation}}</option>
-              <option value="fa fa-address-card">&#xf2bb;</option>
-              <option value="train">Train</option>
-              <option value="boat">Boat</option>
-              <option value="car">Car</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="input-label-wrapper">
-          <label for="mytrips-to">Till</label>
-          <input id="mytrips-to" class="inputs" type="text" v-model="travelArray[index].to" />
-        </div>
-
-        <div class="input-label-wrapper">
-          <label for="mytrips-traveltime">Resetid</label>
-          <input
-            id="mytrips-traveltime"
-            class="inputs"
-            type="text"
-            v-model="travelArray[index].traveltime"
-          />
-        </div>
-
-        <div class="input-label-wrapper">
-          <label for="mytrips-price">Kostnad</label>
-          <input id="mytrips-price" class="inputs" type="text" v-model="travelArray[index].price" />
-        </div>
-
-        <div class="travel-top-bar">
-          <div class="equal-spacing">
-            <p class="uploaded">Uppladdat av: {{travelArray[index].username}}</p>
+            <label for="mytrips-price">Kostnad</label>
+            <input id="mytrips-price" class="inputs" type="text" v-model="travelArray[index].price" />
           </div>
 
-          <div class="equal-spacing">
-            <button class="update-button" @click="updateTravel(travelArray[index])">Ändra</button>
-          </div>
+          <div class="travel-top-bar">
+            <div class="equal-spacing">
+              <p class="uploaded">Uppladdat av: {{travelArray[index].username}}</p>
+            </div>
 
-          <div class="equal-spacing">
-            <input
-              type="button"
-              class="remove-travel"
-              value="X"
-              @click="deleteTravel(travelArray[index].id)"
-            />
+            <div class="equal-spacing">
+              <button class="update-button" @click="updateTravel(travelArray[index])">Ändra</button>
+            </div>
+
+            <div class="equal-spacing">
+              <input
+                type="button"
+                class="remove-travel"
+                value="X"
+                @click="deleteTravel(travelArray[index].id)"
+              />
+            </div>
           </div>
         </div>
       </div>
@@ -192,15 +194,17 @@ export default {
 </script>
 
 <style scoped>
-.bg {
-  background: #026f7e;
-  background: linear-gradient(
-    90deg,
-    rgba(142, 197, 252, 1) 0%,
-    rgba(2, 111, 126, 1) 100%,
-    rgba(255, 255, 255, 1) 100%
-  );
+.bg-transp {
+  background-color: #02707e4b;
 }
+.bg {
+  background-image: url("../assets/mytravelsimage.jpg");
+  background-position: 22em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 .travel-top-bar {
   width: 100%;
   height: 20px;
@@ -226,6 +230,11 @@ export default {
   background-color: #222;
   border: none;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: 0.2s linear;
+}
+
+.update-button:hover {
+  background-color: #0799d3;
 }
 
 .remove-travel {
@@ -246,8 +255,8 @@ export default {
   font-weight: 400;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   padding-top: 1em;
-  margin-top: 0.09em;
-  margin-left: 4em;
+
+  margin-left: 0.2em;
   margin-bottom: 2em;
   border-radius: 0.5em;
 }

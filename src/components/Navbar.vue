@@ -285,7 +285,7 @@ li {
 }
 
 .navbar-links-login:hover {
-  color: #00cbff;
+  color: #61a3ff;
   height: 50px;
 }
 

@@ -59,6 +59,7 @@ export default {
   background: #026f7e;
   color: white;
   border: 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 .unban-user-button:hover {
   background: #026f7e;

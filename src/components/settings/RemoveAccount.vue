@@ -128,10 +128,18 @@ export default {
   width: 100%;
   height: 50px;
   margin-top: 20px;
-  border: 0px;
-  background-color: red;
+  font-weight: 500;
+  background-color: white;
+  color: red;
+  border-color: red;
   font-size: 15px;
   cursor: pointer;
+
+  transition: 0.2s linear;
+}
+
+.remove-account-button:hover {
+  background-color: red;
   color: white;
 }
 

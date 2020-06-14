@@ -87,7 +87,7 @@ export default {
   height: 50px;
   border: 0px;
   background-color: transparent;
-  color: black;
+  color: #0e4e79;
   font-size: 20px;
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
@@ -95,6 +95,6 @@ export default {
 }
 
 .settings-link:hover {
-  background-color: white;
+  background-color: rgba(51, 122, 253, 0.171);
 }
 </style>
