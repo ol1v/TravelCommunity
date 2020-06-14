@@ -302,6 +302,24 @@ export default {
       } else {
         this.hideCreatedMilestones.text = "Hide";
       }
+    },
+    saveTrip() {
+      // Set data
+      const credentials = {
+        trip: this.routeStructure
+      };
+      let url = "http://localhost:3005/";
+
+      // Send data
+      this.axios
+        .post(url + "user/", credentials)
+        .then(response => {
+          console.log("SUGSE");
+          console.log(response);
+        })
+        .catch(err => {
+          alert(err);
+        });
     }
   }
 };
