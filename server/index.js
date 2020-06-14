@@ -115,25 +115,18 @@ app.post("/register", (request, response) => {
 // Post Trip - A & K 
 app.post('/user', (request, response) => {
   let trip = request.body.trip
-  const milestones = JSON.parse(request.body.trip.milestones)
+
+  const stringifiedMilestones = JSON.stringify(trip.milestonesData)
 
   // Insert Data
   con.query(
-    `INSERT INTO travel (username, fromLoc, fromCountry, fromTransportation, milestones, toLoc, toCountry, toResident, price, traveltime) VALUES(
-      ${con.escape(trip.username)}, 
-      ${con.escape(trip.startLoc)},
-      ${con.escape(trip.startCountry)}, 
-      ${con.escape(trip.startLocTransport)}, 
-      ${con.escape(milestones)}, 
-      ${con.escape(trip.endLoc)}, 
-      ${con.escape(trip.endCountry)}, 
-      ${con.escape(trip.endResident)}, 
-      ${con.escape(trip.price)}, 
-      ${con.escape(trip.travelTime)})`, function (error, result) {
+    `INSERT INTO travel (username, fromLoc, fromCountry, fromTransportation, milestones, toLoc, toCountry, toResident, price, traveltime) VALUES(${con.escape(trip.username)}, ${con.escape(trip.startLoc)}, ${con.escape(trip.startCountry)}, ${con.escape(trip.startLocTransport)}, ${con.escape(stringifiedMilestones)}, ${con.escape(trip.endLoc)}, ${con.escape(trip.endCountry)}, ${con.escape(trip.endResident)}, ${con.escape(trip.price)}, ${con.escape(trip.travelTime)})`, function (error, result) {
     if (error) throw error
   })
 
-  return response.status(201)
+  return response.status(201).send({
+    message: "Resa uppladdad"
+  })
 })
 
 /*

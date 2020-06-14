@@ -201,6 +201,8 @@
       </div>
 
       <input class="centerButton" type="button" value="Debug log" @click="printObject()" />
+
+      <input class="centerButton" type="button" value="Upload trip" @click="saveTrip()" />
     </div>
   </div>
 </template>
@@ -224,7 +226,7 @@ export default {
       },
       milestone: { city: "", country: "", resident: "", transport: 0 },
 
-      hideCreatedMilestones: { value: true, text: "Show" }
+      hideCreatedMilestones: { value: false, text: "Hide milestones" }
     };
   },
   methods: {
@@ -292,16 +294,15 @@ export default {
       console.log("\n \n" + this.routeStructure.endLoc + " - End location.");
       console.log(this.routeStructure.price + " - Price.");
       console.log(this.routeStructure.isPublic + " - Is public \n \n* \n \n");
-      this.saveTrip();
     },
 
     toggleMilestones() {
       this.hideCreatedMilestones.value = !this.hideCreatedMilestones.value;
 
       if (this.hideCreatedMilestones.value == true) {
-        this.hideCreatedMilestones.text = "Show";
+        this.hideCreatedMilestones.text = "Show milestones";
       } else {
-        this.hideCreatedMilestones.text = "Hide";
+        this.hideCreatedMilestones.text = "Hide milestones";
       }
     },
     saveTrip() {
