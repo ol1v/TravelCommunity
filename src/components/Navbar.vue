@@ -242,15 +242,13 @@ li {
   content: "";
   display: block;
   width: 100%;
-  height: 2px;
-  background-color: #61a3ff;
+  border-bottom: 2px solid #61a3ff;
   position: absolute;
   left: 0;
   bottom: -1px; /* this is to match where the border is */
   transform-origin: left;
   transform: scale(0);
   transition: 0.25s linear;
-  /*   will-change: transform; */
 }
 
 .navbar-links:hover:before {
@@ -269,6 +267,10 @@ li {
   font-size: 18px;
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.navbar-links:focus{
+  color: #8ec5fc;
 }
 .navbar-links-login {
   display: block;
