@@ -128,12 +128,44 @@ app.post('/user', (request, response) => {
   var rating = JSON.stringify([{"v": 0}])
   // Insert Data
   con.query(
-    `INSERT INTO travel (username, fromLoc, fromCountry, fromTransportation, milestones, toLoc, toCountry, toResident, timestamp, price, traveltime, rating) VALUES(${con.escape(trip.username)}, ${con.escape(trip.startLoc)}, ${con.escape(trip.startCountry)}, ${con.escape(trip.startLocTransport)}, ${con.escape(stringifiedMilestones)}, ${con.escape(trip.endLoc)}, ${con.escape(trip.endCountry)}, ${con.escape(dateYYYYMMDD)}, ${con.escape(trip.endResident)}, ${con.escape(trip.price)}, ${con.escape(trip.travelTime)}, ${con.escape(rating)})`, function (error, result) {
+    `INSERT INTO travel (username, fromLoc, fromCountry, fromTransportation, milestones, toLoc, toCountry, toResident, timestamp, price, traveltime, rating, ratingScore) VALUES(${con.escape(trip.username)}, ${con.escape(trip.startLoc)}, ${con.escape(trip.startCountry)}, ${con.escape(trip.startLocTransport)}, ${con.escape(stringifiedMilestones)}, ${con.escape(trip.endLoc)}, ${con.escape(trip.endCountry)}, ${con.escape(trip.endResident)}, ${con.escape(dateYYYYMMDD)}, ${con.escape(trip.price)}, ${con.escape(trip.travelTime)}, ${con.escape(rating)}, ${con.escape(0)})`, function (error, result) {
     if (error) throw error
   })
 
   return response.status(201).send({
     message: "Resa uppladdad"
+  })
+})
+
+app.post('/user-app', (request, response) => {
+  let trip = request.body
+
+  const stringifiedMilestones = JSON.stringify(trip.milestones)
+
+  var dateYYYYMMDD = new Date().toISOString()
+  dateYYYYMMDD = dateYYYYMMDD.substring(0, 10)
+
+  var rating = JSON.stringify([{ v: 0 }])
+  // Insert Data
+  con.query(
+    `INSERT INTO travel (username, fromLoc, fromCountry, fromTransportation, milestones, toLoc, toCountry, toResident, timestamp, price, traveltime, rating) VALUES(${con.escape(
+      trip.username
+    )}, ${con.escape(trip.fromLoc)}, ${con.escape(
+      trip.fromCountry
+    )}, ${con.escape(trip.fromTransportation)}, ${con.escape(
+      stringifiedMilestones
+    )}, ${con.escape(trip.toLoc)}, ${con.escape(trip.toCountry)},${con.escape(
+      trip.toResident
+    )}, ${con.escape(dateYYYYMMDD)}, ${con.escape(trip.price)}, ${con.escape(
+      trip.traveltime
+    )}, ${con.escape(rating)})`,
+    function(error, result) {
+      if (error) throw error
+    }
+  )
+
+  return response.status(201).send({
+    message: 'Resa uppladdad'
   })
 })
 
