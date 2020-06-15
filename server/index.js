@@ -117,10 +117,15 @@ app.post('/user', (request, response) => {
   let trip = request.body.trip
 
   const stringifiedMilestones = JSON.stringify(trip.milestonesData)
+  
 
+  var dateYYYYMMDD = new Date().toISOString();
+  dateYYYYMMDD = dateYYYYMMDD.substring(0, 10);
+
+  var rating = JSON.stringify([{"v": 0}])
   // Insert Data
   con.query(
-    `INSERT INTO travel (username, fromLoc, fromCountry, fromTransportation, milestones, toLoc, toCountry, toResident, price, traveltime) VALUES(${con.escape(trip.username)}, ${con.escape(trip.startLoc)}, ${con.escape(trip.startCountry)}, ${con.escape(trip.startLocTransport)}, ${con.escape(stringifiedMilestones)}, ${con.escape(trip.endLoc)}, ${con.escape(trip.endCountry)}, ${con.escape(trip.endResident)}, ${con.escape(trip.price)}, ${con.escape(trip.travelTime)})`, function (error, result) {
+    `INSERT INTO travel (username, fromLoc, fromCountry, fromTransportation, milestones, toLoc, toCountry, toResident, timestamp, price, traveltime, rating) VALUES(${con.escape(trip.username)}, ${con.escape(trip.startLoc)}, ${con.escape(trip.startCountry)}, ${con.escape(trip.startLocTransport)}, ${con.escape(stringifiedMilestones)}, ${con.escape(trip.endLoc)}, ${con.escape(trip.endCountry)}, ${con.escape(dateYYYYMMDD)}, ${con.escape(trip.endResident)}, ${con.escape(trip.price)}, ${con.escape(trip.travelTime)}, ${con.escape(rating)})`, function (error, result) {
     if (error) throw error
   })
 

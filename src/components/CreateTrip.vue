@@ -224,7 +224,7 @@ export default {
         price: null,
         isPublic: false
       },
-      milestone: { city: "", country: "", resident: "", transport: 0 },
+      milestone: {city:"",country:"",resident:"",transport:0},
 
       hideCreatedMilestones: { value: false, text: "Hide milestones" }
     };
