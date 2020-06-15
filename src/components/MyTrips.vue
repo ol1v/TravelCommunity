@@ -199,8 +199,8 @@ export default {
 }
 .bg {
   background-image: url("../assets/mytravelsimage.jpg");
-  background-position: 22em;
-  background-size: contain;
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }

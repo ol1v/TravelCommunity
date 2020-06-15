@@ -81,6 +81,7 @@ app.post("/register", (request, response) => {
 
   // Kolla om användarnamn finns i Databas
   con.query(`SELECT username FROM userdetails WHERE username = ${con.escape(username)}`, function (err, userNameResult) {
+    if(err) throw err
     if (userNameResult.length > 0) {
       return response.status(406).send({
         message: "Användarnamnet finns redan!"
@@ -90,6 +91,7 @@ app.post("/register", (request, response) => {
     // Check Email - exists?
     else {
       con.query(`SELECT email FROM userdetails WHERE email = ${con.escape(email)}`, function (err, emailResult) {
+        if(err) throw err
         if (emailResult.length > 0) {
           return response.status(406).send({
             message: "Email adressen finns redan!"
@@ -99,6 +101,7 @@ app.post("/register", (request, response) => {
           //Hash the password
           bcrypt.hash(password, 10, function (err, hash) {
             con.query(`INSERT INTO userdetails (password, admin, username, email, banned) VALUES(${con.escape(hash)}, ${con.escape(0)}, ${con.escape(username)}, ${con.escape(email)}, ${con.escape(0)})`, function (err, result) {
+              if(err) throw err
               return response.status(201).send({
                 message: "Registering lyckades"
               })
@@ -562,7 +565,8 @@ app.post('/updatetravel', (request, response) => {
 //All users
 app.post('/all-users', (request, response) => {
   let resultArray = []
-  con.query(`SELECT username, COUNT (*) AS COUNT FROM travel GROUP BY username`, function (err, travelResult) {
+  con.query(`SELECT username, COUNT (*) AS count FROM travel GROUP BY username`, function (err, travelResult) {
+    if(err) throw err
     return response.status(201).send({
       message: travelResult
     })
