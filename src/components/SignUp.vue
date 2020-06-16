@@ -79,12 +79,21 @@
             <div class="error" v-if="!$v.repeatPassword.sameAsPassword">Passwords must be identical.</div>
 
             <!-- Submit -->
-            <button
-              class="font"
-              id="register-button"
-              type="submit"
-              :disabled="submitStatus === 'PENDING'"
-            >Submit!</button>
+            <vue-recaptcha
+              sitekey="6LeJ_qQZAAAAALrZaqz65k7g7ZHYT4C3uI900quA"
+              :loadRecaptchaScript="true"
+              theme="dark"
+              @verify="submit"
+              @expired="expiredCallback"
+              @error="errorCallback"
+            >
+              <button
+                class="font"
+                id="register-button"
+                type="submit"
+                :disabled="submitStatus === 'PENDING'"
+              >Submit!</button>
+            </vue-recaptcha>
 
             <!-- Submit Status -->
             <p class="typo__p" v-if="submitStatus === 'OK'">Thanks for your submission!</p>
@@ -97,29 +106,29 @@
               <ul class="list__ul">
                 <li v-if="$v.email.$invalid">
                   Email is
-                  <kbd>$invalid</kbd>.
+                  <kbd>invalid</kbd>
                 </li>
 
                 <li v-if="$v.name.$invalid">
                   Name is
-                  <kbd>$invalid</kbd>.
+                  <kbd>invalid</kbd>
                 </li>
 
                 <li v-if="$v.password.$invalid">
-                  Field password is
-                  <kbd>$invalid</kbd>.
+                  Password form is
+                  <kbd>invalid</kbd>
                 </li>
 
                 <li v-if="$v.repeatPassword.$invalid">
                   RepeatPassword is
-                  <kbd>$invalid</kbd>.
+                  <kbd>invalid</kbd>
                 </li>
 
                 <li v-if="$v.$invalid">
                   Form is
-                  <kbd>$invalid</kbd>.
+                  <kbd>invalid</kbd>
                 </li>
-                <li v-else>All fine.</li>
+                <li v-else>All Good! &#10003;</li>
               </ul>
             </div>
           </div>
@@ -143,6 +152,7 @@
 
 <script>
 import Vue from "vue";
+import VueRecaptcha from "vue-recaptcha";
 import { validationMixin } from "vuelidate";
 import {
   required,
@@ -151,7 +161,6 @@ import {
   email,
   alpha
 } from "vuelidate/lib/validators";
-
 // Object with keys where keys must be objects with values.
 const touchMap = new WeakMap();
 
@@ -160,6 +169,7 @@ export default Vue.extend({
   mounted() {
     window.scrollTo(0, 500);
   },
+  components: { VueRecaptcha },
   data() {
     return {
       email: "",
@@ -170,6 +180,14 @@ export default Vue.extend({
     };
   },
   methods: {
+    errorCallback() {
+      alert("There was an error in handling Captcha, please try again!");
+    },
+    expiredCallback() {
+      alert("Captcha expired, reloading!");
+      location.reload();
+    },
+
     delayTouch($v) {
       $v.$reset();
       if (touchMap.has($v)) {
@@ -269,6 +287,16 @@ export default Vue.extend({
   position: relative;
   top: 5rem;
   width: 50%;
+}
+
+/* child selector li > kbd */
+li > kbd {
+  color: #cc0033;
+}
+
+/* checkmark */
+\2713 {
+  color: lightgreen;
 }
 
 #register-left {
