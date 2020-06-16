@@ -26,11 +26,7 @@ let router = new VueRouter({
     name: "Register",
     component: Register,
     path: '/register'
-  }, /* {
-    name: "RegisterUser",
-    component: RegisterUser,
-    path: '/registerUser'
-  }, */ {
+  }, {
     name: "Searchresult",
     component: Searchresult,
     path: '/results'
@@ -52,16 +48,14 @@ let router = new VueRouter({
     meta: {
       requiresAuth: true
     }
-  },
-  {
+  },{
     name: "CreateTrip2",
     component: CreateTrip2,
     path: '/user/test',
     meta: {
       requiresAuth: true
     }
-  },
-  {
+  },{
     name: "MyTripsProps",
     component: MyTrips,
     path: '/user/trips/:checkUser',

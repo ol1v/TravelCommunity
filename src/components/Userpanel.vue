@@ -7,9 +7,6 @@
             <router-link to="/user" class="user-links">NY RESA</router-link>
           </li>
           <li>
-            <router-link to="/user/test" class="user-links">NY RESAtest</router-link>
-          </li>
-          <li>
             <router-link to="/user/trips" class="user-links">MINA RESOR</router-link>
           </li>
           <li>
