@@ -224,9 +224,7 @@
           <label for="isPublicCheckbox">Privat resa</label>
         </div>
       </div>
-      <div class="my-padding">
-      <input class="centerButton" type="button" value="Debug log" @click="printObject()" />
-      </div>
+      
       <div>
       <input class="centerButton" type="button" value="Ladda upp resa" @click="saveTrip()" />
       </div>
